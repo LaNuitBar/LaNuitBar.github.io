@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La Nuit – Foto-Carrusel</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Carrusel de fotos -->
+  <div id="photoCarousel" class="photo-carousel"></div>
+  <div class="overlay"></div>
+
+  <header>
+    <h1>LA NUIT</h1>
+    <p>Reservá tu mesa</p>
+  </header>
+
+  <div class="promo-wrapper">
+    <img id="promoImg" class="promo-img" src="https://i.postimg.cc/858rf0CT/IMG-20250814-WA0012.jpg" alt="Promocional">
+  </div>
+
+  <section class="reservation">
+    <form id="reservationForm" class="reservation-form">
+      <div class="form-group"><label>Nombre</label><input name="nombre" required></div>
+      <div class="form-group"><label>Teléfono</label><input name="telefono" type="tel" required></div>
+      <div class="form-group"><label>Fecha</label><input name="fecha" type="date" required></div>
+      <div class="form-group"><label>Hora</label><select name="hora" required>
+          <option>20:00</option><option>21:00</option><option>22:00</option><option>23:00</option><option>00:00</option>
+        </select></div>
+      <div class="form-group"><label>Personas</label><select name="personas" required>
+          <option>1-2</option><option>3-4</option><option>5-6</option><option>7+</option>
+        </select></div>
+      <button type="submit" class="submit-btn">RESERVAR</button>
+    </form>
+  </section>
+
+  <!-- Botones flotantes -->
+  <div class="float-container" id="floatContainer"></div>
+  <button class="admin-btn" onclick="toggleAdmin(true)">Admin</button>
+
+  <!-- Panel Admin -->
+  <div class="admin-panel" id="adminPanel">
+    <h3>Admin</h3>
+    <input type="password" id="passInput" class="password-input" placeholder="0000">
+    <button onclick="checkPass()">Entrar</button>
+
+    <div id="adminSections" style="display:none;flex-direction:column">
+      <details>
+        <summary>Imagen Promocional</summary>
+        <input type="url" id="promoUrl" placeholder="URL imagen">
+        <button onclick="savePromo()">Guardar imagen</button>
+      </details>
+      <details>
+        <summary>Enlaces flotantes</summary>
+        <label>WhatsApp</label><input type="url" id="link0" placeholder="https://wa.me/...">
+        <label>Instagram</label><input type="url" id="link1" placeholder="https://instagram.com/...">
+        <label>Maps</label><input type="url" id="link2" placeholder="https://maps.google.com/...">
+        <button onclick="saveLinks()">Guardar enlaces</button>
+      </details>
+    </div>
+    <button class="close-btn" onclick="toggleAdmin(false)">Cerrar</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
