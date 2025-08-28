@@ -1,0 +1,17 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "promocional"
+    label: "Imagen Promocional"
+    files:
+      - name: "promocional"
+        label: "Imagen Promocional"
+        file: "content/promocional.json"
+        fields:
+          - { label: "Imagen", name: "imagen", widget: "image" }
+          - { label: "Activa", name: "activa", widget: "boolean", default: true }
