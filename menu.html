@@ -520,5 +520,17 @@
     .then(data => console.log('Datos del índice:', data))
     .catch(error => console.error('Error al cargar el índice:', error));
 </script>
+    <script>
+  fetch('/content/menu/index.json')
+    .then(response => response.json())
+    .then(index => {
+      console.log('Índice cargado:', index);
+      // Probar cargar el primer archivo (pizzas.json)
+      return fetch('/content/menu/' + index[0].file);
+    })
+    .then(response => response.json())
+    .then(data => console.log('Primer archivo cargado:', data))
+    .catch(error => console.error('Error en la cadena:', error));
+</script>
 </body>
 </html>
