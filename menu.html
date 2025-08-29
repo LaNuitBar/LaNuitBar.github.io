@@ -66,28 +66,39 @@
             100% { background-position: 0% 50%; }
         }
         
-        /* HEADER DE ANCHO COMPLETO SIN RECUADRO */
-        .header-full {
+        /* HEADER REDISEÑADO - MÁXIMO IMPACTO VISUAL */
+        .header-container {
             width: 100%;
             text-align: center;
-            padding: 15px 0 10px 0;
-            background: transparent;
-            margin-bottom: 10px;
+            padding: 0;
+            margin: 0 0 20px 0;
+            position: relative;
         }
         
-        .logo-header-full {
+        .logo-main {
             width: 100%;
-            max-height: 150px;
-            object-fit: contain;
+            max-height: 200px;
+            object-fit: cover;
             display: block;
+            border-bottom: 3px solid #ff8c42;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
         
-        .header-full p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-top: 5px;
+        .header-title {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+            padding: 15px 0;
+            margin-top: -5px;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .header-title p {
+            font-size: 1.3rem;
+            font-weight: 300;
             color: #fff;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+            letter-spacing: 1px;
+            margin: 0;
         }
 
         .container {
@@ -319,8 +330,13 @@
         }
         
         @media (max-width: 600px) {
-            .logo-header-full {
-                max-height: 120px;
+            .logo-main {
+                max-height: 150px;
+            }
+            
+            .header-title p {
+                font-size: 1.1rem;
+                padding: 12px 0;
             }
             
             .nav-button {
@@ -337,18 +353,26 @@
                 margin-left: auto;
                 margin-top: 5px;
             }
+        }
+
+        @media (max-width: 400px) {
+            .logo-main {
+                max-height: 120px;
+            }
             
-            .header-full p {
+            .header-title p {
                 font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER DE ANCHO COMPLETO SIN RECUADRO -->
-    <div class="header-full">
-        <img src="https://i.postimg.cc/vZgtfg8J/header-lanuit.png" alt="Bar La Nuit" class="logo-header-full">
-        <p>Donde la noche cobra vida</p>
+    <!-- HEADER REDISEÑADO CON MÁXIMO IMPACTO -->
+    <div class="header-container">
+        <img src="https://i.postimg.cc/vZgtfg8J/header-lanuit.png" alt="Bar La Nuit" class="logo-main">
+        <div class="header-title">
+            <p>Donde la noche cobra vida</p>
+        </div>
     </div>
 
     <div class="container">
