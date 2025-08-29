@@ -140,13 +140,14 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.0558;              /* 24 % más visible */
-    ...
-}. Más visible */
-            animation: none;            /* 3. Sin desplazamiento */
-            background-attachment: fixed;
+            opacity: 0.7;               /* 70 % de visibilidad */
+            animation: backgroundSlide 30s linear infinite;
             z-index: -1;
             pointer-events: none;
+        }
+        @keyframes backgroundSlide {
+            0% { background-position: 0% center; }
+            100% { background-position: 100% center; }
         }
         .menu-section:hover {
             transform: translateY(-5px);
@@ -184,15 +185,12 @@
             z-index: 1;
             will-change: max-height;
         }
-        /* 2. Superficie semitransparente detrás del texto */
-        .section-content {
-            position: relative;
-        }
+        /* Superficie semitransparente detrás del texto */
         .section-content::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: rgba(26, 26, 46, 0.65);
+            background: rgba(26, 26, 46, 0.55);
             z-index: -1;
             border-radius: 0 0 10px 10px;
         }
@@ -310,9 +308,6 @@
             .item-price {
                 text-align: right;
                 margin-left: auto;
-            }
-            .menu-section .background-layer {
-                background-attachment: scroll;
             }
         }
     </style>
@@ -557,6 +552,9 @@
                     const bgLayer = document.createElement('div');
                     bgLayer.className = 'background-layer';
                     bgLayer.style.backgroundImage = `url('${imagen}')`;
+                    if (seccion.imagenes.length > 1) {
+                        bgLayer.style.animationDelay = `${index * 15}s`;
+                    }
                     sectionDiv.appendChild(bgLayer);
                 });
 
