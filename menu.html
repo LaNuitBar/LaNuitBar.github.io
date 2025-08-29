@@ -156,13 +156,13 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.5;
+            opacity: 1; /* CAMBIADO: de 0.5 a 1 - IMAGEN COMPLETAMENTE VISIBLE */
             z-index: -1;
             will-change: opacity;
         }
         
         .menu-section.active .background-layer {
-            opacity: 0.3;
+            opacity: 1; /* CAMBIADO: de 0.3 a 1 - IMAGEN COMPLETAMENTE VISIBLE */
         }
         
         .menu-section .background-layer.animated {
@@ -581,7 +581,7 @@
             section.scrollIntoView({ behavior: 'smooth' });
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () {
             cargarMenu();
         });
     </script>
