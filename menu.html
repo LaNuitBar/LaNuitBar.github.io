@@ -140,10 +140,15 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.7;               /* 70 % de visibilidad */
-            animation: backgroundSlide 30s linear infinite;
+            opacity: 0.2;
             z-index: -1;
-            pointer-events: none;
+            will-change: opacity;
+        }
+        .menu-section.active .background-layer {
+            opacity: 0.1;
+        }
+        .menu-section .background-layer.animated {
+            animation: backgroundSlide 30s linear infinite;
         }
         @keyframes backgroundSlide {
             0% { background-position: 0% center; }
@@ -184,15 +189,6 @@
             position: relative;
             z-index: 1;
             will-change: max-height;
-        }
-        /* Superficie semitransparente detrás del texto */
-        .section-content::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(26, 26, 46, 0.55);
-            z-index: -1;
-            border-radius: 0 0 10px 10px;
         }
         .section-content.active {
             max-height: 2000px;
@@ -330,203 +326,19 @@
     </div>
 
     <script>
-        // === DATOS REALES DEL MENÚ ===
-        const menuData = [
-            {
-                "titulo": "Pizzas",
-                "id": "pizzas",
-                "imagenes": [
-                    "./assets/img/backgrounds/pizza-bg.jpg",
-                    "./assets/img/backgrounds/pizza2-bg.jpg"
-                ],
-                "nota": "Todas las pizzas tienen opciones de tamaño Entera y Media. Precios en $.",
-                "platos": [
-                    { "nombre": "Mozzarella", "descripcion": "Queso mozzarella, salsa de tomate, orégano, aceitunas", "precio": "Entera: $11.000 | Media: $6.500" },
-                    { "nombre": "Especial", "descripcion": "Mozzarella, salsa, jamón cocido, huevo, morrones, aceitunas", "precio": "Entera: $13.500 | Media: $7.000" },
-                    { "nombre": "Fugazzeta", "descripcion": "Mozzarella, salsa, cebolla cruda salteada, aceitunas", "precio": "Entera: $13.500 | Media: $7.500" },
-                    { "nombre": "Calabresa", "descripcion": "Mozzarella, salsa, salame cantimpalo, aceitunas negras", "precio": "Entera: $14.000 | Media: $7.500" },
-                    { "nombre": "Choclo", "descripcion": "Mozzarella, salsa, granos de choclo, morrones, aceitunas", "precio": "Entera: $13.500 | Media: $7.000" },
-                    { "nombre": "Rúcula y Jamón Crudo", "descripcion": "Mozzarella, salsa, jamón crudo, rúcula fresca, tomates cherry, aceitunas", "precio": "Entera: $15.000 | Media: $8.000" },
-                    { "nombre": "Roquefort", "descripcion": "Mozzarella, queso azul, aceitunas negras", "precio": "Entera: $14.000 | Media: $7.500" },
-                    { "nombre": "Napolitana", "descripcion": "Mozzarella, salsa, tomates, aceite de oliva, orégano, aceituna", "precio": "Entera: $13.500 | Media: $7.500" }
-                ]
-            },
-            {
-                "titulo": "Picadas Especiales",
-                "id": "picadas",
-                "imagenes": [
-                    "./assets/img/backgrounds/picada-bg.jpg"
-                ],
-                "nota": "Platos para compartir, con opciones para 2 o 4 personas.",
-                "platos": [
-                    { "nombre": "Picada Especial", "descripcion": "Jamón cocido, queso tybo, mortadela, salame, papas snack, aceitunas, salsa barbacoa", "precio": "2 pers: $15.000 | 4 pers: $28.000" },
-                    { "nombre": "Especial Nuit", "descripcion": "Jamón crudo y cocido, lomo ahumado, bondiola, mortadela, salame, queso tybo, queso azul, papas fritas, aros de cebolla, aceitunas, salsa barbacoa", "precio": "2 pers: $18.000 | 4 pers: $32.000" }
-                ]
-            },
-            {
-                "titulo": "Sándwiches",
-                "id": "sandwiches",
-                "imagenes": [
-                    "./assets/img/backgrounds/sandwich-bg.jpg",
-                    "./assets/img/backgrounds/sandwich2-bg.jpg"
-                ],
-                "nota": "",
-                "subsecciones": [
-                    {
-                        "titulo": "Lomos en Pan Francés",
-                        "nota": "Todos los lomos son de 25 cm.",
-                        "platos": [
-                            { "nombre": "Especial", "descripcion": "Bife de lomo, jamón, queso, huevo, lechuga, tomate, papas, mayo casera", "precio": "$14.000" },
-                            { "nombre": "Nuit", "descripcion": "Bife de lomo, panceta ahumada, queso tybo, queso azul, tomate, rúcula, papas, mayo casera", "precio": "$16.000" }
-                        ]
-                    },
-                    {
-                        "titulo": "Sándwich de Carne Braseada",
-                        "nota": "Carne vacuna desmechada braseada con verduras y vino, en pan baguette (clásico o con semillas), acompañado de papas fritas rústicas, gratinado con queso tybo, cheddar o roquefort.",
-                        "platos": [
-                            { "nombre": "Con tybo", "descripcion": "", "precio": "$10.000" },
-                            { "nombre": "Con cheddar o roquefort", "descripcion": "", "precio": "$12.000" }
-                        ]
-                    },
-                    {
-                        "titulo": "Focaccias",
-                        "nota": "Incluyen rúcula fresca, tomates cherry, queso tybo y papas (salvo indicación contraria).",
-                        "platos": [
-                            { "nombre": "Jamón Crudo", "descripcion": "", "precio": "$12.000" },
-                            { "nombre": "Mortadella", "descripcion": "", "precio": "$10.000" }
-                        ]
-                    }
-                ]
-            },
-            {
-                "titulo": "Hamburguesas",
-                "id": "hamburguesas",
-                "imagenes": [
-                    "./assets/img/backgrounds/hamburguesa-bg.jpg"
-                ],
-                "nota": "Adicional medallón de carne $3.000.",
-                "platos": [
-                    { "nombre": "Especial", "descripcion": "Medallón de carne paty, jamón, queso, huevo, lechuga, tomate, papas", "precio": "$10.000" },
-                    { "nombre": "Americano", "descripcion": "Medallón de carne paty, queso cheddar, panceta ahumada caramelizada, cebolla caramelizada, papas", "precio": "$12.000" }
-                ]
-            },
-            {
-                "titulo": "Papas Fritas",
-                "id": "papas",
-                "imagenes": [
-                    "./assets/img/backgrounds/papas-bg.jpg",
-                    "./assets/img/backgrounds/papas2-bg.jpg"
-                ],
-                "nota": "Variedades de papas fritas (por porción).",
-                "platos": [
-                    { "nombre": "Clásicas", "descripcion": "", "precio": "$5.000" },
-                    { "nombre": "Revuelto Gramajo", "descripcion": "", "precio": "$7.000" },
-                    { "nombre": "Cheddar y Panceta", "descripcion": "", "precio": "$7.500" }
-                ]
-            },
-            {
-                "titulo": "Empanadas",
-                "id": "empanadas",
-                "imagenes": [
-                    "./assets/img/backgrounds/empanada-bg.jpg"
-                ],
-                "nota": "Precios por docena (Doc.) o media docena (1/2 Doc.). Todas las variedades comparten precios.",
-                "platos": [
-                    { "nombre": "Carne", "descripcion": "", "precio": "Docena: $12.000 | Media: $7.000" },
-                    { "nombre": "Pollo", "descripcion": "", "precio": "Docena: $12.000 | Media: $7.000" },
-                    { "nombre": "Jamón y Mozzarella", "descripcion": "", "precio": "Docena: $12.000 | Media: $7.000" },
-                    { "nombre": "Árabes", "descripcion": "", "precio": "Docena: $12.000 | Media: $7.000" }
-                ]
-            },
-            {
-                "titulo": "Bebidas",
-                "id": "bebidas",
-                "imagenes": [
-                    "./assets/img/backgrounds/bebidas-bg.jpg"
-                ],
-                "nota": "",
-                "subsecciones": [
-                    {
-                        "titulo": "Gaseosas, Aguas y Otros sin Alcohol",
-                        "platos": [
-                            { "nombre": "Coca Cola - Fanta - Sprite (x 1 L)", "descripcion": "", "precio": "$5.000" },
-                            { "nombre": "Coca Cola - Fanta - Sprite (x 500 cc)", "descripcion": "", "precio": "$3.500" },
-                            { "nombre": "Agua Saborizada (500 cc)", "descripcion": "", "precio": "$2.500" },
-                            { "nombre": "Agua Mineral", "descripcion": "", "precio": "$2.500" },
-                            { "nombre": "Speed / Red Bull", "descripcion": "", "precio": "$3.500" }
-                        ]
-                    },
-                    {
-                        "titulo": "Cervezas",
-                        "nota": "Con alcohol",
-                        "platos": [
-                            { "nombre": "Brahma (x 1 L)", "descripcion": "", "precio": "$7.500" },
-                            { "nombre": "Heineken (x 1 L)", "descripcion": "", "precio": "$8.500" },
-                            { "nombre": "Corona (710 cc)", "descripcion": "", "precio": "$8.000" },
-                            { "nombre": "Corona Monjita", "descripcion": "", "precio": "$4.500" },
-                            { "nombre": "Lata de Brahma o Bud (473 cc)", "descripcion": "", "precio": "$4.000" },
-                            { "nombre": "Cervezas Artesanales (botella 500 cc)", "descripcion": "Golden (rubia), Irish Red (roja), Toffe (negra), American IPA", "precio": "$5.000" }
-                        ]
-                    },
-                    {
-                        "titulo": "Vinos",
-                        "nota": "Con alcohol",
-                        "platos": [
-                            { "nombre": "Cordero Piel de Lobo", "descripcion": "", "precio": "$11.000" },
-                            { "nombre": "La Iride", "descripcion": "", "precio": "$14.000" }
-                        ]
-                    },
-                    {
-                        "titulo": "Espumantes",
-                        "nota": "Con alcohol",
-                        "platos": [
-                            { "nombre": "Champagne Navarro Correas", "descripcion": "", "precio": "$25.000" },
-                            { "nombre": "Champagne Du", "descripcion": "", "precio": "$17.000" }
-                        ]
-                    }
-                ]
-            },
-            {
-                "titulo": "Tragos y Botellas",
-                "id": "tragos",
-                "imagenes": [
-                    "./assets/img/backgrounds/tragos-bg.jpg",
-                    "./assets/img/backgrounds/tragos2-bg.jpg"
-                ],
-                "nota": "",
-                "subsecciones": [
-                    {
-                        "titulo": "Tragos (vaso)",
-                        "nota": "Con alcohol",
-                        "platos": [
-                            { "nombre": "Gin Tonic", "descripcion": "Frutos rojos, limón, naranja", "precio": "$6.000" },
-                            { "nombre": "Campari", "descripcion": "", "precio": "$6.000" },
-                            { "nombre": "Mojito", "descripcion": "", "precio": "$6.000" },
-                            { "nombre": "Gancia", "descripcion": "", "precio": "$5.000" },
-                            { "nombre": "Tequila Sun Rise (largo)", "descripcion": "", "precio": "$6.000" },
-                            { "nombre": "Fernet trago largo", "descripcion": "", "precio": "$4.000" },
-                            { "nombre": "Smirnoff", "descripcion": "", "precio": "$6.000" },
-                            { "nombre": "Sky", "descripcion": "", "precio": "$5.500" },
-                            { "nombre": "Sernova (clásico)", "descripcion": "", "precio": "$5.500" },
-                            { "nombre": "Fernet (500 cc)", "descripcion": "", "precio": "$6.000" },
-                            { "nombre": "Fernet (800 cc)", "descripcion": "", "precio": "$9.000" }
-                        ]
-                    },
-                    {
-                        "titulo": "Botellas (completas)",
-                        "nota": "Con alcohol",
-                        "platos": [
-                            { "nombre": "Smirnoff", "descripcion": "Clásico o sabores", "precio": "$30.000" },
-                            { "nombre": "SKYY", "descripcion": "Clásico o sabores", "precio": "$28.000" },
-                            { "nombre": "Sernova", "descripcion": "Clásico o sabores", "precio": "$28.000" },
-                            { "nombre": "Gin Spiritu Blu +", "descripcion": "Agua tónica 1.5 L + limón o naranja", "precio": "$35.000" }
-                        ]
-                    }
-                ]
+        // === FUNCIÓN PARA CARGAR EL MENÚ DINÁMICAMENTE ===
+        async function cargarMenu() {
+            try {
+                const response = await fetch('/content/menu/index.json');
+                if (!response.ok) throw new Error('No se pudo cargar el menú');
+                const secciones = await response.json();
+                renderizarMenu(secciones);
+            } catch (error) {
+                console.error('Error al cargar el menú:', error);
             }
-        ];
+        }
 
-        // === FUNCIONES DE RENDERIZADO ULTRA-OPTIMIZADOS ===
+        // === FUNCIÓN PARA RENDERIZAR EL MENÚ ===
         function renderizarMenu(secciones) {
             const navButtons = document.getElementById('nav-buttons');
             const menuContainer = document.getElementById('menu-container');
@@ -548,15 +360,18 @@
                 sectionDiv.id = seccion.id;
 
                 // Capas de fondo para múltiples imágenes
-                seccion.imagenes.forEach((imagen, index) => {
-                    const bgLayer = document.createElement('div');
-                    bgLayer.className = 'background-layer';
-                    bgLayer.style.backgroundImage = `url('${imagen}')`;
-                    if (seccion.imagenes.length > 1) {
-                        bgLayer.style.animationDelay = `${index * 15}s`;
-                    }
-                    sectionDiv.appendChild(bgLayer);
-                });
+                if (seccion.imagenes && seccion.imagenes.length > 0) {
+                    seccion.imagenes.forEach((imagen, index) => {
+                        const bgLayer = document.createElement('div');
+                        bgLayer.className = 'background-layer';
+                        bgLayer.style.backgroundImage = `url('${imagen}')`;
+                        if (seccion.imagenes.length > 1) {
+                            bgLayer.classList.add('animated');
+                            bgLayer.style.animationDelay = `${index * 15}s`;
+                        }
+                        sectionDiv.appendChild(bgLayer);
+                    });
+                }
 
                 const headerDiv = document.createElement('div');
                 headerDiv.className = 'section-header';
@@ -581,7 +396,7 @@
                     contentDiv.appendChild(noteDiv);
                 }
 
-                if (seccion.subsecciones) {
+                if (seccion.subsecciones && seccion.subsecciones.length > 0) {
                     seccion.subsecciones.forEach(sub => {
                         const subDiv = document.createElement('div');
                         subDiv.className = 'subsection';
@@ -598,36 +413,38 @@
                             subDiv.appendChild(subNote);
                         }
 
-                        sub.platos.forEach(plato => {
-                            const itemDiv = document.createElement('div');
-                            itemDiv.className = 'menu-item';
+                        if (sub.platos && sub.platos.length > 0) {
+                            sub.platos.forEach(plato => {
+                                const itemDiv = document.createElement('div');
+                                itemDiv.className = 'menu-item';
 
-                            const leftDiv = document.createElement('div');
-                            leftDiv.className = 'item-left';
+                                const leftDiv = document.createElement('div');
+                                leftDiv.className = 'item-left';
 
-                            const nameDiv = document.createElement('div');
-                            nameDiv.className = 'item-name';
-                            nameDiv.textContent = plato.nombre;
+                                const nameDiv = document.createElement('div');
+                                nameDiv.className = 'item-name';
+                                nameDiv.textContent = plato.nombre;
 
-                            const descDiv = document.createElement('div');
-                            descDiv.className = 'item-description';
-                            descDiv.textContent = plato.descripcion || '';
+                                const descDiv = document.createElement('div');
+                                descDiv.className = 'item-description';
+                                descDiv.textContent = plato.descripcion || '';
 
-                            leftDiv.appendChild(nameDiv);
-                            leftDiv.appendChild(descDiv);
+                                leftDiv.appendChild(nameDiv);
+                                leftDiv.appendChild(descDiv);
 
-                            const priceDiv = document.createElement('div');
-                            priceDiv.className = 'item-price';
-                            priceDiv.textContent = plato.precio;
+                                const priceDiv = document.createElement('div');
+                                priceDiv.className = 'item-price';
+                                priceDiv.textContent = plato.precio;
 
-                            itemDiv.appendChild(leftDiv);
-                            itemDiv.appendChild(priceDiv);
-                            subDiv.appendChild(itemDiv);
-                        });
+                                itemDiv.appendChild(leftDiv);
+                                itemDiv.appendChild(priceDiv);
+                                subDiv.appendChild(itemDiv);
+                            });
+                        }
 
                         contentDiv.appendChild(subDiv);
                     });
-                } else if (seccion.platos) {
+                } else if (seccion.platos && seccion.platos.length > 0) {
                     seccion.platos.forEach(plato => {
                         const itemDiv = document.createElement('div');
                         itemDiv.className = 'menu-item';
@@ -683,7 +500,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderizarMenu(menuData);
+            cargarMenu();
         });
     </script>
 </body>
