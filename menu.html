@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar La Nuit - Menú</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === ESTILOS ORIGINALES (SIN CAMBIOS) === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #121212, #1a1a2e, #16213e, #0f3460, #533483, #2c3e50, #4a235a);
+            background-size: 500% 500%;
+            animation: slowGradientShift 35s ease infinite;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
+        body::before, body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        body::before {
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(40, 40, 40, 0.2) 0%, rgba(0, 0, 0, 0) 20%),
+                radial-gradient(circle at 80% 70%, rgba(30, 30, 30, 0.2) 0%, rgba(0, 0, 0, 0) 20%),
+                radial-gradient(circle at 40% 80%, rgba(83, 52, 131, 0.15) 0%, rgba(0, 0, 0, 0) 25%),
+                radial-gradient(circle at 60% 20%, rgba(15, 52, 96, 0.15) 0%, rgba(0, 0, 0, 0) 25%),
+                radial-gradient(circle at 30% 50%, rgba(255, 140, 0, 0.05) 0%, rgba(0, 0, 0, 0) 15%),
+                radial-gradient(circle at 70% 40%, rgba(138, 43, 226, 0.05) 0%, rgba(0, 0, 0, 0) 15%);
+            opacity: 1.1;
+        }
+        body::after {
+            content: "🍕🍔🍟🌮🍺🍷🍸🍹🥃🍽️🍴🥄🍴";
+            font-size: 150px;
+            opacity: 0.033;
+            letter-spacing: 50px;
+            line-height: 200px;
+            overflow: hidden;
+        }
+        @keyframes slowGradientShift {
+            0% { background-position: 0% 50%; }
+            10% { background-position: 100% 50%; }
+            20% { background-position: 80% 80%; }
+            30% { background-position: 20% 80%; }
+            40% { background-position: 40% 20%; }
+            50% { background-position: 90% 30%; }
+            60% { background-position: 10% 70%; }
+            70% { background-position: 70% 10%; }
+            80% { background-position: 30% 90%; }
+            90% { background-position: 60% 40%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(90deg, #e74c3c, #f39c12);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .nav-button {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #2a2a3e, #26314e);
+        }
+        .menu-section {
+            background-color: rgba(26, 26, 46, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        .menu-section .background-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.4;
+            filter: blur(8px);
+            transition: filter 0.5s ease, opacity 0.5s ease;
+            z-index: -1;
+        }
+        .menu-section.active .background-layer {
+            filter: blur(15px);
+            opacity: 0.2;
+        }
+        .menu-section .background-layer.animated {
+            animation: backgroundSlide 20s linear infinite;
+        }
+        @keyframes backgroundSlide {
+            0% { background-position: 0% center; }
+            100% { background-position: 100% center; }
+        }
+        .menu-section:hover {
+            transform: translateY(-5px);
+        }
+        .section-header {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.85), rgba(22, 33, 62, 0.85));
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .section-header:hover {
+            background: linear-gradient(135deg, rgba(31, 68, 112, 0.85), rgba(38, 49, 78, 0.85));
+        }
+        .section-title-wrapper {
+            display: flex;
+            align-items: center;
+        }
+        .section-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        .section-header i.chevron {
+            transition: transform 0.3s ease;
+            color: #fff;
+        }
+        .section-header.active i.chevron {
+            transform: rotate(180deg);
+        }
+        .section-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease;
+            background: rgba(26, 26, 46, 0.9);
+            position: relative;
+            z-index: 1;
+        }
+        .section-content.active {
+            padding: 20px;
+            max-height: 5000px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .item-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .item-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        .item-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        .item-price {
+            font-weight: 700;
+            color: #ff8c42;
+            font-size: 1.2rem;
+            background: rgba(255, 140, 66, 0.1);
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 140, 66, 0.3);
+            display: inline-block;
+            text-align: right;
+            white-space: nowrap;
+            max-width: fit-content;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            background-color: rgba(30, 30, 30, 0.7);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .section-note {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(60, 60, 60, 0.2);
+            border-radius: 8px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+        .subsection {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+        .subsection-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            position: relative;
+        }
+        .subsection-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 20px;
+            background-color: #ff8c42;
+            border-radius: 3px;
+        }
+        .alcohol-indicator {
+            display: inline-block;
+            background: rgba(255, 140, 66, 0.2);
+            color: #ff8c42;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 8px;
+            border: 1px solid rgba(255, 140, 66, 0.3);
+        }
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2.4rem;
+            }
+            .nav-button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            .menu-item {
+                flex-direction: column;
+            }
+            .item-price {
+                text-align: right;
+                margin-left: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Bar La Nuit</h1>
+            <p>Donde la noche cobra vida</p>
+        </div>
+        <div class="nav-buttons" id="nav-buttons">
+            <!-- Botones generados dinámicamente -->
+        </div>
+        <div id="menu-container">
+            <!-- Contenido del menú generado dinámicamente -->
+        </div>
+        <div class="footer">
+            <p>Bar La Nuit - Todos los derechos reservados</p>
+        </div>
+    </div>
+
+    <script>
+        // === DATOS REALES DEL MENÚ ===
+        const menuData = [
+            {
+                "titulo": "Pizzas",
+                "id": "pizzas",
+                "imagenes": [
+                    "/assets/img/backgrounds/pizza-bg.jpg",
+                    "/assets/img/backgrounds/pizza2-bg.jpg"
+                ],
+                "nota": "Todas las pizzas tienen opciones de tamaño Entera y Media. Precios en $.",
+                "platos": [
+                    { "nombre": "Mozzarella", "descripcion": "Queso mozzarella, salsa de tomate, orégano, aceitunas", "precio": "Entera: $11.000 | Media: $6.500" },
+                    { "nombre": "Especial", "descripcion": "Mozzarella, salsa, jamón cocido, huevo, morrones, aceitunas", "precio": "Entera: $13.500 | Media: $7.000" },
+                    { "nombre": "Fugazzeta", "descripcion": "Mozzarella, salsa, cebolla cruda salteada, aceitunas", "precio": "Entera: $13.500 | Media: $7.500" },
+                    { "nombre": "Calabresa", "descripcion": "Mozzarella, salsa, salame cantimpalo, aceitunas negras", "precio": "Entera: $14.000 | Media: $7.500" },
+                    { "nombre": "Choclo", "descripcion": "Mozzarella, salsa, granos de choclo, morrones, aceitunas", "precio": "Entera: $13.500 | Media: $7.000" },
+                    { "nombre": "Rúcula y Jamón Crudo", "descripcion": "Mozzarella, salsa, jamón crudo, rúcula fresca, tomates cherry, aceitunas", "precio": "Entera: $15.000 | Media: $8.000" },
+                    { "nombre": "Roquefort", "descripcion": "Mozzarella, queso azul, aceitunas negras", "precio": "Entera: $14.000 | Media: $7.500" },
+                    { "nombre": "Napolitana", "descripcion": "Mozzarella, salsa, tomates, aceite de oliva, orégano, aceituna", "precio": "Entera: $13.500 | Media: $7.500" }
+                ]
+            },
+            {
+                "titulo": "Picadas Especiales",
+                "id": "picadas",
+                "imagenes": [
+                    "/assets/img/backgrounds/picada-bg.jpg"
+                ],
+                "nota": "Platos para compartir, con opciones para 2 o 4 personas.",
+                "platos": [
+                    { "nombre": "Picada Especial", "descripcion": "Jamón cocido, queso tybo, mortadela, salame, papas snack, aceitunas, salsa barbacoa", "precio": "2 pers: $15.000 | 4 pers: $28.000" },
+                    { "nombre": "Especial Nuit", "descripcion": "Jamón crudo y cocido, lomo ahumado, bondiola, mortadela, salame, queso tybo, queso azul, papas fritas, aros de cebolla, aceitunas, salsa barbacoa", "precio": "2 pers: $18.000 | 4 pers: $32.000" }
+                ]
+            },
+            {
+                "titulo": "Sándwiches",
+                "id": "sandwiches",
+                "imagenes": [
+                    "/assets/img/backgrounds/sandwich-bg.jpg",
+                    "/assets/img/backgrounds/sandwich2-bg.jpg"
+                ],
+                "nota": "",
+                "subsecciones": [
+                    {
+                        "titulo": "Lomos en Pan Francés",
+                        "nota": "Todos los lomos son de 25 cm.",
+                        "platos": [
+                            { "nombre": "Especial", "descripcion": "Bife de lomo, jamón, queso, huevo, lechuga, tomate, papas, mayo casera", "precio": "$14.000" },
+                            { "nombre": "Nuit", "descripcion": "Bife de lomo, panceta ahumada, queso tybo, queso azul, tomate, rúcula, papas, mayo casera", "precio": "$16.000" }
+                        ]
+                    },
+                    {
+                        "titulo": "Sándwich de Carne Braseada",
+                        "nota": "Carne vacuna desmechada braseada con verduras y vino, en pan baguette (clásico o con semillas), acompañado de papas fritas rústicas, gratinado con queso tybo, cheddar o roquefort.",
+                        "platos": [
+                            { "nombre": "Con tybo", "descripcion": "", "precio": "$10.000" },
+                            { "nombre": "Con cheddar o roquefort", "descripcion": "", "precio": "$12.000" }
+                        ]
+                    },
+                    {
+                        "titulo": "Focaccias",
+                        "nota": "Incluyen rúcula fresca, tomates cherry, queso tybo y papas (salvo indicación contraria).",
+                        "platos": [
+                            { "nombre": "Jamón Crudo", "descripcion": "", "precio": "$12.000" },
+                            { "nombre": "Mortadella", "descripcion": "", "precio": "$10.000" }
+                        ]
+                    }
+                ]
+            },
+            {
+                "titulo": "Hamburguesas",
+                "id": "hamburguesas",
+                "imagenes": [
+                    "/assets/img/backgrounds/hamburguesa-bg.jpg"
+                ],
+                "nota": "Adicional medallón de carne $3.000.",
+                "platos": [
+                    { "nombre": "Especial", "descripcion": "Medallón de carne paty, jamón, queso, huevo, lechuga, tomate, papas", "precio": "$10.000" },
+                    { "nombre": "Americano", "descripcion": "Medallón de carne paty, queso cheddar, panceta ahumada caramelizada, cebolla caramelizada, papas", "precio": "$12.000" }
+                ]
+            },
+            {
+                "titulo": "Papas Fritas",
+                "id": "papas",
+                "imagenes": [
+                    "/assets/img/backgrounds/papas-bg.jpg",
+                    "/assets/img/backgrounds/papas2-bg.jpg"
+                ],
+                "nota": "Variedades de papas fritas (por porción).",
+                "platos": [
+                    { "nombre": "Clásicas", "descripcion": "", "precio": "$5.000" },
+                    { "nombre": "Revuelto Gramajo", "descripcion": "", "precio": "$7.000" },
+                    { "nombre": "Cheddar y Panceta", "descripcion": "", "precio": "$7.500" }
+                ]
+            },
+            {
+                "titulo": "Empanadas",
+                "id": "empanadas",
+                "imagenes": [
+                    "/assets/img/backgrounds/empanada-bg.jpg"
+                ],
+                "nota": "Precios por docena (Doc.) o media docena (1/2 Doc.). Todas las variedades comparten precios.",
+                "platos": [
+                    { "nombre": "Carne", "descripcion": "", "precio": "Docena: $12.000 | Media: $7.000" },
+                    { "nombre": "Pollo", "descripcion": "", "precio": "Docena: $12.000 | Media: $7.000" },
+                    { "nombre": "Jamón y Mozzarella", "descripcion": "", "precio": "Docena: $12.000 | Media: $7.000" },
+                    { "nombre": "Árabes", "descripcion": "", "precio": "Docena: $12.000 | Media: $7.000" }
+                ]
+            },
+            {
+                "titulo": "Bebidas",
+                "id": "bebidas",
+                "imagenes": [
+                    "/assets/img/backgrounds/bebidas-bg.jpg"
+                ],
+                "nota": "",
+                "subsecciones": [
+                    {
+                        "titulo": "Gaseosas, Aguas y Otros sin Alcohol",
+                        "platos": [
+                            { "nombre": "Coca Cola - Fanta - Sprite (x 1 L)", "descripcion": "", "precio": "$5.000" },
+                            { "nombre": "Coca Cola - Fanta - Sprite (x 500 cc)", "descripcion": "", "precio": "$3.500" },
+                            { "nombre": "Agua Saborizada (500 cc)", "descripcion": "", "precio": "$2.500" },
+                            { "nombre": "Agua Mineral", "descripcion": "", "precio": "$2.500" },
+                            { "nombre": "Speed / Red Bull", "descripcion": "", "precio": "$3.500" }
+                        ]
+                    },
+                    {
+                        "titulo": "Cervezas",
+                        "nota": "Con alcohol",
+                        "platos": [
+                            { "nombre": "Brahma (x 1 L)", "descripcion": "", "precio": "$7.500" },
+                            { "nombre": "Heineken (x 1 L)", "descripcion": "", "precio": "$8.500" },
+                            { "nombre": "Corona (710 cc)", "descripcion": "", "precio": "$8.000" },
+                            { "nombre": "Corona Monjita", "descripcion": "", "precio": "$4.500" },
+                            { "nombre": "Lata de Brahma o Bud (473 cc)", "descripcion": "", "precio": "$4.000" },
+                            { "nombre": "Cervezas Artesanales (botella 500 cc)", "descripcion": "Golden (rubia), Irish Red (roja), Toffe (negra), American IPA", "precio": "$5.000" }
+                        ]
+                    },
+                    {
+                        "titulo": "Vinos",
+                        "nota": "Con alcohol",
+                        "platos": [
+                            { "nombre": "Cordero Piel de Lobo", "descripcion": "", "precio": "$11.000" },
+                            { "nombre": "La Iride", "descripcion": "", "precio": "$14.000" }
+                        ]
+                    },
+                    {
+                        "titulo": "Espumantes",
+                        "nota": "Con alcohol",
+                        "platos": [
+                            { "nombre": "Champagne Navarro Correas", "descripcion": "", "precio": "$25.000" },
+                            { "nombre": "Champagne Du", "descripcion": "", "precio": "$17.000" }
+                        ]
+                    }
+                ]
+            },
+            {
+                "titulo": "Tragos y Botellas",
+                "id": "tragos",
+                "imagenes": [
+                    "/assets/img/backgrounds/tragos-bg.jpg",
+                    "/assets/img/backgrounds/tragos2-bg.jpg"
+                ],
+                "nota": "",
+                "subsecciones": [
+                    {
+                        "titulo": "Tragos (vaso)",
+                        "nota": "Con alcohol",
+                        "platos": [
+                            { "nombre": "Gin Tonic", "descripcion": "Frutos rojos, limón, naranja", "precio": "$6.000" },
+                            { "nombre": "Campari", "descripcion": "", "precio": "$6.000" },
+                            { "nombre": "Mojito", "descripcion": "", "precio": "$6.000" },
+                            { "nombre": "Gancia", "descripcion": "", "precio": "$5.000" },
+                            { "nombre": "Tequila Sun Rise (largo)", "descripcion": "", "precio": "$6.000" },
+                            { "nombre": "Fernet trago largo", "descripcion": "", "precio": "$4.000" },
+                            { "nombre": "Smirnoff", "descripcion": "", "precio": "$6.000" },
+                            { "nombre": "Sky", "descripcion": "", "precio": "$5.500" },
+                            { "nombre": "Sernova (clásico)", "descripcion": "", "precio": "$5.500" },
+                            { "nombre": "Fernet (500 cc)", "descripcion": "", "precio": "$6.000" },
+                            { "nombre": "Fernet (800 cc)", "descripcion": "", "precio": "$9.000" }
+                        ]
+                    },
+                    {
+                        "titulo": "Botellas (completas)",
+                        "nota": "Con alcohol",
+                        "platos": [
+                            { "nombre": "Smirnoff", "descripcion": "Clásico o sabores", "precio": "$30.000" },
+                            { "nombre": "SKYY", "descripcion": "Clásico o sabores", "precio": "$28.000" },
+                            { "nombre": "Sernova", "descripcion": "Clásico o sabores", "precio": "$28.000" },
+                            { "nombre": "Gin Spiritu Blu +", "descripcion": "Agua tónica 1.5 L + limón o naranja", "precio": "$35.000" }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        // === FUNCIONES DE RENDERIZADO ===
+        function renderizarMenu(secciones) {
+            const navButtons = document.getElementById('nav-buttons');
+            const menuContainer = document.getElementById('menu-container');
+            
+            navButtons.innerHTML = '';
+            menuContainer.innerHTML = '';
+
+            secciones.forEach(seccion => {
+                // Botón de navegación
+                const button = document.createElement('button');
+                button.className = 'nav-button';
+                button.textContent = seccion.titulo;
+                button.onclick = () => scrollToSection(seccion.id);
+                navButtons.appendChild(button);
+
+                // Sección del menú
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'menu-section';
+                sectionDiv.id = seccion.id;
+
+                // Capas de fondo para múltiples imágenes
+                seccion.imagenes.forEach((imagen, index) => {
+                    const bgLayer = document.createElement('div');
+                    bgLayer.className = 'background-layer';
+                    bgLayer.style.backgroundImage = `url('${imagen}')`;
+                    if (seccion.imagenes.length > 1) {
+                        bgLayer.classList.add('animated');
+                        bgLayer.style.animationDelay = `${index * 10}s`;
+                    }
+                    sectionDiv.appendChild(bgLayer);
+                });
+
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'section-header';
+                headerDiv.onclick = () => toggleSection(seccion.id);
+
+                const titleWrapper = document.createElement('div');
+                titleWrapper.className = 'section-title-wrapper';
+                const titleSpan = document.createElement('span');
+                titleSpan.className = 'section-text';
+                titleSpan.textContent = seccion.titulo;
+                titleWrapper.appendChild(titleSpan);
+
+                const chevron = document.createElement('i');
+                chevron.className = 'fas fa-chevron-down chevron';
+                chevron.textContent = '▼';
+
+                headerDiv.appendChild(titleWrapper);
+                headerDiv.appendChild(chevron);
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'section-content';
+
+                if (seccion.nota) {
+                    const noteDiv = document.createElement('div');
+                    noteDiv.className = 'section-note';
+                    noteDiv.textContent = seccion.nota;
+                    contentDiv.appendChild(noteDiv);
+                }
+
+                if (seccion.subsecciones) {
+                    seccion.subsecciones.forEach(sub => {
+                        const subDiv = document.createElement('div');
+                        subDiv.className = 'subsection';
+
+                        const subTitle = document.createElement('div');
+                        subTitle.className = 'subsection-title';
+                        subTitle.textContent = sub.titulo;
+                        subDiv.appendChild(subTitle);
+
+                        if (sub.nota) {
+                            const subNote = document.createElement('div');
+                            subNote.className = 'section-note';
+                            subNote.textContent = sub.nota;
+                            subDiv.appendChild(subNote);
+                        }
+
+                        sub.platos.forEach(plato => {
+                            const itemDiv = document.createElement('div');
+                            itemDiv.className = 'menu-item';
+
+                            const leftDiv = document.createElement('div');
+                            leftDiv.className = 'item-left';
+
+                            const nameDiv = document.createElement('div');
+                            nameDiv.className = 'item-name';
+                            nameDiv.textContent = plato.nombre;
+
+                            const descDiv = document.createElement('div');
+                            descDiv.className = 'item-description';
+                            descDiv.textContent = plato.descripcion || '';
+
+                            leftDiv.appendChild(nameDiv);
+                            leftDiv.appendChild(descDiv);
+
+                            const priceDiv = document.createElement('div');
+                            priceDiv.className = 'item-price';
+                            priceDiv.textContent = plato.precio;
+
+                            itemDiv.appendChild(leftDiv);
+                            itemDiv.appendChild(priceDiv);
+                            subDiv.appendChild(itemDiv);
+                        });
+
+                        contentDiv.appendChild(subDiv);
+                    });
+                } else if (seccion.platos) {
+                    seccion.platos.forEach(plato => {
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'menu-item';
+
+                        const leftDiv = document.createElement('div');
+                        leftDiv.className = 'item-left';
+
+                        const nameDiv = document.createElement('div');
+                        nameDiv.className = 'item-name';
+                        nameDiv.textContent = plato.nombre;
+
+                        const descDiv = document.createElement('div');
+                        descDiv.className = 'item-description';
+                        descDiv.textContent = plato.descripcion || '';
+
+                        leftDiv.appendChild(nameDiv);
+                        leftDiv.appendChild(descDiv);
+
+                        const priceDiv = document.createElement('div');
+                        priceDiv.className = 'item-price';
+                        priceDiv.textContent = plato.precio;
+
+                        itemDiv.appendChild(leftDiv);
+                        itemDiv.appendChild(priceDiv);
+                        contentDiv.appendChild(itemDiv);
+                    });
+                }
+
+                sectionDiv.appendChild(headerDiv);
+                sectionDiv.appendChild(contentDiv);
+                menuContainer.appendChild(sectionDiv);
+            });
+
+            // Abrir la primera sección por defecto
+            if (secciones.length > 0) {
+                toggleSection(secciones[0].id);
+            }
+        }
+
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const header = section.querySelector('.section-header');
+            const content = section.querySelector('.section-content');
+            header.classList.toggle('active');
+            content.classList.toggle('active');
+            section.classList.toggle('active');
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const header = section.querySelector('.section-header');
+            const content = section.querySelector('.section-content');
+            if (!content.classList.contains('active')) {
+                header.classList.add('active');
+                content.classList.add('active');
+                section.classList.add('active');
+            }
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarMenu(menuData);
+        });
+    </script>
+</body>
+</html>
