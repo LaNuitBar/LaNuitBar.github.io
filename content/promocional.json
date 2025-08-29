@@ -1,4 +1,8 @@
 {
-  "imagen": "/images/uploads/img-20250828-wa0044.jpg",
-  "activa": true
+  "imagenes": [
+    {
+      "imagen": "/images/uploads/img-20250828-wa0044.jpg",
+      "activa": true
+    }
+  ]
 }
