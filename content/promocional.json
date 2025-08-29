@@ -3,6 +3,10 @@
     {
       "imagen": "/images/uploads/img-20250828-wa0044.jpg",
       "activa": true
+    },
+    {
+      "activa": true,
+      "imagen": "/images/uploads/img-20250828-wa0046.jpg"
     }
   ]
 }
