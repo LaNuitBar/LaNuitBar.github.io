@@ -65,35 +65,37 @@
             90% { background-position: 60% 40%; }
             100% { background-position: 0% 50%; }
         }
+        
+        /* HEADER DE ANCHO COMPLETO SIN RECUADRO */
+        .header-full {
+            width: 100%;
+            text-align: center;
+            padding: 15px 0 10px 0;
+            background: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .logo-header-full {
+            width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .header-full p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 20px 20px 20px;
         }
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px 0;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            will-change: transform;
-        }
-        /* ESTILOS PARA EL LOGO */
-        .logo-header {
-            height: 100px;
-            width: auto;
-            display: block;
-            margin: 0 auto;
-            max-width: 100%;
-        }
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-top: 10px;
-        }
+        
         .nav-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -101,6 +103,7 @@
             gap: 10px;
             margin-bottom: 30px;
         }
+        
         .nav-button {
             background: linear-gradient(135deg, #1a1a2e, #16213e);
             color: white;
@@ -114,11 +117,13 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             will-change: transform;
         }
+        
         .nav-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
             background: linear-gradient(135deg, #2a2a3e, #26314e);
         }
+        
         .menu-section {
             background-color: rgba(26, 26, 46, 0.85);
             border-radius: 10px;
@@ -130,6 +135,7 @@
             position: relative;
             will-change: transform;
         }
+        
         .menu-section .background-layer {
             position: absolute;
             top: 0;
@@ -139,23 +145,28 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.5; /* AUMENTADO de 0.2 a 0.5 */
+            opacity: 0.5;
             z-index: -1;
             will-change: opacity;
         }
+        
         .menu-section.active .background-layer {
-            opacity: 0.3; /* AUMENTADO de 0.1 a 0.3 */
+            opacity: 0.3;
         }
+        
         .menu-section .background-layer.animated {
             animation: backgroundSlide 30s linear infinite;
         }
+        
         @keyframes backgroundSlide {
             0% { background-position: 0% center; }
             100% { background-position: 100% center; }
         }
+        
         .menu-section:hover {
             transform: translateY(-5px);
         }
+        
         .section-header {
             background: linear-gradient(135deg, rgba(15, 52, 96, 0.85), rgba(22, 33, 62, 0.85));
             color: white;
@@ -169,17 +180,21 @@
             z-index: 1;
             will-change: background;
         }
+        
         .section-header:hover {
             background: linear-gradient(135deg, rgba(31, 68, 112, 0.85), rgba(38, 49, 78, 0.85));
         }
+        
         .section-title-wrapper {
             display: flex;
             align-items: center;
         }
+        
         .section-text {
             font-size: 1.5rem;
             font-weight: 600;
         }
+        
         .section-content {
             max-height: 0;
             overflow: hidden;
@@ -189,10 +204,12 @@
             z-index: 1;
             will-change: max-height;
         }
+        
         .section-content.active {
             max-height: 2000px;
             padding: 20px;
         }
+        
         .menu-item {
             display: flex;
             justify-content: space-between;
@@ -201,24 +218,29 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             will-change: transform;
         }
+        
         .menu-item:last-child {
             border-bottom: none;
         }
+        
         .item-left {
             flex: 1;
             display: flex;
             flex-direction: column;
         }
+        
         .item-name {
             font-weight: 600;
             font-size: 1.1rem;
             margin-bottom: 5px;
             color: #fff;
         }
+        
         .item-description {
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
         }
+        
         .item-price {
             font-weight: 700;
             color: #ff8c42;
@@ -234,6 +256,7 @@
             flex-shrink: 0;
             margin-left: auto;
         }
+        
         .footer {
             text-align: center;
             margin-top: 30px;
@@ -244,6 +267,7 @@
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        
         .section-note {
             margin: 15px 0;
             padding: 10px;
@@ -253,11 +277,13 @@
             color: rgba(255, 255, 255, 0.9);
             font-size: 0.9rem;
         }
+        
         .subsection {
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px dashed rgba(255, 255, 255, 0.2);
         }
+        
         .subsection-title {
             font-size: 1.1rem;
             font-weight: 600;
@@ -268,6 +294,7 @@
             padding-left: 15px;
             position: relative;
         }
+        
         .subsection-title::before {
             content: "";
             position: absolute;
@@ -279,6 +306,7 @@
             background-color: #ff8c42;
             border-radius: 3px;
         }
+        
         .alcohol-indicator {
             display: inline-block;
             background: rgba(255, 140, 66, 0.2);
@@ -289,30 +317,41 @@
             margin-left: 8px;
             border: 1px solid rgba(255, 140, 66, 0.3);
         }
+        
         @media (max-width: 600px) {
-            .logo-header {
-                height: 80px; /* Ajuste para móviles */
+            .logo-header-full {
+                max-height: 120px;
             }
+            
             .nav-button {
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
+            
             .menu-item {
                 flex-direction: column;
             }
+            
             .item-price {
                 text-align: right;
                 margin-left: auto;
+                margin-top: 5px;
+            }
+            
+            .header-full p {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- HEADER DE ANCHO COMPLETO SIN RECUADRO -->
+    <div class="header-full">
+        <img src="https://i.postimg.cc/vZgtfg8J/header-lanuit.png" alt="Bar La Nuit" class="logo-header-full">
+        <p>Donde la noche cobra vida</p>
+    </div>
+
     <div class="container">
-        <div class="header">
-            <img src="https://i.postimg.cc/vZgtfg8J/header-lanuit.png" alt="Bar La Nuit" class="logo-header">
-            <p>Donde la noche cobra vida</p>
-        </div>
         <div class="nav-buttons" id="nav-buttons">
             <!-- Botones generados dinámicamente -->
         </div>
@@ -343,6 +382,14 @@
                 renderizarMenu(secciones);
             } catch (error) {
                 console.error('Error al cargar el menú:', error);
+                // Mensaje de error amigable para el usuario
+                document.getElementById('menu-container').innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #ff6b6b;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                        <h3>Error al cargar el menú</h3>
+                        <p>Por favor, verifica tu conexión a internet</p>
+                    </div>
+                `;
             }
         }
 
