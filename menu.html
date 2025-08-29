@@ -330,8 +330,17 @@
         async function cargarMenu() {
             try {
                 const response = await fetch('/content/menu/index.json');
-                if (!response.ok) throw new Error('No se pudo cargar el menú');
-                const secciones = await response.json();
+                if (!response.ok) throw new Error('No se pudo cargar el índice del menú');
+                const index = await response.json();
+                
+                const secciones = [];
+                for (const item of index) {
+                    const fileResponse = await fetch('/content/menu/' + item.file);
+                    if (!fileResponse.ok) continue;
+                    const seccion = await fileResponse.json();
+                    secciones.push(seccion);
+                }
+                
                 renderizarMenu(secciones);
             } catch (error) {
                 console.error('Error al cargar el menú:', error);
@@ -340,10 +349,7 @@
 
         // === FUNCIÓN PARA RENDERIZAR EL MENÚ ===
         function renderizarMenu(secciones) {
-  console.log('Secciones recibidas en renderizarMenu:', secciones);
-  const navButtons = document.getElementById('nav-buttons');
-  // ... resto del código ...
-}function renderizarMenu(secciones) {
+            console.log('Secciones recibidas en renderizarMenu:', secciones);
             const navButtons = document.getElementById('nav-buttons');
             const menuContainer = document.getElementById('menu-container');
             
@@ -351,6 +357,8 @@
             menuContainer.innerHTML = '';
 
             secciones.forEach(seccion => {
+                console.log('Renderizando sección:', seccion.titulo);
+                
                 // Botón de navegación
                 const button = document.createElement('button');
                 button.className = 'nav-button';
@@ -506,35 +514,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             cargarMenu();
         });
-    <script>
-  fetch('/content/menu/index.json')
-    .then(response => response.json())
-    .then(data => console.log('Datos del índice:', data))
-    .catch(error => console.error('Error al cargar el índice:', error));
-</script>
-    <script>
-  fetch('/content/menu/pizzas.json')
-    .then(response => response.json())
-    .then(data => console.log('Datos de pizzas:', data))
-    .catch(error => console.error('Error al cargar pizzas:', error));
-</script>
-    <script>
-  fetch('/content/menu/index.json')
-    .then(response => response.json())
-    .then(data => console.log('Datos del índice:', data))
-    .catch(error => console.error('Error al cargar el índice:', error));
-</script>
-    <script>
-  fetch('/content/menu/index.json')
-    .then(response => response.json())
-    .then(index => {
-      console.log('Índice cargado:', index);
-      // Probar cargar el primer archivo (pizzas.json)
-      return fetch('/content/menu/' + index[0].file);
-    })
-    .then(response => response.json())
-    .then(data => console.log('Primer archivo cargado:', data))
-    .catch(error => console.error('Error en la cadena:', error));
-</script>
+    </script>
 </body>
 </html>
