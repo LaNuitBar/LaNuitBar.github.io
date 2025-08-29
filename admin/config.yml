@@ -6,16 +6,20 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  # === COLECCIÓN PROMOCIONAL (EXISTENTE, NO TOCAR) ===
-  - name: "promocional"
-    label: "Imagen Promocional"
-    files:
-      - name: "promocional"
-        label: "Imagen Promocional"
-        file: "content/promocional.json"
-        fields:
-          - { label: "Imagen", name: "imagen", widget: "image" }
-          - { label: "Activa", name: "activa", widget: "boolean", default: true }
+  # === COLECCIÓN PROMOCIONAL (MODIFICADA) ===
+- name: "promocional"
+  label: "Imágenes Promocionales"
+  files:
+    - name: "promocional"
+      label: "Imágenes Promocionales"
+      file: "content/promocional.json"
+      fields:
+        - label: "Imágenes"
+          name: "imagenes"
+          widget: "list"
+          fields:
+            - { label: "Imagen", name: "imagen", widget: "image" }
+            - { label: "Activa", name: "activa", widget: "boolean", default: true }
 
   # === NUEVA COLECCIÓN PARA EL MENÚ ===
   - name: "menu"
