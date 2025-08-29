@@ -81,19 +81,18 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             will-change: transform;
         }
-        .header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(90deg, #e74c3c, #f39c12);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        /* ESTILOS PARA EL LOGO */
+        .logo-header {
+            height: 100px;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
         }
         .header p {
             font-size: 1.1rem;
             opacity: 0.9;
+            margin-top: 10px;
         }
         .nav-buttons {
             display: flex;
@@ -140,12 +139,12 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.2;
+            opacity: 0.5; /* AUMENTADO de 0.2 a 0.5 */
             z-index: -1;
             will-change: opacity;
         }
         .menu-section.active .background-layer {
-            opacity: 0.1;
+            opacity: 0.3; /* AUMENTADO de 0.1 a 0.3 */
         }
         .menu-section .background-layer.animated {
             animation: backgroundSlide 30s linear infinite;
@@ -291,8 +290,8 @@
             border: 1px solid rgba(255, 140, 66, 0.3);
         }
         @media (max-width: 600px) {
-            .header h1 {
-                font-size: 2.4rem;
+            .logo-header {
+                height: 80px; /* Ajuste para móviles */
             }
             .nav-button {
                 padding: 10px 15px;
@@ -311,7 +310,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Bar La Nuit</h1>
+            <img src="https://i.postimg.cc/vZgtfg8J/header-lanuit.png" alt="Bar La Nuit" class="logo-header">
             <p>Donde la noche cobra vida</p>
         </div>
         <div class="nav-buttons" id="nav-buttons">
