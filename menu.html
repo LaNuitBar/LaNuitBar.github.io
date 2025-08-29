@@ -6,7 +6,7 @@
     <title>Bar La Nuit - Menú</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* === ESTILOS OPTIMIZADOS === */
+        /* === ESTILOS ULTRA-OPTIMIZADOS === */
         * {
             margin: 0;
             padding: 0;
@@ -21,6 +21,8 @@
             line-height: 1.6;
             min-height: 100vh;
             position: relative;
+            overflow-x: hidden;
+            will-change: scroll-position;
         }
         body::before, body::after {
             content: "";
@@ -77,6 +79,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            will-change: transform;
         }
         .header h1 {
             font-size: 3rem;
@@ -110,6 +113,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            will-change: transform;
         }
         .nav-button:hover {
             transform: translateY(-3px);
@@ -118,7 +122,6 @@
         }
         .menu-section {
             background-color: rgba(26, 26, 46, 0.85);
-            backdrop-filter: blur(5px);
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -126,6 +129,7 @@
             transition: transform 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
+            will-change: transform;
         }
         .menu-section .background-layer {
             position: absolute;
@@ -136,14 +140,12 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.3;
-            filter: blur(5px);
-            transition: filter 0.3s ease, opacity 0.3s ease;
+            opacity: 0.2;
             z-index: -1;
+            will-change: opacity;
         }
         .menu-section.active .background-layer {
-            filter: blur(10px);
-            opacity: 0.15;
+            opacity: 0.1;
         }
         .menu-section .background-layer.animated {
             animation: backgroundSlide 30s linear infinite;
@@ -166,6 +168,7 @@
             transition: all 0.3s ease;
             position: relative;
             z-index: 1;
+            will-change: background;
         }
         .section-header:hover {
             background: linear-gradient(135deg, rgba(31, 68, 112, 0.85), rgba(38, 49, 78, 0.85));
@@ -179,17 +182,17 @@
             font-weight: 600;
         }
         .section-content {
-            padding: 0;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease, padding 0.3s ease;
             background: rgba(26, 26, 46, 0.9);
             position: relative;
             z-index: 1;
+            will-change: max-height;
         }
         .section-content.active {
+            max-height: 2000px;
             padding: 20px;
-            max-height: 5000px;
         }
         .menu-item {
             display: flex;
@@ -197,6 +200,7 @@
             align-items: flex-start;
             padding: 15px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            will-change: transform;
         }
         .menu-item:last-child {
             border-bottom: none;
@@ -328,8 +332,8 @@
                 "titulo": "Pizzas",
                 "id": "pizzas",
                 "imagenes": [
-                    "/assets/img/backgrounds/pizza-bg.jpg",
-                    "/assets/img/backgrounds/pizza2-bg.jpg"
+                    "./assets/img/backgrounds/pizza-bg.jpg",
+                    "./assets/img/backgrounds/pizza2-bg.jpg"
                 ],
                 "nota": "Todas las pizzas tienen opciones de tamaño Entera y Media. Precios en $.",
                 "platos": [
@@ -347,7 +351,7 @@
                 "titulo": "Picadas Especiales",
                 "id": "picadas",
                 "imagenes": [
-                    "/assets/img/backgrounds/picada-bg.jpg"
+                    "./assets/img/backgrounds/picada-bg.jpg"
                 ],
                 "nota": "Platos para compartir, con opciones para 2 o 4 personas.",
                 "platos": [
@@ -359,8 +363,8 @@
                 "titulo": "Sándwiches",
                 "id": "sandwiches",
                 "imagenes": [
-                    "/assets/img/backgrounds/sandwich-bg.jpg",
-                    "/assets/img/backgrounds/sandwich2-bg.jpg"
+                    "./assets/img/backgrounds/sandwich-bg.jpg",
+                    "./assets/img/backgrounds/sandwich2-bg.jpg"
                 ],
                 "nota": "",
                 "subsecciones": [
@@ -394,7 +398,7 @@
                 "titulo": "Hamburguesas",
                 "id": "hamburguesas",
                 "imagenes": [
-                    "/assets/img/backgrounds/hamburguesa-bg.jpg"
+                    "./assets/img/backgrounds/hamburguesa-bg.jpg"
                 ],
                 "nota": "Adicional medallón de carne $3.000.",
                 "platos": [
@@ -406,8 +410,8 @@
                 "titulo": "Papas Fritas",
                 "id": "papas",
                 "imagenes": [
-                    "/assets/img/backgrounds/papas-bg.jpg",
-                    "/assets/img/backgrounds/papas2-bg.jpg"
+                    "./assets/img/backgrounds/papas-bg.jpg",
+                    "./assets/img/backgrounds/papas2-bg.jpg"
                 ],
                 "nota": "Variedades de papas fritas (por porción).",
                 "platos": [
@@ -420,7 +424,7 @@
                 "titulo": "Empanadas",
                 "id": "empanadas",
                 "imagenes": [
-                    "/assets/img/backgrounds/empanada-bg.jpg"
+                    "./assets/img/backgrounds/empanada-bg.jpg"
                 ],
                 "nota": "Precios por docena (Doc.) o media docena (1/2 Doc.). Todas las variedades comparten precios.",
                 "platos": [
@@ -434,7 +438,7 @@
                 "titulo": "Bebidas",
                 "id": "bebidas",
                 "imagenes": [
-                    "/assets/img/backgrounds/bebidas-bg.jpg"
+                    "./assets/img/backgrounds/bebidas-bg.jpg"
                 ],
                 "nota": "",
                 "subsecciones": [
@@ -482,8 +486,8 @@
                 "titulo": "Tragos y Botellas",
                 "id": "tragos",
                 "imagenes": [
-                    "/assets/img/backgrounds/tragos-bg.jpg",
-                    "/assets/img/backgrounds/tragos2-bg.jpg"
+                    "./assets/img/backgrounds/tragos-bg.jpg",
+                    "./assets/img/backgrounds/tragos2-bg.jpg"
                 ],
                 "nota": "",
                 "subsecciones": [
@@ -518,7 +522,7 @@
             }
         ];
 
-        // === FUNCIONES DE RENDERIZADO OPTIMIZADAS ===
+        // === FUNCIONES DE RENDERIZADO ULTRA-OPTIMIZADAS ===
         function renderizarMenu(secciones) {
             const navButtons = document.getElementById('nav-buttons');
             const menuContainer = document.getElementById('menu-container');
@@ -662,21 +666,15 @@
 
         function toggleSection(sectionId) {
             const section = document.getElementById(sectionId);
-            const header = section.querySelector('.section-header');
             const content = section.querySelector('.section-content');
-            header.classList.toggle('active');
             content.classList.toggle('active');
-            section.classList.toggle('active');
         }
 
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
-            const header = section.querySelector('.section-header');
             const content = section.querySelector('.section-content');
             if (!content.classList.contains('active')) {
-                header.classList.add('active');
                 content.classList.add('active');
-                section.classList.add('active');
             }
             section.scrollIntoView({ behavior: 'smooth' });
         }
