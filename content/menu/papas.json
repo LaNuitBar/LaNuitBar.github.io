@@ -1,0 +1,26 @@
+{
+  "titulo": "Papas Fritas",
+  "id": "papas",
+  "imagenes": [
+    "/images/uploads/papas-bg.jpg",
+    "/images/uploads/papas2-bg.jpg"
+  ],
+  "nota": "Variedades de papas fritas (por porción).",
+  "platos": [
+    {
+      "nombre": "Clásicas",
+      "descripcion": "",
+      "precio": "$5.000"
+    },
+    {
+      "nombre": "Revuelto Gramajo",
+      "descripcion": "",
+      "precio": "$7.000"
+    },
+    {
+      "nombre": "Cheddar y Panceta",
+      "descripcion": "",
+      "precio": "$7.500"
+    }
+  ]
+}
