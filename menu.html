@@ -514,5 +514,11 @@
     .then(data => console.log('Datos de pizzas:', data))
     .catch(error => console.error('Error al cargar pizzas:', error));
 </script>
+    <script>
+  fetch('/content/menu/index.json')
+    .then(response => response.json())
+    .then(data => console.log('Datos del índice:', data))
+    .catch(error => console.error('Error al cargar el índice:', error));
+</script>
 </body>
 </html>
