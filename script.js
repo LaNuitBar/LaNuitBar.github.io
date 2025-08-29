@@ -4,7 +4,6 @@ const defaultLinks = [
   'https://maps.app.goo.gl/LLeguWkm2kCSFyfLA'
 ];
 let links = [...defaultLinks];
-
 function renderButtons() {
   const container = document.getElementById('floatContainer');
   container.innerHTML = '';
@@ -17,13 +16,11 @@ function renderButtons() {
     container.appendChild(btn);
   });
 }
-
 function initializeReservationForm() {
   const form = document.getElementById('reservationForm');
   const fechaInput = document.getElementById('fecha');
   const today = new Date().toISOString().split('T')[0];
   fechaInput.setAttribute('min', today);
-
   form.addEventListener('submit', e => {
     e.preventDefault();
     const fd = new FormData(e.target);
@@ -32,7 +29,6 @@ function initializeReservationForm() {
     e.target.reset();
   });
 }
-
 function initializeCarousel() {
   const photos = [
     'https://i.postimg.cc/9f29FZ6N/Screenshot-20250818-162430.png',
@@ -58,19 +54,40 @@ function initializeCarousel() {
     carousel.children[idx].classList.add('active');
   }, 3000);
 }
-
 async function loadPromocional() {
   try {
     const res = await fetch('/content/promocional.json');
     const data = await res.json();
-    if (data.activa && data.imagen) {
-      document.getElementById('promoImg').src = data.imagen;
+    const promoContainer = document.getElementById('promoContainer');
+    
+    // Limpiar el contenedor
+    promoContainer.innerHTML = '';
+    
+    // Verificar si existen imágenes y filtrar las activas
+    if (data.imagenes && Array.isArray(data.imagenes)) {
+      const activeImages = data.imagenes.filter(img => img.activa);
+      
+      // Crear y agregar cada imagen activa
+      activeImages.forEach((imgData, index) => {
+        const img = document.createElement('img');
+        img.src = imgData.imagen;
+        img.alt = `Imagen promocional ${index + 1}`;
+        img.className = 'promo-img';
+        promoContainer.appendChild(img);
+      });
     }
-  } catch {
-    document.getElementById('promoImg').src = 'https://i.postimg.cc/858rf0CT/IMG-20250814-WA0012.jpg';
+  } catch (error) {
+    console.error('Error al cargar imágenes promocionales:', error);
+    // Imagen de respaldo si hay error
+    const promoContainer = document.getElementById('promoContainer');
+    promoContainer.innerHTML = '';
+    const fallbackImg = document.createElement('img');
+    fallbackImg.src = 'https://i.postimg.cc/858rf0CT/IMG-20250814-WA0012.jpg';
+    fallbackImg.alt = 'Imagen promocional de respaldo';
+    fallbackImg.className = 'promo-img';
+    promoContainer.appendChild(fallbackImg);
   }
 }
-
 document.addEventListener('DOMContentLoaded', () => {
   renderButtons();
   initializeReservationForm();
