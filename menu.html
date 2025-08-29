@@ -100,7 +100,6 @@
             letter-spacing: 1px;
             margin: 0;
         }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -140,7 +139,7 @@
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            overflow: hidden;
+            overflow: visible;
             transition: transform 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
@@ -209,7 +208,7 @@
         .section-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
+            transition: max-height 0.5s ease, padding 0.3s ease;
             background: rgba(26, 26, 46, 0.9);
             position: relative;
             z-index: 1;
@@ -217,8 +216,10 @@
         }
         
         .section-content.active {
-            max-height: 2000px;
+            max-height: none;
             padding: 20px;
+            height: auto;
+            overflow: visible;
         }
         
         .menu-item {
@@ -329,6 +330,43 @@
             border: 1px solid rgba(255, 140, 66, 0.3);
         }
         
+        @media (max-width: 768px) {
+            .section-content {
+                transition: max-height 0.5s ease, padding 0.3s ease;
+            }
+            
+            .section-content.active {
+                max-height: 100vh;
+                overflow-y: auto;
+                padding: 15px;
+            }
+            
+            .menu-section {
+                overflow: visible;
+            }
+            
+            .menu-section.active {
+                overflow: visible;
+            }
+            
+            .menu-item {
+                padding: 12px 0;
+            }
+            
+            .item-name {
+                font-size: 1rem;
+            }
+            
+            .item-description {
+                font-size: 0.85rem;
+            }
+            
+            .item-price {
+                font-size: 1rem;
+                padding: 3px 10px;
+            }
+        }
+        
         @media (max-width: 600px) {
             .logo-main {
                 max-height: 150px;
@@ -354,7 +392,7 @@
                 margin-top: 5px;
             }
         }
-
+        
         @media (max-width: 400px) {
             .logo-main {
                 max-height: 120px;
@@ -374,7 +412,6 @@
             <p>Donde la noche cobra vida</p>
         </div>
     </div>
-
     <div class="container">
         <div class="nav-buttons" id="nav-buttons">
             <!-- Botones generados dinámicamente -->
@@ -386,7 +423,6 @@
             <p>Bar La Nuit - Todos los derechos reservados</p>
         </div>
     </div>
-
     <script>
         // === FUNCIÓN PARA CARGAR EL MENÚ DINÁMICAMENTE ===
         async function cargarMenu() {
@@ -416,7 +452,7 @@
                 `;
             }
         }
-
+        
         // === FUNCIÓN PARA RENDERIZAR EL MENÚ ===
         function renderizarMenu(secciones) {
             console.log('Secciones recibidas en renderizarMenu:', secciones);
@@ -425,7 +461,6 @@
             
             navButtons.innerHTML = '';
             menuContainer.innerHTML = '';
-
             secciones.forEach(seccion => {
                 console.log('Renderizando sección:', seccion.titulo);
                 
@@ -435,12 +470,12 @@
                 button.textContent = seccion.titulo;
                 button.onclick = () => scrollToSection(seccion.id);
                 navButtons.appendChild(button);
-
+                
                 // Sección del menú
                 const sectionDiv = document.createElement('div');
                 sectionDiv.className = 'menu-section';
                 sectionDiv.id = seccion.id;
-
+                
                 // Capas de fondo para múltiples imágenes
                 if (seccion.imagenes && seccion.imagenes.length > 0) {
                     seccion.imagenes.forEach((imagen, index) => {
@@ -454,124 +489,127 @@
                         sectionDiv.appendChild(bgLayer);
                     });
                 }
-
+                
                 const headerDiv = document.createElement('div');
                 headerDiv.className = 'section-header';
                 headerDiv.onclick = () => toggleSection(seccion.id);
-
+                
                 const titleWrapper = document.createElement('div');
                 titleWrapper.className = 'section-title-wrapper';
+                
                 const titleSpan = document.createElement('span');
                 titleSpan.className = 'section-text';
                 titleSpan.textContent = seccion.titulo;
                 titleWrapper.appendChild(titleSpan);
-
+                
                 headerDiv.appendChild(titleWrapper);
-
+                
                 const contentDiv = document.createElement('div');
                 contentDiv.className = 'section-content';
-
+                
                 if (seccion.nota) {
                     const noteDiv = document.createElement('div');
                     noteDiv.className = 'section-note';
                     noteDiv.textContent = seccion.nota;
                     contentDiv.appendChild(noteDiv);
                 }
-
+                
                 if (seccion.subsecciones && seccion.subsecciones.length > 0) {
                     seccion.subsecciones.forEach(sub => {
                         const subDiv = document.createElement('div');
                         subDiv.className = 'subsection';
-
+                        
                         const subTitle = document.createElement('div');
                         subTitle.className = 'subsection-title';
                         subTitle.textContent = sub.titulo;
                         subDiv.appendChild(subTitle);
-
+                        
                         if (sub.nota) {
                             const subNote = document.createElement('div');
                             subNote.className = 'section-note';
                             subNote.textContent = sub.nota;
                             subDiv.appendChild(subNote);
                         }
-
+                        
                         if (sub.platos && sub.platos.length > 0) {
                             sub.platos.forEach(plato => {
                                 const itemDiv = document.createElement('div');
                                 itemDiv.className = 'menu-item';
-
+                                
                                 const leftDiv = document.createElement('div');
                                 leftDiv.className = 'item-left';
-
+                                
                                 const nameDiv = document.createElement('div');
                                 nameDiv.className = 'item-name';
                                 nameDiv.textContent = plato.nombre;
-
+                                
                                 const descDiv = document.createElement('div');
                                 descDiv.className = 'item-description';
                                 descDiv.textContent = plato.descripcion || '';
-
+                                
                                 leftDiv.appendChild(nameDiv);
                                 leftDiv.appendChild(descDiv);
-
+                                
                                 const priceDiv = document.createElement('div');
                                 priceDiv.className = 'item-price';
                                 priceDiv.textContent = plato.precio;
-
+                                
                                 itemDiv.appendChild(leftDiv);
                                 itemDiv.appendChild(priceDiv);
+                                
                                 subDiv.appendChild(itemDiv);
                             });
                         }
-
+                        
                         contentDiv.appendChild(subDiv);
                     });
                 } else if (seccion.platos && seccion.platos.length > 0) {
                     seccion.platos.forEach(plato => {
                         const itemDiv = document.createElement('div');
                         itemDiv.className = 'menu-item';
-
+                        
                         const leftDiv = document.createElement('div');
                         leftDiv.className = 'item-left';
-
+                        
                         const nameDiv = document.createElement('div');
                         nameDiv.className = 'item-name';
                         nameDiv.textContent = plato.nombre;
-
+                        
                         const descDiv = document.createElement('div');
                         descDiv.className = 'item-description';
                         descDiv.textContent = plato.descripcion || '';
-
+                        
                         leftDiv.appendChild(nameDiv);
                         leftDiv.appendChild(descDiv);
-
+                        
                         const priceDiv = document.createElement('div');
                         priceDiv.className = 'item-price';
                         priceDiv.textContent = plato.precio;
-
+                        
                         itemDiv.appendChild(leftDiv);
                         itemDiv.appendChild(priceDiv);
+                        
                         contentDiv.appendChild(itemDiv);
                     });
                 }
-
+                
                 sectionDiv.appendChild(headerDiv);
                 sectionDiv.appendChild(contentDiv);
                 menuContainer.appendChild(sectionDiv);
             });
-
+            
             // Abrir la primera sección por defecto
             if (secciones.length > 0) {
                 toggleSection(secciones[0].id);
             }
         }
-
+        
         function toggleSection(sectionId) {
             const section = document.getElementById(sectionId);
             const content = section.querySelector('.section-content');
             content.classList.toggle('active');
         }
-
+        
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             const content = section.querySelector('.section-content');
@@ -580,7 +618,7 @@
             }
             section.scrollIntoView({ behavior: 'smooth' });
         }
-
+        
         document.addEventListener('DOMContentLoaded', () => {
             cargarMenu();
         });
