@@ -6,7 +6,7 @@
     <title>Bar La Nuit - Menú</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* === ESTILOS ORIGINALES (SIN CAMBIOS) === */
+        /* === ESTILOS OPTIMIZADOS === */
         * {
             margin: 0;
             padding: 0;
@@ -118,7 +118,7 @@
         }
         .menu-section {
             background-color: rgba(26, 26, 46, 0.85);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(5px);
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -136,17 +136,17 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.4;
-            filter: blur(8px);
-            transition: filter 0.5s ease, opacity 0.5s ease;
+            opacity: 0.3;
+            filter: blur(5px);
+            transition: filter 0.3s ease, opacity 0.3s ease;
             z-index: -1;
         }
         .menu-section.active .background-layer {
-            filter: blur(15px);
-            opacity: 0.2;
+            filter: blur(10px);
+            opacity: 0.15;
         }
         .menu-section .background-layer.animated {
-            animation: backgroundSlide 20s linear infinite;
+            animation: backgroundSlide 30s linear infinite;
         }
         @keyframes backgroundSlide {
             0% { background-position: 0% center; }
@@ -178,18 +178,11 @@
             font-size: 1.5rem;
             font-weight: 600;
         }
-        .section-header i.chevron {
-            transition: transform 0.3s ease;
-            color: #fff;
-        }
-        .section-header.active i.chevron {
-            transform: rotate(180deg);
-        }
         .section-content {
             padding: 0;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease, padding 0.5s ease;
+            transition: max-height 0.3s ease, padding 0.3s ease;
             background: rgba(26, 26, 46, 0.9);
             position: relative;
             z-index: 1;
@@ -525,7 +518,7 @@
             }
         ];
 
-        // === FUNCIONES DE RENDERIZADO ===
+        // === FUNCIONES DE RENDERIZADO OPTIMIZADAS ===
         function renderizarMenu(secciones) {
             const navButtons = document.getElementById('nav-buttons');
             const menuContainer = document.getElementById('menu-container');
@@ -553,7 +546,7 @@
                     bgLayer.style.backgroundImage = `url('${imagen}')`;
                     if (seccion.imagenes.length > 1) {
                         bgLayer.classList.add('animated');
-                        bgLayer.style.animationDelay = `${index * 10}s`;
+                        bgLayer.style.animationDelay = `${index * 15}s`;
                     }
                     sectionDiv.appendChild(bgLayer);
                 });
@@ -569,12 +562,7 @@
                 titleSpan.textContent = seccion.titulo;
                 titleWrapper.appendChild(titleSpan);
 
-                const chevron = document.createElement('i');
-                chevron.className = 'fas fa-chevron-down chevron';
-                chevron.textContent = '▼';
-
                 headerDiv.appendChild(titleWrapper);
-                headerDiv.appendChild(chevron);
 
                 const contentDiv = document.createElement('div');
                 contentDiv.className = 'section-content';
