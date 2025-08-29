@@ -19,7 +19,7 @@ subsecciones:
       - nombre: Agua Mineral
         descripcion: ""
         precio: $2.500
-      - nombre: Speed / Red Bull
+      - nombre: Speedy
         descripcion: ""
         precio: $3.500
   - titulo: Cervezas
