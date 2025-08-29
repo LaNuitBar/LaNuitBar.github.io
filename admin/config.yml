@@ -6,6 +6,7 @@ media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
 collections:
+  # === COLECCIÓN PROMOCIONAL (EXISTENTE, NO TOCAR) ===
   - name: "promocional"
     label: "Imagen Promocional"
     files:
@@ -15,3 +16,40 @@ collections:
         fields:
           - { label: "Imagen", name: "imagen", widget: "image" }
           - { label: "Activa", name: "activa", widget: "boolean", default: true }
+
+  # === NUEVA COLECCIÓN PARA EL MENÚ ===
+  - name: "menu"
+    label: "Menú"
+    folder: "content/menu"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Título de la Sección", name: "titulo", widget: "string" }
+      - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
+      - label: "Imágenes de Fondo Promocionales"
+        name: "imagenes"
+        widget: "list"
+        field: { label: "Imagen", name: "imagen", widget: "image" }
+        required: false
+      - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+      - label: "Platos"
+        name: "platos"
+        widget: "list"
+        fields:
+          - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+          - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+          - { label: "Precio", name: "precio", widget: "string" }
+      - label: "Subsecciones (opcional)"
+        name: "subsecciones"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Título de la Subsección", name: "titulo", widget: "string" }
+          - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+          - label: "Platos"
+            name: "platos"
+            widget: "list"
+            fields:
+              - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+              - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+              - { label: "Precio", name: "precio", widget: "string" }
