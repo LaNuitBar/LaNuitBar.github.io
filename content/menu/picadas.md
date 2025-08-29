@@ -1,0 +1,14 @@
+---
+titulo: Picadas Especiales
+id: picadas
+imagenes:
+  - /images/uploads/picada-bg.jpg
+nota: Platos para compartir, con opciones para 2 o 4 personas.
+platos:
+  - nombre: Picada Especial
+    descripcion: Jamón cocido, queso tybo, mortadela, salame, papas snack, aceitunas, salsa barbacoa
+    precio: 2 pers: $15.000 | 4 pers: $28.000
+  - nombre: Especial Nuit
+    descripcion: Jamón crudo y cocido, lomo ahumado, bondiola, mortadela, salame, queso tybo, queso azul, papas fritas, aros de cebolla, aceitunas, salsa barbacoa
+    precio: 2 pers: $18.000 | 4 pers: $32.000
+---
