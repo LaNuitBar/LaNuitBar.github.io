@@ -1,10 +1,10 @@
 [
-  { "file": "pizzas.md" },
-  { "file": "picadas.md" },
-  { "file": "sandwiches.md" },
-  { "file": "hamburguesas.md" },
-  { "file": "papas.md" },
-  { "file": "empanadas.md" },
-  { "file": "bebidas.md" },
-  { "file": "tragos.md" }
+  { "file": "pizzas.json" },
+  { "file": "picadas.json" },
+  { "file": "sandwiches.json" },
+  { "file": "hamburguesas.json" },
+  { "file": "papas.json" },
+  { "file": "empanadas.json" },
+  { "file": "bebidas.json" },
+  { "file": "tragos.json" }
 ]
