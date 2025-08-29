@@ -1,33 +1,51 @@
----
-titulo: Pizzas
-id: pizzas
-imagenes:
-  - /images/uploads/pizza-bg.jpg
-  - /images/uploads/pizza2-bg.jpg
-nota: Todas las pizzas tienen opciones de tamaño Entera y Media. Precios en $.
-platos:
-  - nombre: Mozzarella
-    descripcion: Queso mozzarella, salsa de tomate, orégano, aceitunas
-    precio: Entera: $11.000 | Media: $6.500
-  - nombre: Especial
-    descripcion: Mozzarella, salsa, jamón cocido, huevo, morrones, aceitunas
-    precio: Entera: $13.500 | Media: $7.000
-  - nombre: Fugazzeta
-    descripcion: Mozzarella, salsa, cebolla cruda salteada, aceitunas
-    precio: Entera: $13.500 | Media: $7.500
-  - nombre: Calabresa
-    descripcion: Mozzarella, salsa, salame cantimpalo, aceitunas negras
-    precio: Entera: $14.000 | Media: $7.500
-  - nombre: Choclo
-    descripcion: Mozzarella, salsa, granos de choclo, morrones, aceitunas
-    precio: Entera: $13.500 | Media: $7.000
-  - nombre: Rúcula y Jamón Crudo
-    descripcion: Mozzarella, salsa, jamón crudo, rúcula fresca, tomates cherry, aceitunas
-    precio: Entera: $15.000 | Media: $8.000
-  - nombre: Roquefort
-    descripcion: Mozzarella, queso azul, aceitunas negras
-    precio: Entera: $14.000 | Media: $7.500
-  - nombre: Napolitana
-    descripcion: Mozzarella, salsa, tomates, aceite de oliva, orégano, aceituna
-    precio: Entera: $13.500 | Media: $7.500
----
+{
+  "titulo": "Pizzas",
+  "id": "pizzas",
+  "imagenes": [
+    "/images/uploads/pizza-bg.jpg",
+    "/images/uploads/pizza2-bg.jpg"
+  ],
+  "nota": "Todas las pizzas tienen opciones de tamaño Entera y Media. Precios en $.",
+  "platos": [
+    {
+      "nombre": "Mozzarella",
+      "descripcion": "Queso mozzarella, salsa de tomate, orégano, aceitunas",
+      "precio": "Entera: $11.000 | Media: $6.500"
+    },
+    {
+      "nombre": "Especial",
+      "descripcion": "Mozzarella, salsa, jamón cocido, huevo, morrones, aceitunas",
+      "precio": "Entera: $13.500 | Media: $7.000"
+    },
+    {
+      "nombre": "Fugazzeta",
+      "descripcion": "Mozzarella, salsa, cebolla cruda salteada, aceitunas",
+      "precio": "Entera: $13.500 | Media: $7.500"
+    },
+    {
+      "nombre": "Calabresa",
+      "descripcion": "Mozzarella, salsa, salame cantimpalo, aceitunas negras",
+      "precio": "Entera: $14.000 | Media: $7.500"
+    },
+    {
+      "nombre": "Choclo",
+      "descripcion": "Mozzarella, salsa, granos de choclo, morrones, aceitunas",
+      "precio": "Entera: $13.500 | Media: $7.000"
+    },
+    {
+      "nombre": "Rúcula y Jamón Crudo",
+      "descripcion": "Mozzarella, salsa, jamón crudo, rúcula fresca, tomates cherry, aceitunas",
+      "precio": "Entera: $15.000 | Media: $8.000"
+    },
+    {
+      "nombre": "Roquefort",
+      "descripcion": "Mozzarella, queso azul, aceitunas negras",
+      "precio": "Entera: $14.000 | Media: $7.500"
+    },
+    {
+      "nombre": "Napolitana",
+      "descripcion": "Mozzarella, salsa, tomates, aceite de oliva, orégano, aceituna",
+      "precio": "Entera: $13.500 | Media: $7.500"
+    }
+  ]
+}
