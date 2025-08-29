@@ -140,19 +140,11 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.2;
+            opacity: 0.45;              /* 1. Más visible */
+            animation: none;            /* 3. Sin desplazamiento */
+            background-attachment: fixed;
             z-index: -1;
-            will-change: opacity;
-        }
-        .menu-section.active .background-layer {
-            opacity: 0.1;
-        }
-        .menu-section .background-layer.animated {
-            animation: backgroundSlide 30s linear infinite;
-        }
-        @keyframes backgroundSlide {
-            0% { background-position: 0% center; }
-            100% { background-position: 100% center; }
+            pointer-events: none;
         }
         .menu-section:hover {
             transform: translateY(-5px);
@@ -189,6 +181,18 @@
             position: relative;
             z-index: 1;
             will-change: max-height;
+        }
+        /* 2. Superficie semitransparente detrás del texto */
+        .section-content {
+            position: relative;
+        }
+        .section-content::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(26, 26, 46, 0.65);
+            z-index: -1;
+            border-radius: 0 0 10px 10px;
         }
         .section-content.active {
             max-height: 2000px;
@@ -304,6 +308,9 @@
             .item-price {
                 text-align: right;
                 margin-left: auto;
+            }
+            .menu-section .background-layer {
+                background-attachment: scroll;
             }
         }
     </style>
@@ -522,7 +529,7 @@
             }
         ];
 
-        // === FUNCIONES DE RENDERIZADO ULTRA-OPTIMIZADAS ===
+        // === FUNCIONES DE RENDERIZADO ULTRA-OPTIMIZADOS ===
         function renderizarMenu(secciones) {
             const navButtons = document.getElementById('nav-buttons');
             const menuContainer = document.getElementById('menu-container');
@@ -548,10 +555,6 @@
                     const bgLayer = document.createElement('div');
                     bgLayer.className = 'background-layer';
                     bgLayer.style.backgroundImage = `url('${imagen}')`;
-                    if (seccion.imagenes.length > 1) {
-                        bgLayer.classList.add('animated');
-                        bgLayer.style.animationDelay = `${index * 15}s`;
-                    }
                     sectionDiv.appendChild(bgLayer);
                 });
 
