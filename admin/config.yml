@@ -19,34 +19,21 @@ collections:
               - { label: "Imagen", name: "imagen", widget: "image", required: false }
               - { label: "Video de YouTube (URL)", name: "video", widget: "string", required: false }
               - { label: "Activa", name: "activa", widget: "boolean", default: true }
-  # === NUEVA COLECCIÓN PARA EL MENÚ ===
+  # === COLECCIÓN PARA EL MENÚ (CORREGIDA) ===
   - name: "menu"
     label: "Menú"
-    folder: "content/menu"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Título de la Sección", name: "titulo", widget: "string" }
-      - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
-      - label: "Imágenes de Fondo Promocionales"
-        name: "imagenes"
-        widget: "list"
-        field: { label: "Imagen", name: "imagen", widget: "image" }
-        required: false
-      - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
-      - label: "Platos"
-        name: "platos"
-        widget: "list"
+    files:
+      - name: "pizzas"
+        label: "Pizzas"
+        file: "content/menu/pizzas.json"
         fields:
-          - { label: "Nombre del Plato", name: "nombre", widget: "string" }
-          - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
-          - { label: "Precio", name: "precio", widget: "string" }
-      - label: "Subsecciones (opcional)"
-        name: "subsecciones"
-        widget: "list"
-        required: false
-        fields:
-          - { label: "Título de la Subsección", name: "titulo", widget: "string" }
+          - { label: "Título de la Sección", name: "titulo", widget: "string" }
+          - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
+          - label: "Imágenes de Fondo Promocionales"
+            name: "imagenes"
+            widget: "list"
+            field: { label: "Imagen", name: "imagen", widget: "image" }
+            required: false
           - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
           - label: "Platos"
             name: "platos"
@@ -55,3 +42,248 @@ collections:
               - { label: "Nombre del Plato", name: "nombre", widget: "string" }
               - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
               - { label: "Precio", name: "precio", widget: "string" }
+          - label: "Subsecciones (opcional)"
+            name: "subsecciones"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Título de la Subsección", name: "titulo", widget: "string" }
+              - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+              - label: "Platos"
+                name: "platos"
+                widget: "list"
+                fields:
+                  - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+                  - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+                  - { label: "Precio", name: "precio", widget: "string" }
+      - name: "picadas"
+        label: "Picadas"
+        file: "content/menu/picadas.json"
+        fields:
+          - { label: "Título de la Sección", name: "titulo", widget: "string" }
+          - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
+          - label: "Imágenes de Fondo Promocionales"
+            name: "imagenes"
+            widget: "list"
+            field: { label: "Imagen", name: "imagen", widget: "image" }
+            required: false
+          - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+          - label: "Platos"
+            name: "platos"
+            widget: "list"
+            fields:
+              - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+              - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+              - { label: "Precio", name: "precio", widget: "string" }
+          - label: "Subsecciones (opcional)"
+            name: "subsecciones"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Título de la Subsección", name: "titulo", widget: "string" }
+              - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+              - label: "Platos"
+                name: "platos"
+                widget: "list"
+                fields:
+                  - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+                  - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+                  - { label: "Precio", name: "precio", widget: "string" }
+      - name: "sandwiches"
+        label: "Sandwiches"
+        file: "content/menu/sandwiches.json"
+        fields:
+          - { label: "Título de la Sección", name: "titulo", widget: "string" }
+          - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
+          - label: "Imágenes de Fondo Promocionales"
+            name: "imagenes"
+            widget: "list"
+            field: { label: "Imagen", name: "imagen", widget: "image" }
+            required: false
+          - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+          - label: "Platos"
+            name: "platos"
+            widget: "list"
+            fields:
+              - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+              - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+              - { label: "Precio", name: "precio", widget: "string" }
+          - label: "Subsecciones (opcional)"
+            name: "subsecciones"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Título de la Subsección", name: "titulo", widget: "string" }
+              - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+              - label: "Platos"
+                name: "platos"
+                widget: "list"
+                fields:
+                  - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+                  - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+                  - { label: "Precio", name: "precio", widget: "string" }
+      - name: "hamburguesas"
+        label: "Hamburguesas"
+        file: "content/menu/hamburguesas.json"
+        fields:
+          - { label: "Título de la Sección", name: "titulo", widget: "string" }
+          - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
+          - label: "Imágenes de Fondo Promocionales"
+            name: "imagenes"
+            widget: "list"
+            field: { label: "Imagen", name: "imagen", widget: "image" }
+            required: false
+          - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+          - label: "Platos"
+            name: "platos"
+            widget: "list"
+            fields:
+              - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+              - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+              - { label: "Precio", name: "precio", widget: "string" }
+          - label: "Subsecciones (opcional)"
+            name: "subsecciones"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Título de la Subsección", name: "titulo", widget: "string" }
+              - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+              - label: "Platos"
+                name: "platos"
+                widget: "list"
+                fields:
+                  - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+                  - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+                  - { label: "Precio", name: "precio", widget: "string" }
+      - name: "papas"
+        label: "Papas"
+        file: "content/menu/papas.json"
+        fields:
+          - { label: "Título de la Sección", name: "titulo", widget: "string" }
+          - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
+          - label: "Imágenes de Fondo Promocionales"
+            name: "imagenes"
+            widget: "list"
+            field: { label: "Imagen", name: "imagen", widget: "image" }
+            required: false
+          - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+          - label: "Platos"
+            name: "platos"
+            widget: "list"
+            fields:
+              - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+              - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+              - { label: "Precio", name: "precio", widget: "string" }
+          - label: "Subsecciones (opcional)"
+            name: "subsecciones"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Título de la Subsección", name: "titulo", widget: "string" }
+              - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+              - label: "Platos"
+                name: "platos"
+                widget: "list"
+                fields:
+                  - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+                  - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+                  - { label: "Precio", name: "precio", widget: "string" }
+      - name: "empanadas"
+        label: "Empanadas"
+        file: "content/menu/empanadas.json"
+        fields:
+          - { label: "Título de la Sección", name: "titulo", widget: "string" }
+          - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
+          - label: "Imágenes de Fondo Promocionales"
+            name: "imagenes"
+            widget: "list"
+            field: { label: "Imagen", name: "imagen", widget: "image" }
+            required: false
+          - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+          - label: "Platos"
+            name: "platos"
+            widget: "list"
+            fields:
+              - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+              - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+              - { label: "Precio", name: "precio", widget: "string" }
+          - label: "Subsecciones (opcional)"
+            name: "subsecciones"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Título de la Subsección", name: "titulo", widget: "string" }
+              - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+              - label: "Platos"
+                name: "platos"
+                widget: "list"
+                fields:
+                  - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+                  - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+                  - { label: "Precio", name: "precio", widget: "string" }
+      - name: "bebidas"
+        label: "Bebidas"
+        file: "content/menu/bebidas.json"
+        fields:
+          - { label: "Título de la Sección", name: "titulo", widget: "string" }
+          - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
+          - label: "Imágenes de Fondo Promocionales"
+            name: "imagenes"
+            widget: "list"
+            field: { label: "Imagen", name: "imagen", widget: "image" }
+            required: false
+          - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+          - label: "Platos"
+            name: "platos"
+            widget: "list"
+            fields:
+              - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+              - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+              - { label: "Precio", name: "precio", widget: "string" }
+          - label: "Subsecciones (opcional)"
+            name: "subsecciones"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Título de la Subsección", name: "titulo", widget: "string" }
+              - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+              - label: "Platos"
+                name: "platos"
+                widget: "list"
+                fields:
+                  - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+                  - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+                  - { label: "Precio", name: "precio", widget: "string" }
+      - name: "tragos"
+        label: "Tragos"
+        file: "content/menu/tragos.json"
+        fields:
+          - { label: "Título de la Sección", name: "titulo", widget: "string" }
+          - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
+          - label: "Imágenes de Fondo Promocionales"
+            name: "imagenes"
+            widget: "list"
+            field: { label: "Imagen", name: "imagen", widget: "image" }
+            required: false
+          - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+          - label: "Platos"
+            name: "platos"
+            widget: "list"
+            fields:
+              - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+              - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+              - { label: "Precio", name: "precio", widget: "string" }
+          - label: "Subsecciones (opcional)"
+            name: "subsecciones"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Título de la Subsección", name: "titulo", widget: "string" }
+              - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
+              - label: "Platos"
+                name: "platos"
+                widget: "list"
+                fields:
+                  - { label: "Nombre del Plato", name: "nombre", widget: "string" }
+                  - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
+                  - { label: "Precio", name: "precio", widget: "string" }
