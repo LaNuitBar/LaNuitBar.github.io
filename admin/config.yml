@@ -1,10 +1,8 @@
 backend:
   name: git-gateway
   branch: main
-
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
-
 collections:
    # === COLECCIÓN PROMOCIONAL (MODIFICADA) ===
   - name: "promocional"
@@ -18,7 +16,8 @@ collections:
             name: "imagenes"
             widget: "list"
             fields:
-              - { label: "Imagen", name: "imagen", widget: "image" }
+              - { label: "Imagen", name: "imagen", widget: "image", required: false }
+              - { label: "Video de YouTube (URL)", name: "video", widget: "string", required: false }
               - { label: "Activa", name: "activa", widget: "boolean", default: true }
   # === NUEVA COLECCIÓN PARA EL MENÚ ===
   - name: "menu"
