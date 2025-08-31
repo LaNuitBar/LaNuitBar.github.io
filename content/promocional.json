@@ -7,6 +7,10 @@
     {
       "imagen": "/images/uploads/img-20250828-wa0046.jpg",
       "activa": true
+    },
+    {
+      "activa": true,
+      "video": "https://youtu.be/5EouEAo9wy0?si=YigLR2KqWuD-o2ve"
     }
   ]
 }
