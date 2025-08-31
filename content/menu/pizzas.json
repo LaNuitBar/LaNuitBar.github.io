@@ -46,6 +46,11 @@
       "nombre": "Napolitana",
       "descripcion": "Mozzarella, salsa, tomates, aceite de oliva, orégano, aceituna",
       "precio": "Entera: $13.500 | Media: $7.500"
+    },
+    {
+      "nombre": "Pizza 4 quesos",
+      "descripcion": "Pruebala",
+      "precio": "15000"
     }
   ]
 }
