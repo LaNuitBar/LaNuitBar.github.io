@@ -4,8 +4,71 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin – La Nuit</title>
+  <style>
+    /* Estilos para mejorar el CMS en móviles */
+    @media (max-width: 768px) {
+      /* Contenedor de imágenes */
+      .nc-imageUpload-imageContainer {
+        width: 100% !important;
+        margin-bottom: 15px !important;
+      }
+      
+      /* Botón de subir imagen */
+      .nc-imageUpload-button {
+        width: 100% !important;
+        padding: 12px !important;
+        margin-top: 10px !important;
+        font-size: 14px !important;
+        border-radius: 6px !important;
+      }
+      
+      /* Panel de selección de imágenes */
+      .nc-modal-content {
+        max-width: 95% !important;
+        margin: 10px !important;
+        padding: 15px !important;
+      }
+      
+      /* Botones del panel */
+      .nc-modal-button {
+        padding: 10px 15px !important;
+        font-size: 13px !important;
+        margin: 5px !important;
+      }
+      
+      /* Cuadrícula de imágenes */
+      .nc-imageUpload-imageGrid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+      }
+      
+      /* Imágenes en la cuadrícula */
+      .nc-imageUpload-imageGrid-image {
+        height: 120px !important;
+        object-fit: cover !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .nc-imageUpload-imageGrid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    CMS.init({
+      config: {
+        load_config_file: true,
+        backend: {
+          name: 'git-gateway',
+          branch: 'main',
+        },
+        locale: 'es',
+      },
+    });
+  </script>
 </body>
 </html>
