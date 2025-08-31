@@ -5,12 +5,8 @@
       "activa": true
     },
     {
-      "activa": true,
-      "imagen": "/images/uploads/img-20250828-wa0046.jpg"
-    },
-    {
-      "activa": false,
-      "imagen": "/images/uploads/picsart_25-08-29_15-31-05-473.jpg"
+      "imagen": "/images/uploads/img-20250828-wa0046.jpg",
+      "activa": true
     }
   ]
 }
