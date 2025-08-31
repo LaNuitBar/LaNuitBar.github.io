@@ -17,9 +17,9 @@ collections:
             widget: "list"
             fields:
               - { label: "Imagen", name: "imagen", widget: "image", required: false }
-              - { label: "Video de YouTube (URL)", name: "video", widget: "string", required: false }
+              - { label: "Video de YouTube (pegar enlace)", name: "video", widget: "string", required: false, hint: "Ej: https://www.youtube.com/watch?v=ABC123" }
               - { label: "Activa", name: "activa", widget: "boolean", default: true }
-  # === COLECCIÓN PARA EL MENÚ (CORREGIDA) ===
+  # === COLECCIÓN PARA EL MENÚ (SIMPLIFICADA) ===
   - name: "menu"
     label: "Menú"
     files:
@@ -29,11 +29,6 @@ collections:
         fields:
           - { label: "Título de la Sección", name: "titulo", widget: "string" }
           - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
-          - label: "Imágenes de Fondo Promocionales"
-            name: "imagenes"
-            widget: "list"
-            field: { label: "Imagen", name: "imagen", widget: "image" }
-            required: false
           - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
           - label: "Platos"
             name: "platos"
@@ -62,11 +57,6 @@ collections:
         fields:
           - { label: "Título de la Sección", name: "titulo", widget: "string" }
           - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
-          - label: "Imágenes de Fondo Promocionales"
-            name: "imagenes"
-            widget: "list"
-            field: { label: "Imagen", name: "imagen", widget: "image" }
-            required: false
           - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
           - label: "Platos"
             name: "platos"
@@ -95,11 +85,6 @@ collections:
         fields:
           - { label: "Título de la Sección", name: "titulo", widget: "string" }
           - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
-          - label: "Imágenes de Fondo Promocionales"
-            name: "imagenes"
-            widget: "list"
-            field: { label: "Imagen", name: "imagen", widget: "image" }
-            required: false
           - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
           - label: "Platos"
             name: "platos"
@@ -128,11 +113,6 @@ collections:
         fields:
           - { label: "Título de la Sección", name: "titulo", widget: "string" }
           - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
-          - label: "Imágenes de Fondo Promocionales"
-            name: "imagenes"
-            widget: "list"
-            field: { label: "Imagen", name: "imagen", widget: "image" }
-            required: false
           - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
           - label: "Platos"
             name: "platos"
@@ -161,11 +141,6 @@ collections:
         fields:
           - { label: "Título de la Sección", name: "titulo", widget: "string" }
           - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
-          - label: "Imágenes de Fondo Promocionales"
-            name: "imagenes"
-            widget: "list"
-            field: { label: "Imagen", name: "imagen", widget: "image" }
-            required: false
           - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
           - label: "Platos"
             name: "platos"
@@ -194,11 +169,6 @@ collections:
         fields:
           - { label: "Título de la Sección", name: "titulo", widget: "string" }
           - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
-          - label: "Imágenes de Fondo Promocionales"
-            name: "imagenes"
-            widget: "list"
-            field: { label: "Imagen", name: "imagen", widget: "image" }
-            required: false
           - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
           - label: "Platos"
             name: "platos"
@@ -227,11 +197,6 @@ collections:
         fields:
           - { label: "Título de la Sección", name: "titulo", widget: "string" }
           - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
-          - label: "Imágenes de Fondo Promocionales"
-            name: "imagenes"
-            widget: "list"
-            field: { label: "Imagen", name: "imagen", widget: "image" }
-            required: false
           - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
           - label: "Platos"
             name: "platos"
@@ -260,11 +225,6 @@ collections:
         fields:
           - { label: "Título de la Sección", name: "titulo", widget: "string" }
           - { label: "ID (único, sin espacios)", name: "id", widget: "string" }
-          - label: "Imágenes de Fondo Promocionales"
-            name: "imagenes"
-            widget: "list"
-            field: { label: "Imagen", name: "imagen", widget: "image" }
-            required: false
           - { label: "Nota (opcional)", name: "nota", widget: "text", required: false }
           - label: "Platos"
             name: "platos"
