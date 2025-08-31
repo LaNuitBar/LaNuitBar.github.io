@@ -39,3 +39,20 @@ header h1{font-size:4rem;background:linear-gradient(45deg,#ff00ff,#00ffff);-webk
     max-width: 250px;
   }
 }
+/* Videos en móviles */
+@media (max-width: 768px) {
+  .promo-img[src*="youtube"],
+  .promo-img iframe {
+    width: 100% !important;
+    height: 250px !important;
+    object-fit: cover;
+  }
+}
+
+/* Videos en pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .promo-img[src*="youtube"],
+  .promo-img iframe {
+    height: 200px !important;
+  }
+}
