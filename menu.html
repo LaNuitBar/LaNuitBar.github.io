@@ -674,15 +674,6 @@
                 }
                 
                 renderizarMenu(secciones);
-                
-                // Verificar si la primera imagen ha cargado al menos un 80%
-                const firstImageLoaded = await checkFirstImageLoad();
-                
-                if (firstImageLoaded) {
-                    console.log('La primera imagen ha cargado al menos un 80%, ocultando mensaje de bienvenida');
-                    hideWelcomeMessage();
-                }
-                
                 return true;
             } catch (error) {
                 console.error('Error al cargar el menú:', error);
@@ -694,9 +685,6 @@
                         <p>Por favor, verifica tu conexión a internet</p>
                     </div>
                 `;
-                
-                // Ocultar el mensaje de bienvenida incluso si hay un error
-                hideWelcomeMessage();
                 return false;
             }
         }
@@ -954,24 +942,55 @@
             const maxWaitTime = 5000; // 5 segundos máximo
             const elegantFadeTime = 4000; // 4 segundos para iniciar la animación elegante
             
-            // Programar el inicio de la animación elegante a los 4 segundos
-            const elegantFadeTimeout = setTimeout(() => {
+            // Variables para controlar los timeouts
+            let elegantFadeTimeout;
+            let maxWaitTimeout;
+            
+            // Función para limpiar todos los timeouts
+            function clearTimeouts() {
+                if (elegantFadeTimeout) clearTimeout(elegantFadeTimeout);
+                if (maxWaitTimeout) clearTimeout(maxWaitTimeout);
+            }
+            
+            // Función para ocultar el mensaje y limpiar timeouts
+            function hideAndClear() {
+                clearTimeouts();
+                hideWelcomeMessage();
+            }
+            
+            // Función para iniciar la animación elegante y limpiar timeouts
+            function startElegantAndClear() {
+                clearTimeouts();
                 startElegantFade();
+            }
+            
+            // Programar el inicio de la animación elegante a los 4 segundos
+            elegantFadeTimeout = setTimeout(() => {
+                startElegantAndClear();
             }, elegantFadeTime);
             
             // Ocultar el mensaje de bienvenida después del tiempo máximo
-            const maxWaitTimeout = setTimeout(() => {
-                hideWelcomeMessage();
+            maxWaitTimeout = setTimeout(() => {
+                hideAndClear();
             }, maxWaitTime);
             
-            // Cargar el menú
+            // Cargar el menú y verificar la primera imagen
             cargarMenu().then((success) => {
                 if (success) {
-                    // Si el menú se carga correctamente, cancelar los timeouts
-                    clearTimeout(elegantFadeTimeout);
-                    clearTimeout(maxWaitTimeout);
+                    console.log('Menú cargado exitosamente');
                     
-                    // La verificación de la imagen se hace dentro de cargarMenu()
+                    // Verificar si la primera imagen ha cargado al menos un 80%
+                    checkFirstImageLoad().then((firstImageLoaded) => {
+                        if (firstImageLoaded) {
+                            console.log('La primera imagen ha cargado al menos un 80%, ocultando mensaje de bienvenida');
+                            hideAndClear();
+                        } else {
+                            console.log('La primera imagen no ha cargado al menos un 80%, esperando timeouts');
+                        }
+                    });
+                } else {
+                    console.log('Error al cargar el menú');
+                    hideAndClear();
                 }
             });
             
