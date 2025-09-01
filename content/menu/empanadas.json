@@ -2,7 +2,7 @@
   "titulo": "Empanadas",
   "id": "empanadas",
   "imagenes": [
-    "/images/uploads/empanada-bg.jpg"
+    "/assets/img/background/empanada-bg.jpg"
   ],
   "nota": "Precios por docena (Doc.) o media docena (1/2 Doc.). Todas las variedades comparten precios.",
   "platos": [
