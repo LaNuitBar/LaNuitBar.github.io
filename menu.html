@@ -237,6 +237,8 @@
             transform: translateZ(0);
             /* Mejora para evitar el parpadeo del texto */
             contain: layout style paint;
+            /* NUEVO: Hacer que toda la sección sea clickeable */
+            cursor: pointer;
         }
         
         /* AJUSTES ESTÉTICOS PARA LAS IMÁGENES DE FONDO */
@@ -256,6 +258,8 @@
             /* Optimización para evitar el parpadeo al hacer scroll */
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* NUEVO: Asegurar que la capa de fondo no intercepte eventos de clic */
+            pointer-events: none;
         }
         
         .menu-section.active .background-layer {
@@ -335,6 +339,8 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
+            /* NUEVO: Evitar que el contenido intercepte eventos de clic */
+            pointer-events: none;
         }
         
         .section-content.active {
@@ -345,6 +351,8 @@
             /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             transform: translateZ(0);
             will-change: auto;
+            /* NUEVO: Permitir interacciones con el contenido cuando está activo */
+            pointer-events: auto;
         }
         
         .menu-item {
@@ -360,6 +368,8 @@
             backface-visibility: hidden;
             /* Mejora para evitar el parpadeo del texto */
             contain: layout style paint;
+            /* NUEVO: Permitir interacciones con los elementos del menú */
+            pointer-events: auto;
         }
         
         .menu-item:last-child {
@@ -437,6 +447,8 @@
             /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             position: relative;
             z-index: 2;
+            /* NUEVO: Permitir interacciones con las notas */
+            pointer-events: auto;
         }
         
         .subsection {
@@ -801,7 +813,6 @@
                 
                 const headerDiv = document.createElement('div');
                 headerDiv.className = 'section-header';
-                headerDiv.onclick = () => toggleSection(seccion.id);
                 
                 const titleWrapper = document.createElement('div');
                 titleWrapper.className = 'section-title-wrapper';
@@ -905,6 +916,21 @@
                 
                 sectionDiv.appendChild(headerDiv);
                 sectionDiv.appendChild(contentDiv);
+                
+                // NUEVO: Hacer que toda la sección sea clickeable
+                sectionDiv.addEventListener('click', function(event) {
+                    // Evitar que el clic se propague si se hizo en un elemento interactivo dentro del contenido
+                    if (contentDiv.classList.contains('active') && 
+                        (event.target.closest('.menu-item') || 
+                         event.target.closest('.subsection-title') ||
+                         event.target.closest('.section-note'))) {
+                        return;
+                    }
+                    
+                    // Si el contenido no está activo o el clic fue en el encabezado/imagen, toggle la sección
+                    toggleSection(seccion.id);
+                });
+                
                 menuContainer.appendChild(sectionDiv);
             });
             
