@@ -724,7 +724,8 @@
                         contentDiv.appendChild(subDiv);
                     });
                 } else if (seccion.platos && seccion.platos.length > 0) {
-                    secciones.platos.forEach(plato => {
+                    // CORRECCIÓN: Cambiado de 'secciones.platos' a 'seccion.platos'
+                    seccion.platos.forEach(plato => {
                         const itemDiv = document.createElement('div');
                         itemDiv.className = 'menu-item';
                         
