@@ -1,52 +1,1104 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bar La Nuit</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar La Nuit - Menú</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === ESTILOS ULTRA-OPTIMIZADOS === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #121212, #1a1a2e, #16213e, #0f3460, #533483, #2c3e50, #4a235a);
+            background-size: 500% 500%;
+            animation: slowGradientShift 35s ease infinite;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            will-change: scroll-position;
+        }
+        body::before, body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        body::before {
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(40, 40, 40, 0.2) 0%, rgba(0, 0, 0, 0) 20%),
+                radial-gradient(circle at 80% 70%, rgba(30, 30, 30, 0.2) 0%, rgba(0, 0, 0, 0) 20%),
+                radial-gradient(circle at 40% 80%, rgba(83, 52, 131, 0.15) 0%, rgba(0, 0, 0, 0) 25%),
+                radial-gradient(circle at 60% 20%, rgba(15, 52, 96, 0.15) 0%, rgba(0, 0, 0, 0) 25%),
+                radial-gradient(circle at 30% 50%, rgba(255, 140, 0, 0.05) 0%, rgba(0, 0, 0, 0) 15%),
+                radial-gradient(circle at 70% 40%, rgba(138, 43, 226, 0.05) 0%, rgba(0, 0, 0, 0) 15%);
+            opacity: 1.1;
+        }
+        body::after {
+            content: "🍕🍔🍟🌮🍺🍷🍸🍹🥃🍽️🍴🥄🍴";
+            font-size: 150px;
+            opacity: 0.033;
+            letter-spacing: 50px;
+            line-height: 200px;
+            overflow: hidden;
+        }
+        @keyframes slowGradientShift {
+            0% { background-position: 0% 50%; }
+            10% { background-position: 100% 50%; }
+            20% { background-position: 80% 80%; }
+            30% { background-position: 20% 80%; }
+            40% { background-position: 40% 20%; }
+            50% { background-position: 90% 30%; }
+            60% { background-position: 10% 70%; }
+            70% { background-position: 70% 10%; }
+            80% { background-position: 30% 90%; }
+            90% { background-position: 60% 40%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* ESTILOS PARA EL MENSAJE DE BIENVENIDA */
+        .welcome-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #121212, #1a1a2e);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        
+        .welcome-message.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        /* ANIMACIÓN CELESTIAL/MAGNÁNIMA */
+        .welcome-message.elegant-fade {
+            animation: elegantFadeOut 1s ease-in-out forwards;
+        }
+        
+        @keyframes elegantFadeOut {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.02);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.05);
+                visibility: hidden;
+            }
+        }
+        
+        .welcome-text {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1.5s ease;
+        }
+        
+        .welcome-subtext {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            max-width: 80%;
+            animation: fadeInUp 1.5s ease 0.5s both;
+        }
+        
+        .welcome-loader {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #ff8c42;
+            border-radius: 50%;
+            margin-top: 30px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* HEADER REDISEÑADO - MÁXIMO IMPACTO VISUAL */
+        .header-container {
+            width: 100%;
+            text-align: center;
+            padding: 0;
+            margin: 0 0 20px 0;
+            position: relative;
+        }
+        
+        .logo-main {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 3px solid #ff8c42;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+        
+        .header-title {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+            padding: 15px 0;
+            margin-top: -5px;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .header-title p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 20px 20px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .nav-button {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            will-change: transform;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #2a2a3e, #26314e);
+        }
+        
+        .menu-section {
+            background-color: rgba(26, 26, 46, 0.85);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            overflow: visible;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            will-change: transform;
+            min-height: 250px; /* Aumentado el alto mínimo para mejor visualización de la imagen */
+            /* Optimización para evitar el parpadeo al hacer scroll */
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            /* Mejora para evitar el parpadeo del texto */
+            contain: layout style paint;
+        }
+        
+        /* AJUSTES ESTÉTICOS PARA LAS IMÁGENES DE FONDO */
+        .menu-section .background-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.4;  /* Opacidad ajustada para mejor integración visual */
+            filter: brightness(1.1) contrast(1.1);  /* Filtros ajustados para mejor visibilidad */
+            z-index: -1;
+            will-change: opacity;
+            /* Optimización para evitar el parpadeo al hacer scroll */
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+        
+        .menu-section.active .background-layer {
+            opacity: 0.3;  /* Opacidad ajustada para cuando la sección está activa */
+            filter: brightness(1.2) contrast(1.2);  /* Filtros ajustados para mejor visibilidad */
+        }
+        
+        .menu-section .background-layer.animated {
+            animation: backgroundSlide 30s linear infinite;
+        }
+        
+        @keyframes backgroundSlide {
+            0% { background-position: 0% center; }
+            100% { background-position: 100% center; }
+        }
+        
+        .menu-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.85), rgba(22, 33, 62, 0.85));
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            will-change: background;
+            /* Optimización para evitar el parpadeo al hacer scroll */
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            /* Mejora para evitar el parpadeo del texto */
+            contain: layout style paint;
+        }
+        
+        .section-header:hover {
+            background: linear-gradient(135deg, rgba(31, 68, 112, 0.85), rgba(38, 49, 78, 0.85));
+        }
+        
+        .section-title-wrapper {
+            display: flex;
+            align-items: center;
+            /* Mejora para evitar el parpadeo del texto */
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+        
+        .section-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            /* Mejora para evitar el parpadeo del texto */
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+        
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+            background: rgba(26, 26, 46, 0.9);
+            position: relative;
+            z-index: 1;
+            will-change: max-height;
+            /* Optimización para evitar el parpadeo al hacer scroll */
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            /* Mejora para evitar el parpadeo del texto */
+            contain: layout style paint;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        
+        .section-content.active {
+            max-height: none;
+            padding: 20px;
+            height: auto;
+            overflow: visible;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            transform: translateZ(0);
+            will-change: auto;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
+            will-change: auto;
+            backface-visibility: hidden;
+            /* Mejora para evitar el parpadeo del texto */
+            contain: layout style paint;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #fff;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
+            will-change: auto;
+        }
+        
+        .item-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
+            will-change: auto;
+        }
+        
+        .item-price {
+            font-weight: 700;
+            color: #ff8c42;
+            font-size: 1.2rem;
+            background: rgba(255, 140, 66, 0.1);
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 140, 66, 0.3);
+            display: inline-block;
+            text-align: right;
+            white-space: nowrap;
+            max-width: fit-content;
+            flex-shrink: 0;
+            margin-left: auto;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
+            will-change: auto;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            background-color: rgba(30, 30, 30, 0.7);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-note {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(60, 60, 60, 0.2);
+            border-radius: 8px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subsection {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
+        }
+        
+        .subsection-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            position: relative;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            z-index: 2;
+        }
+        
+        .subsection-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 20px;
+            background-color: #ff8c42;
+            border-radius: 3px;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            z-index: 2;
+        }
+        
+        .alcohol-indicator {
+            display: inline-block;
+            background: rgba(255, 140, 66, 0.2);
+            color: #ff8c42;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 8px;
+            border: 1px solid rgba(255, 140, 66, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .section-content {
+                transition: max-height 0.5s ease, padding 0.3s ease;
+            }
+            
+            .section-content.active {
+                max-height: 100vh;
+                overflow-y: auto;
+                padding: 15px;
+                /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .menu-section {
+                overflow: visible;
+                min-height: 200px; /* Ajuste para pantallas más pequeñas */
+            }
+            
+            .menu-section.active {
+                overflow: visible;
+            }
+            
+            .menu-item {
+                padding: 12px 0;
+            }
+            
+            .item-name {
+                font-size: 1rem;
+            }
+            
+            .item-description {
+                font-size: 0.85rem;
+            }
+            
+            .item-price {
+                font-size: 1rem;
+                padding: 3px 10px;
+            }
+            
+            .welcome-text {
+                font-size: 2rem;
+            }
+            
+            .welcome-subtext {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .logo-main {
+                max-height: 150px;
+            }
+            
+            .header-title p {
+                font-size: 1.1rem;
+                padding: 12px 0;
+            }
+            
+            .nav-button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .menu-item {
+                flex-direction: column;
+            }
+            
+            .item-price {
+                text-align: right;
+                margin-left: auto;
+                margin-top: 5px;
+            }
+            
+            .welcome-text {
+                font-size: 1.8rem;
+            }
+            
+            .welcome-subtext {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .logo-main {
+                max-height: 120px;
+            }
+            
+            .header-title p {
+                font-size: 1rem;
+            }
+            
+            .menu-section {
+                min-height: 180px; /* Ajuste para pantallas muy pequeñas */
+            }
+            
+            .welcome-text {
+                font-size: 1.5rem;
+            }
+            
+            .welcome-subtext {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div data-netlify-identity-menu></div>
-  <div id="photoCarousel" class="photo-carousel"></div>
-  <div class="overlay"></div>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <header>
-  <img src="https://i.postimg.cc/vZgtfg8J/header-lanuit.png" alt="La Nuit" class="logo-main">
-  <p>Reservá tu mesa</p>
-  <a href="menu.html" class="menu-button">VER MENÚ</a>
-</header>
-  <div class="promo-wrapper" id="promoContainer"></div>
-  <section class="reservation">
-    <form id="reservationForm" class="reservation-form">
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input id="nombre" name="nombre" required />
-      </div>
-      <div class="form-group">
-        <label for="telefono">Teléfono</label>
-        <input id="telefono" name="telefono" type="tel" required />
-      </div>
-      <div class="form-group">
-        <label for="fecha">Fecha</label>
-        <input id="fecha" name="fecha" type="date" required />
-      </div>
-      <div class="form-group">
-        <label for="hora">Hora</label>
-        <select id="hora" name="hora" required>
-          <option>20:00</option><option>21:00</option><option>22:00</option><option>23:00</option><option>00:00</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="personas">Personas</label>
-        <select id="personas" name="personas" required>
-          <option>1-2</option><option>3-4</option><option>5-6</option><option>7+</option>
-        </select>
-      </div>
-      <button type="submit" class="submit-btn">RESERVAR</button>
-    </form>
-  </section>
-  <div class="float-container" id="floatContainer"></div>
-  <script src="script.js"></script>
+    <!-- MENSAJE DE BIENVENIDA -->
+    <div class="welcome-message" id="welcome-message">
+        <h1 class="welcome-text">Bienvenido a Bar La Nuit</h1>
+        <p class="welcome-subtext">Donde la noche cobra vida y los sabores se transforman en experiencias inolvidables</p>
+        <div class="welcome-loader"></div>
+    </div>
+    <!-- HEADER REDISEÑADO CON MÁXIMO IMPACTO VISUAL -->
+    <div class="header-container">
+        <img src="https://i.postimg.cc/vZgtfg8J/header-lanuit.png" alt="Bar La Nuit" class="logo-main">
+        <div class="header-title">
+            <p>Donde la noche cobra vida</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="nav-buttons" id="nav-buttons">
+            <!-- Botones generados dinámicamente -->
+        </div>
+        <div id="menu-container">
+            <!-- Contenido del menú generado dinámicamente -->
+        </div>
+        <div class="footer">
+            <p>Bar La Nuit - Todos los derechos reservados</p>
+        </div>
+    </div>
+    <script>
+        // === FUNCIÓN PARA OCULTAR EL MENSAJE DE BIENVENIDA ===
+        function hideWelcomeMessage() {
+            const welcomeMessage = document.getElementById('welcome-message');
+            if (welcomeMessage && !welcomeMessage.classList.contains('hidden')) {
+                welcomeMessage.classList.add('hidden');
+                console.log('Mensaje de bienvenida oculto');
+            }
+        }
+        
+        // === FUNCIÓN PARA INICIAR LA ANIMACIÓN CELESTIAL/MAGNÁNIMA ===
+        function startElegantFade() {
+            const welcomeMessage = document.getElementById('welcome-message');
+            if (welcomeMessage && !welcomeMessage.classList.contains('hidden') && !welcomeMessage.classList.contains('elegant-fade')) {
+                welcomeMessage.classList.add('elegant-fade');
+                console.log('Iniciando animación elegante de salida');
+                
+                // Ocultar completamente después de la animación
+                setTimeout(() => {
+                    hideWelcomeMessage();
+                }, 1000);
+            }
+        }
+        
+        // === FUNCIÓN PARA VERIFICAR SI LA PRIMERA IMAGEN HA CARGADO AL MENOS UN 80% ===
+        function checkFirstImageLoad() {
+            return new Promise((resolve) => {
+                // Esperar a que el menú se renderice
+                setTimeout(() => {
+                    // Obtener la primera sección (generalmente pizzas)
+                    const firstSection = document.querySelector('.menu-section');
+                    if (!firstSection) {
+                        resolve(false);
+                        return;
+                    }
+                    
+                    // Obtener la capa de fondo de la primera sección
+                    const backgroundLayer = firstSection.querySelector('.background-layer');
+                    if (!backgroundLayer) {
+                        resolve(false);
+                        return;
+                    }
+                    
+                    // Obtener la URL de la imagen de fondo
+                    const backgroundImage = window.getComputedStyle(backgroundLayer).backgroundImage;
+                    if (!backgroundImage || backgroundImage === 'none') {
+                        resolve(false);
+                        return;
+                    }
+                    
+                    // Extraer la URL de la imagen
+                    const imageUrl = backgroundImage.slice(5, -2); // Eliminar 'url("' y '")'
+                    
+                    // Crear una imagen para verificar la carga
+                    const img = new Image();
+                    let loadedPercentage = 0;
+                    
+                    img.onload = function() {
+                        loadedPercentage = 100;
+                        console.log(`Imagen cargada completamente: ${imageUrl}`);
+                        resolve(loadedPercentage >= 80);
+                    };
+                    
+                    img.onerror = function() {
+                        console.error(`Error al cargar la imagen: ${imageUrl}`);
+                        resolve(false);
+                    };
+                    
+                    // Simular progreso de carga
+                    const progressInterval = setInterval(() => {
+                        if (loadedPercentage < 100) {
+                            loadedPercentage += 10;
+                            if (loadedPercentage >= 80) {
+                                clearInterval(progressInterval);
+                                console.log(`Imagen cargada al ${loadedPercentage}%: ${imageUrl}`);
+                                resolve(true);
+                            }
+                        }
+                    }, 200);
+                    
+                    // Establecer un tiempo máximo de espera para esta imagen
+                    setTimeout(() => {
+                        clearInterval(progressInterval);
+                        console.log(`Tiempo de espera agotado para la imagen: ${imageUrl}`);
+                        resolve(false);
+                    }, 3000);
+                    
+                    img.src = imageUrl;
+                }, 500);
+            });
+        }
+        
+        // === FUNCIÓN PARA CARGAR EL MENÚ DINÁMICAMENTE ===
+        async function cargarMenu() {
+            try {
+                const response = await fetch('/content/menu/index.json');
+                if (!response.ok) throw new Error('No se pudo cargar el índice del menú');
+                const index = await response.json();
+                
+                const secciones = [];
+                for (const item of index) {
+                    const fileResponse = await fetch('/content/menu/' + item.file);
+                    if (!fileResponse.ok) continue;
+                    const seccion = await fileResponse.json();
+                    secciones.push(seccion);
+                }
+                
+                renderizarMenu(secciones);
+                return true;
+            } catch (error) {
+                console.error('Error al cargar el menú:', error);
+                // Mensaje de error amigable para el usuario
+                document.getElementById('menu-container').innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #ff6b6b;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                        <h3>Error al cargar el menú</h3>
+                        <p>Por favor, verifica tu conexión a internet</p>
+                    </div>
+                `;
+                return false;
+            }
+        }
+        
+        // === FUNCIÓN PARA RENDERIZAR EL MENÚ ===
+        function renderizarMenu(secciones) {
+            console.log('Secciones recibidas en renderizarMenu:', secciones);
+            const navButtons = document.getElementById('nav-buttons');
+            const menuContainer = document.getElementById('menu-container');
+            
+            navButtons.innerHTML = '';
+            menuContainer.innerHTML = '';
+            secciones.forEach(seccion => {
+                console.log('Renderizando sección:', seccion.titulo);
+                
+                // Botón de navegación
+                const button = document.createElement('button');
+                button.className = 'nav-button';
+                button.textContent = seccion.titulo;
+                button.onclick = () => scrollToSection(seccion.id);
+                navButtons.appendChild(button);
+                
+                // Sección del menú
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'menu-section';
+                sectionDiv.id = seccion.id;
+                
+                // Capas de fondo para múltiples imágenes
+                if (seccion.imagenes && seccion.imagenes.length > 0) {
+                    console.log(`Imágenes para la sección ${seccion.titulo}:`, seccion.imagenes);
+                    seccion.imagenes.forEach((imagen, index) => {
+                        const bgLayer = document.createElement('div');
+                        bgLayer.className = 'background-layer';
+                        
+                        // SOLUCIÓN ALTERNATIVA: Construir la ruta absoluta directamente
+                        let imageUrl = imagen;
+                        
+                        // Si la ruta comienza con '../', la reemplazamos con la ruta absoluta correcta
+                        if (imagen.startsWith('../')) {
+                            const imageName = imagen.split('/').pop(); // Obtener solo el nombre del archivo
+                            imageUrl = `/assets/img/backgrounds/${imageName}`;
+                        }
+                        // Si la ruta ya es absoluta, la usamos tal cual
+                        else if (imagen.startsWith('/')) {
+                            imageUrl = imagen;
+                        }
+                        // Si es solo el nombre del archivo, le agregamos la ruta completa
+                        else if (!imagen.includes('/')) {
+                            imageUrl = `/assets/img/backgrounds/${imagen}`;
+                        }
+                        
+                        console.log(`Estableciendo imagen de fondo: ${imageUrl}`);
+                        bgLayer.style.backgroundImage = `url('${imageUrl}')`;
+                        
+                        if (seccion.imagenes.length > 1) {
+                            bgLayer.classList.add('animated');
+                            bgLayer.style.animationDelay = `${index * 15}s`;
+                        }
+                        sectionDiv.appendChild(bgLayer);
+                    });
+                } else {
+                    console.warn(`No se encontraron imágenes para la sección ${seccion.titulo}`);
+                }
+                
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'section-header';
+                headerDiv.onclick = () => toggleSection(seccion.id);
+                
+                const titleWrapper = document.createElement('div');
+                titleWrapper.className = 'section-title-wrapper';
+                
+                const titleSpan = document.createElement('span');
+                titleSpan.className = 'section-text';
+                titleSpan.textContent = seccion.titulo;
+                titleWrapper.appendChild(titleSpan);
+                
+                headerDiv.appendChild(titleWrapper);
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'section-content';
+                
+                if (seccion.nota) {
+                    const noteDiv = document.createElement('div');
+                    noteDiv.className = 'section-note';
+                    noteDiv.textContent = seccion.nota;
+                    contentDiv.appendChild(noteDiv);
+                }
+                
+                if (seccion.subsecciones && seccion.subsecciones.length > 0) {
+                    seccion.subsecciones.forEach(sub => {
+                        const subDiv = document.createElement('div');
+                        subDiv.className = 'subsection';
+                        
+                        const subTitle = document.createElement('div');
+                        subTitle.className = 'subsection-title';
+                        subTitle.textContent = sub.titulo;
+                        subDiv.appendChild(subTitle);
+                        
+                        if (sub.nota) {
+                            const subNote = document.createElement('div');
+                            subNote.className = 'section-note';
+                            subNote.textContent = sub.nota;
+                            subDiv.appendChild(subNote);
+                        }
+                        
+                        if (sub.platos && sub.platos.length > 0) {
+                            sub.platos.forEach(plato => {
+                                const itemDiv = document.createElement('div');
+                                itemDiv.className = 'menu-item';
+                                
+                                const leftDiv = document.createElement('div');
+                                leftDiv.className = 'item-left';
+                                
+                                const nameDiv = document.createElement('div');
+                                nameDiv.className = 'item-name';
+                                nameDiv.textContent = plato.nombre;
+                                
+                                const descDiv = document.createElement('div');
+                                descDiv.className = 'item-description';
+                                descDiv.textContent = plato.descripcion || '';
+                                
+                                leftDiv.appendChild(nameDiv);
+                                leftDiv.appendChild(descDiv);
+                                
+                                const priceDiv = document.createElement('div');
+                                priceDiv.className = 'item-price';
+                                priceDiv.textContent = plato.precio;
+                                
+                                itemDiv.appendChild(leftDiv);
+                                itemDiv.appendChild(priceDiv);
+                                
+                                subDiv.appendChild(itemDiv);
+                            });
+                        }
+                        
+                        contentDiv.appendChild(subDiv);
+                    });
+                } else if (seccion.platos && seccion.platos.length > 0) {
+                    // CORRECCIÓN: Cambiado de 'secciones.platos' a 'seccion.platos'
+                    seccion.platos.forEach(plato => {
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'menu-item';
+                        
+                        const leftDiv = document.createElement('div');
+                        leftDiv.className = 'item-left';
+                        
+                        const nameDiv = document.createElement('div');
+                        nameDiv.className = 'item-name';
+                        nameDiv.textContent = plato.nombre;
+                        
+                        const descDiv = document.createElement('div');
+                        descDiv.className = 'item-description';
+                        descDiv.textContent = plato.descripcion || '';
+                                
+                        leftDiv.appendChild(nameDiv);
+                        leftDiv.appendChild(descDiv);
+                        
+                        const priceDiv = document.createElement('div');
+                        priceDiv.className = 'item-price';
+                        priceDiv.textContent = plato.precio;
+                        
+                        itemDiv.appendChild(leftDiv);
+                        itemDiv.appendChild(priceDiv);
+                        
+                        contentDiv.appendChild(itemDiv);
+                    });
+                }
+                
+                sectionDiv.appendChild(headerDiv);
+                sectionDiv.appendChild(contentDiv);
+                
+                // NUEVO: Hacer que toda la sección sea clickeable
+                sectionDiv.addEventListener('click', function(event) {
+                    // Verificar si el clic fue en el contenido de la sección (no en el encabezado)
+                    if (!content.contains(event.target) && !headerDiv.contains(event.target)) {
+                        toggleSection(seccion.id);
+                    }
+                });
+                
+                menuContainer.appendChild(sectionDiv);
+            });
+            
+            // CAMBIO: Ya no se abre ninguna sección por defecto
+            // if (secciones.length > 0) {
+            //     toggleSection(secciones[0].id);
+            // }
+        }
+        
+        // === FUNCIÓN PARA DEPURAR LAS IMÁGENES ===
+        function depurarImagenes() {
+            console.log("Iniciando depuración de imágenes...");
+            
+            // Obtener todas las secciones del menú
+            const secciones = document.querySelectorAll('.menu-section');
+            
+            secciones.forEach((seccion, index) => {
+                console.log(`Analizando sección ${index + 1}:`, seccion.id);
+                
+                // Obtener todas las capas de fondo de esta sección
+                const backgroundLayers = seccion.querySelectorAll('.background-layer');
+                
+                if (backgroundLayers.length === 0) {
+                    console.warn(`  - No se encontraron capas de fondo en la sección ${seccion.id}`);
+                    return;
+                }
+                
+                backgroundLayers.forEach((layer, layerIndex) => {
+                    const backgroundImage = window.getComputedStyle(layer).backgroundImage;
+                    console.log(`  - Capa ${layerIndex + 1}: ${backgroundImage}`);
+                    
+                    // Crear una imagen de prueba para verificar si se carga correctamente
+                    if (backgroundImage && backgroundImage !== 'none') {
+                        const imageUrl = backgroundImage.slice(5, -2); // Eliminar 'url("' y '")'
+                        console.log(`  - Intentando cargar imagen: ${imageUrl}`);
+                        
+                        const img = new Image();
+                        
+                        img.onload = function() {
+                            console.log(`  - ✓ Imagen cargada correctamente: ${imageUrl}`);
+                        };
+                        
+                        img.onerror = function() {
+                            console.error(`  - ✗ Error al cargar la imagen: ${imageUrl}`);
+                            
+                            // Intentar con una ruta alternativa
+                            const altUrl = '/assets/img/backgrounds/' + imageUrl.split('/').pop();
+                            console.log(`  - Intentando con ruta alternativa: ${altUrl}`);
+                            
+                            const altImg = new Image();
+                            altImg.onload = function() {
+                                console.log(`  - ✓ Imagen alternativa cargada correctamente: ${altUrl}`);
+                                // Actualizar el fondo con la ruta alternativa
+                                layer.style.backgroundImage = `url('${altUrl}')`;
+                            };
+                            altImg.onerror = function() {
+                                console.error(`  - ✗ Error al cargar la imagen alternativa: ${altUrl}`);
+                            };
+                            altImg.src = altUrl;
+                        };
+                        
+                        img.src = imageUrl;
+                    }
+                });
+            });
+        }
+        
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const content = section.querySelector('.section-content');
+            
+            // Cambiar la clase activa
+            content.classList.toggle('active');
+            
+            // SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL
+            // Forzar una actualización de renderizado después de cambiar la clase
+            if (content.classList.contains('active')) {
+                // Forzar un reflujo para asegurar que el navegador procese los cambios
+                void content.offsetHeight;
+                
+                // Añadir una clase temporal para optimizar el renderizado
+                section.classList.add('active');
+                
+                // Aplicar optimizaciones para evitar el parpadeo durante el scroll
+                const menuItems = content.querySelectorAll('.menu-item');
+                menuItems.forEach(item => {
+                    // Forzar la aceleración de hardware para cada elemento
+                    item.style.transform = 'translateZ(0)';
+                    
+                    // Después de un breve tiempo, restablecer la transformación
+                    setTimeout(() => {
+                        item.style.transform = '';
+                    }, 100);
+                });
+            } else {
+                section.classList.remove('active');
+            }
+        }
+        
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const content = section.querySelector('.section-content');
+            if (!content.classList.contains('active')) {
+                content.classList.add('active');
+                section.classList.add('active');
+                
+                // SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL
+                // Forzar una actualización de renderizado después de cambiar la clase
+                void content.offsetHeight;
+                
+                // Aplicar optimizaciones para evitar el parpadeo durante el scroll
+                const menuItems = content.querySelectorAll('.menu-item');
+                menuItems.forEach(item => {
+                    // Forzar la aceleración de hardware para cada elemento
+                    item.style.transform = 'translateZ(0)';
+                    
+                    // Después de un breve tiempo, restablecer la transformación
+                    setTimeout(() => {
+                        item.style.transform = '';
+                    }, 100);
+                });
+            }
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Establecer tiempos para la gestión del mensaje de bienvenida
+            const maxWaitTime = 5000; // 5 segundos máximo
+            const elegantFadeTime = 3000; // CAMBIO: Reducido a 3 segundos para iniciar la animación elegante
+            
+            // Variables para controlar los timeouts
+            let elegantFadeTimeout;
+            let maxWaitTimeout;
+            
+            // Función para limpiar todos los timeouts
+            function clearTimeouts() {
+                if (elegantFadeTimeout) clearTimeout(elegantFadeTimeout);
+                if (maxWaitTimeout) clearTimeout(maxWaitTimeout);
+            }
+            
+            // Función para ocultar el mensaje y limpiar timeouts
+            function hideAndClear() {
+                clearTimeouts();
+                hideWelcomeMessage();
+            }
+            
+            // Función para iniciar la animación elegante y limpiar timeouts
+            function startElegantAndClear() {
+                clearTimeouts();
+                startElegantFade();
+            }
+            
+            // Programar el inicio de la animación elegante a los 3 segundos
+            elegantFadeTimeout = setTimeout(() => {
+                startElegantAndClear();
+            }, elegantFadeTime);
+            
+            // Ocultar el mensaje de bienvenida después del tiempo máximo
+            maxWaitTimeout = setTimeout(() => {
+                hideAndClear();
+            }, maxWaitTime);
+            
+            // Cargar el menú y verificar la primera imagen
+            cargarMenu().then((success) => {
+                if (success) {
+                    console.log('Menú cargado exitosamente');
+                    
+                    // Verificar si la primera imagen ha cargado al menos un 80%
+                    checkFirstImageLoad().then((firstImageLoaded) => {
+                        if (firstImageLoaded) {
+                            console.log('La primera imagen ha cargado al menos un 80%, ocultando mensaje de bienvenida');
+                            hideAndClear();
+                        } else {
+                            console.log('La primera imagen no ha cargado al menos un 80%, esperando timeouts');
+                        }
+                    });
+                } else {
+                    console.log('Error al cargar el menú');
+                    hideAndClear();
+                }
+            });
+            
+            // Esperar un poco a que se cargue el menú antes de depurar
+            setTimeout(depurarImagenes, 2000);
+        });
+    </script>
 </body>
 </html>
