@@ -331,6 +331,10 @@
             transform: translateZ(0);
             /* Mejora para evitar el parpadeo del texto */
             contain: layout style paint;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
         
         .section-content.active {
@@ -338,6 +342,9 @@
             padding: 20px;
             height: auto;
             overflow: visible;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            transform: translateZ(0);
+            will-change: auto;
         }
         
         .menu-item {
@@ -346,10 +353,11 @@
             align-items: flex-start;
             padding: 15px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            will-change: transform;
-            /* Optimización para evitar el parpadeo al hacer scroll */
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
+            will-change: auto;
             backface-visibility: hidden;
-            transform: translateZ(0);
             /* Mejora para evitar el parpadeo del texto */
             contain: layout style paint;
         }
@@ -362,10 +370,9 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            /* Mejora para evitar el parpadeo del texto */
-            will-change: transform;
-            backface-visibility: hidden;
-            transform: translateZ(0);
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
         }
         
         .item-name {
@@ -373,19 +380,19 @@
             font-size: 1.1rem;
             margin-bottom: 5px;
             color: #fff;
-            /* Mejora para evitar el parpadeo del texto */
-            will-change: transform;
-            backface-visibility: hidden;
-            transform: translateZ(0);
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
+            will-change: auto;
         }
         
         .item-description {
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
-            /* Mejora para evitar el parpadeo del texto */
-            will-change: transform;
-            backface-visibility: hidden;
-            transform: translateZ(0);
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
+            will-change: auto;
         }
         
         .item-price {
@@ -402,10 +409,10 @@
             max-width: fit-content;
             flex-shrink: 0;
             margin-left: auto;
-            /* Mejora para evitar el parpadeo del texto */
-            will-change: transform;
-            backface-visibility: hidden;
-            transform: translateZ(0);
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
+            will-change: auto;
         }
         
         .footer {
@@ -427,12 +434,18 @@
             font-style: italic;
             color: rgba(255, 255, 255, 0.9);
             font-size: 0.9rem;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
         }
         
         .subsection {
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px dashed rgba(255, 255, 255, 0.2);
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            position: relative;
+            z-index: 2;
         }
         
         .subsection-title {
@@ -444,10 +457,8 @@
             align-items: center;
             padding-left: 15px;
             position: relative;
-            /* Mejora para evitar el parpadeo del texto */
-            will-change: transform;
-            backface-visibility: hidden;
-            transform: translateZ(0);
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            z-index: 2;
         }
         
         .subsection-title::before {
@@ -460,6 +471,8 @@
             height: 20px;
             background-color: #ff8c42;
             border-radius: 3px;
+            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+            z-index: 2;
         }
         
         .alcohol-indicator {
@@ -482,6 +495,8 @@
                 max-height: 100vh;
                 overflow-y: auto;
                 padding: 15px;
+                /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
+                -webkit-overflow-scrolling: touch;
             }
             
             .menu-section {
@@ -583,7 +598,6 @@
         <p class="welcome-subtext">Donde la noche cobra vida y los sabores se transforman en experiencias inolvidables</p>
         <div class="welcome-loader"></div>
     </div>
-
     <!-- HEADER REDISEÑADO CON MÁXIMO IMPACTO VISUAL -->
     <div class="header-container">
         <img src="https://i.postimg.cc/vZgtfg8J/header-lanuit.png" alt="Bar La Nuit" class="logo-main">
@@ -961,7 +975,33 @@
         function toggleSection(sectionId) {
             const section = document.getElementById(sectionId);
             const content = section.querySelector('.section-content');
+            
+            // Cambiar la clase activa
             content.classList.toggle('active');
+            
+            // SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL
+            // Forzar una actualización de renderizado después de cambiar la clase
+            if (content.classList.contains('active')) {
+                // Forzar un reflujo para asegurar que el navegador procese los cambios
+                void content.offsetHeight;
+                
+                // Añadir una clase temporal para optimizar el renderizado
+                section.classList.add('active');
+                
+                // Aplicar optimizaciones para evitar el parpadeo durante el scroll
+                const menuItems = content.querySelectorAll('.menu-item');
+                menuItems.forEach(item => {
+                    // Forzar la aceleración de hardware para cada elemento
+                    item.style.transform = 'translateZ(0)';
+                    
+                    // Después de un breve tiempo, restablecer la transformación
+                    setTimeout(() => {
+                        item.style.transform = '';
+                    }, 100);
+                });
+            } else {
+                section.classList.remove('active');
+            }
         }
         
         function scrollToSection(sectionId) {
@@ -969,6 +1009,23 @@
             const content = section.querySelector('.section-content');
             if (!content.classList.contains('active')) {
                 content.classList.add('active');
+                section.classList.add('active');
+                
+                // SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL
+                // Forzar una actualización de renderizado después de cambiar la clase
+                void content.offsetHeight;
+                
+                // Aplicar optimizaciones para evitar el parpadeo durante el scroll
+                const menuItems = content.querySelectorAll('.menu-item');
+                menuItems.forEach(item => {
+                    // Forzar la aceleración de hardware para cada elemento
+                    item.style.transform = 'translateZ(0)';
+                    
+                    // Después de un breve tiempo, restablecer la transformación
+                    setTimeout(() => {
+                        item.style.transform = '';
+                    }, 100);
+                });
             }
             section.scrollIntoView({ behavior: 'smooth' });
         }
