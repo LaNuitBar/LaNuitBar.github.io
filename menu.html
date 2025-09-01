@@ -275,6 +275,10 @@
             contain: layout style paint;
             /* Optimización para el scroll */
             overflow-anchor: none;
+            /* Forzar aceleración por hardware */
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
         
         /* AJUSTES ESTÉTICOS PARA LAS IMÁGENES DE FONDO */
@@ -294,6 +298,8 @@
             /* Optimización para evitar el parpadeo al hacer scroll */
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* Forzar aceleración por hardware */
+            transform: translate3d(0, 0, 0);
         }
         
         .menu-section.active .background-layer {
@@ -334,6 +340,10 @@
             contain: layout style paint;
             /* Optimización para el scroll */
             overflow-anchor: none;
+            /* Forzar aceleración por hardware */
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
         
         .section-header:hover {
@@ -347,6 +357,8 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* Forzar aceleración por hardware */
+            transform: translate3d(0, 0, 0);
         }
         
         .section-text {
@@ -356,6 +368,8 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* Forzar aceleración por hardware */
+            transform: translate3d(0, 0, 0);
         }
         
         .section-content {
@@ -374,10 +388,14 @@
             /* Optimización para el scroll - EVITAR PARPADEO EN SECCIONES DESPLEGABLES */
             overflow-anchor: none;
             will-change: scroll-position;
-            /* Forzar composición en capa separada */
-            transform: translateZ(0);
+            /* Forzar aceleración por hardware - SOLUCIÓN DEFINITIVA PARA PARPADEO */
+            transform: translate3d(0, 0, 0);
             backface-visibility: hidden;
             perspective: 1000px;
+            /* Aislar el contenido para mejorar el rendimiento */
+            contain: content;
+            /* Optimización para el renderizado */
+            will-change: contents;
         }
         
         .section-content.active {
@@ -403,6 +421,10 @@
             contain: layout style paint;
             /* Optimización para el scroll */
             overflow-anchor: none;
+            /* Forzar aceleración por hardware */
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
         }
         
         .menu-item:last-child {
@@ -417,6 +439,8 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* Forzar aceleración por hardware */
+            transform: translate3d(0, 0, 0);
         }
         
         .item-name {
@@ -428,6 +452,8 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* Forzar aceleración por hardware */
+            transform: translate3d(0, 0, 0);
         }
         
         .item-description {
@@ -437,6 +463,8 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* Forzar aceleración por hardware */
+            transform: translate3d(0, 0, 0);
         }
         
         .item-price {
@@ -457,6 +485,8 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* Forzar aceleración por hardware */
+            transform: translate3d(0, 0, 0);
         }
         
         .footer {
@@ -508,6 +538,8 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* Forzar aceleración por hardware */
+            transform: translate3d(0, 0, 0);
         }
         
         .subsection-title::before {
@@ -544,6 +576,9 @@
                 padding: 15px;
                 /* Optimización para el scroll en móviles */
                 -webkit-overflow-scrolling: touch;
+                /* Forzar aceleración por hardware en móviles */
+                transform: translate3d(0, 0, 0);
+                backface-visibility: hidden;
             }
             
             .menu-section {
@@ -962,78 +997,32 @@
             // }
         }
         
-        // === FUNCIÓN PARA DEPURAR LAS IMÁGENES ===
-        function depurarImagenes() {
-            console.log("Iniciando depuración de imágenes...");
-            
-            // Obtener todas las secciones del menú
-            const secciones = document.querySelectorAll('.menu-section');
-            
-            secciones.forEach((seccion, index) => {
-                console.log(`Analizando sección ${index + 1}:`, seccion.id);
-                
-                // Obtener todas las capas de fondo de esta sección
-                const backgroundLayers = seccion.querySelectorAll('.background-layer');
-                
-                if (backgroundLayers.length === 0) {
-                    console.warn(`  - No se encontraron capas de fondo en la sección ${seccion.id}`);
-                    return;
-                }
-                
-                backgroundLayers.forEach((layer, layerIndex) => {
-                    const backgroundImage = window.getComputedStyle(layer).backgroundImage;
-                    console.log(`  - Capa ${layerIndex + 1}: ${backgroundImage}`);
-                    
-                    // Crear una imagen de prueba para verificar si se carga correctamente
-                    if (backgroundImage && backgroundImage !== 'none') {
-                        const imageUrl = backgroundImage.slice(5, -2); // Eliminar 'url("' y '")'
-                        console.log(`  - Intentando cargar imagen: ${imageUrl}`);
-                        
-                        const img = new Image();
-                        
-                        img.onload = function() {
-                            console.log(`  - ✓ Imagen cargada correctamente: ${imageUrl}`);
-                        };
-                        
-                        img.onerror = function() {
-                            console.error(`  - ✗ Error al cargar la imagen: ${imageUrl}`);
-                            
-                            // Intentar con una ruta alternativa
-                            const altUrl = '/assets/img/backgrounds/' + imageUrl.split('/').pop();
-                            console.log(`  - Intentando con ruta alternativa: ${altUrl}`);
-                            
-                            const altImg = new Image();
-                            altImg.onload = function() {
-                                console.log(`  - ✓ Imagen alternativa cargada correctamente: ${altUrl}`);
-                                // Actualizar el fondo con la ruta alternativa
-                                layer.style.backgroundImage = `url('${altUrl}')`;
-                            };
-                            altImg.onerror = function() {
-                                console.error(`  - ✗ Error al cargar la imagen alternativa: ${altUrl}`);
-                            };
-                            altImg.src = altUrl;
-                        };
-                        
-                        img.src = imageUrl;
-                    }
-                });
-            });
-        }
-        
-        // === FUNCIÓN MEJORADA PARA TOGGLE SECTION ===
+        // === FUNCIÓN MEJORADA PARA TOGGLE SECTION - SOLUCIÓN DEFINITIVA PARA PARPADEO ===
         function toggleSection(sectionId) {
             const section = document.getElementById(sectionId);
             const content = section.querySelector('.section-content');
             
-            // Forzar una actualización del layout antes de cambiar la clase
-            section.offsetHeight;
-            
             // Usar requestAnimationFrame para asegurar una transición suave
             requestAnimationFrame(() => {
+                // Forzar una actualización del layout antes de cambiar la clase
+                section.offsetHeight;
+                
+                // Alternar la clase active
                 content.classList.toggle('active');
                 
                 // Forzar una recomposición después de cambiar la clase
                 content.offsetHeight;
+                
+                // Forzar una actualización del layout después de la transición
+                requestAnimationFrame(() => {
+                    // Aplicar transformación 3D para forzar aceleración por hardware
+                    content.style.transform = 'translate3d(0, 0, 0)';
+                    
+                    // Esperar a que termine la transición y limpiar
+                    setTimeout(() => {
+                        content.style.transform = '';
+                    }, 500);
+                });
             });
         }
         
