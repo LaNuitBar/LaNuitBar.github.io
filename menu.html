@@ -144,9 +144,10 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             will-change: transform;
+            min-height: 250px; /* Aumentado el alto mínimo para mejor visualización de la imagen */
         }
         
-        /* CAMBIOS TEMPORALES PARA DEPURACIÓN */
+        /* AJUSTES ESTÉTICOS PARA LAS IMÁGENES DE FONDO */
         .menu-section .background-layer {
             position: absolute;
             top: 0;
@@ -156,15 +157,15 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 1 !important;  /* Máxima opacidad para depuración */
-            filter: none !important;  /* Sin filtros para depuración */
+            opacity: 0.4;  /* Opacidad ajustada para mejor integración visual */
+            filter: brightness(1.1) contrast(1.1);  /* Filtros ajustados para mejor visibilidad */
             z-index: -1;
             will-change: opacity;
         }
         
         .menu-section.active .background-layer {
-            opacity: 1 !important;  /* Máxima opacidad para depuración */
-            filter: none !important;  /* Sin filtros para depuración */
+            opacity: 0.3;  /* Opacidad ajustada para cuando la sección está activa */
+            filter: brightness(1.2) contrast(1.2);  /* Filtros ajustados para mejor visibilidad */
         }
         
         .menu-section .background-layer.animated {
@@ -346,6 +347,7 @@
             
             .menu-section {
                 overflow: visible;
+                min-height: 200px; /* Ajuste para pantallas más pequeñas */
             }
             
             .menu-section.active {
@@ -403,6 +405,10 @@
             
             .header-title p {
                 font-size: 1rem;
+            }
+            
+            .menu-section {
+                min-height: 180px; /* Ajuste para pantallas muy pequeñas */
             }
         }
     </style>
@@ -624,10 +630,10 @@
                 menuContainer.appendChild(sectionDiv);
             });
             
-            // Abrir la primera sección por defecto
-            if (secciones.length > 0) {
-                toggleSection(secciones[0].id);
-            }
+            // CAMBIO: Ya no se abre ninguna sección por defecto
+            // if (secciones.length > 0) {
+            //     toggleSection(secciones[0].id);
+            // }
         }
         
         // === FUNCIÓN PARA DEPURAR LAS IMÁGENES ===
