@@ -5,64 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin – La Nuit</title>
   <style>
-    /* Estilos específicos para móviles - CMS */
+    /* Estilos ultra-específicos para el CMS en móviles */
     @media (max-width: 768px) {
-      /* Modal principal */
-      .nc-modal .nc-modal-content {
+      /* Forzar el modal a ocupar el ancho correcto */
+      body .nc-modal .nc-modal-content {
+        width: 95% !important;
         max-width: 95% !important;
         margin: 10px auto !important;
         padding: 15px !important;
         box-sizing: border-box !important;
+        overflow: hidden !important;
       }
       
-      /* Botones */
-      .nc-modal .nc-modal-button {
-        padding: 10px 15px !important;
-        font-size: 14px !important;
-        margin: 5px !important;
-        border-radius: 4px !important;
-        min-width: 80px !important;
-        box-sizing: border-box !important;
-      }
-      
-      /* Contenedor de botones */
-      .nc-modal .nc-modal-button-group {
+      /* Forzar los botones a estar dentro del contenedor */
+      body .nc-modal .nc-modal-footer,
+      body .nc-modal .nc-modal-button-group {
         display: flex !important;
         flex-wrap: wrap !important;
-        gap: 10px !important;
         justify-content: center !important;
+        gap: 8px !important;
         width: 100% !important;
+        padding: 10px 0 !important;
         box-sizing: border-box !important;
       }
       
-      /* Cuadrícula de imágenes */
-      .nc-modal .nc-imageUpload-imageGrid {
+      /* Ajustar cada botón individualmente */
+      body .nc-modal .nc-modal-button {
+        flex: 0 0 auto !important;
+        min-width: 80px !important;
+        max-width: 120px !important;
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+      
+      /* Ajustar la cuadrícula de imágenes */
+      body .nc-modal .nc-imageUpload-imageGrid {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
-        margin-bottom: 15px !important;
+        gap: 8px !important;
         width: 100% !important;
+        margin-bottom: 10px !important;
         box-sizing: border-box !important;
       }
       
-      /* Imágenes */
-      .nc-modal .nc-imageUpload-imageGrid-image {
+      /* Ajustar imágenes en la cuadrícula */
+      body .nc-modal .nc-imageUpload-imageGrid-image {
         width: 100% !important;
-        height: 120px !important;
+        height: 100px !important;
         object-fit: cover !important;
         border-radius: 4px !important;
       }
     }
     
     @media (max-width: 480px) {
-      .nc-modal .nc-imageUpload-imageGrid {
-        grid-template-columns: 1fr !important;
+      body .nc-modal .nc-modal-button {
+        min-width: 70px !important;
+        max-width: 100px !important;
+        padding: 6px 10px !important;
+        font-size: 11px !important;
       }
       
-      .nc-modal .nc-modal-button {
-        font-size: 12px !important;
-        padding: 8px 12px !important;
-        min-width: 70px !important;
+      body .nc-modal .nc-imageUpload-imageGrid {
+        grid-template-columns: 1fr !important;
       }
     }
   </style>
