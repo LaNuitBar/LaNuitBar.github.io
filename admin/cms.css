@@ -1,0 +1,51 @@
+/* Estilos para corregir el CMS en móviles */
+@media (max-width: 768px) {
+  /* Contenedor principal del modal de imágenes */
+  .nc-modal-content {
+    max-width: 95% !important;
+    margin: 10px auto !important;
+    padding: 15px !important;
+  }
+  
+  /* Botones del modal */
+  .nc-modal-button {
+    padding: 10px 15px !important;
+    font-size: 14px !important;
+    margin: 5px !important;
+    border-radius: 4px !important;
+  }
+  
+  /* Contenedor de botones */
+  .nc-modal-button-group {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    justify-content: center !important;
+  }
+  
+  /* Cuadrícula de imágenes */
+  .nc-imageUpload-imageGrid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+    margin-bottom: 15px !important;
+  }
+  
+  /* Imágenes en la cuadrícula */
+  .nc-imageUpload-imageGrid-image {
+    height: 120px !important;
+    object-fit: cover !important;
+    border-radius: 4px !important;
+  }
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .nc-imageUpload-imageGrid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .nc-modal-button {
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+  }
+}
