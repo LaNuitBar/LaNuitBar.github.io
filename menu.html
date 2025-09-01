@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -22,6 +23,7 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            will-change: scroll-position;
         }
         body::before, body::after {
             content: "";
@@ -53,464 +55,49 @@
         }
         @keyframes slowGradientShift {
             0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            10% { background-position: 100% 50%; }
+            20% { background-position: 80% 80%; }
+            30% { background-position: 20% 80%; }
+            40% { background-position: 40% 20%; }
+            50% { background-position: 90% 30%; }
+            60% { background-position: 10% 70%; }
+            70% { background-position: 70% 10%; }
+            80% { background-position: 30% 90%; }
+            90% { background-position: 60% 40%; }
             100% { background-position: 0% 50%; }
         }
-        
-        /* HEADER */
-        .header-container {
-            width: 100%;
-            text-align: center;
-            padding: 0;
-            margin: 0 0 20px 0;
-            position: relative;
-        }
-        
-        .logo-main {
-            width: 100%;
-            max-height: 200px;
-            object-fit: cover;
-            display: block;
-            border-bottom: 3px solid #ff8c42;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-        }
-        
-        .header-title {
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
-            padding: 15px 0;
-            margin-top: -5px;
-            border-radius: 0 0 15px 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-        }
-        
-        .header-title p {
-            font-size: 1.3rem;
-            font-weight: 300;
-            color: #fff;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-            letter-spacing: 1px;
-            margin: 0;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px 20px 20px;
-        }
-        
-        .nav-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .nav-button {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .nav-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(135deg, #2a2a3e, #26314e);
-        }
-        
-        .menu-section {
-            background-color: rgba(26, 26, 46, 0.85);
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-        
-        .menu-section .background-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.25;
-            z-index: 0;
-            border-radius: 10px;
-        }
-        
-        .menu-section:hover {
-            transform: translateY(-5px);
-        }
-        
-        .section-header {
-            background: linear-gradient(135deg, rgba(15, 52, 96, 0.85), rgba(22, 33, 62, 0.85));
-            color: white;
-            padding: 15px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .section-header:hover {
-            background: linear-gradient(135deg, rgba(31, 68, 112, 0.85), rgba(38, 49, 78, 0.85));
-        }
-        
-        .section-title-wrapper {
-            display: flex;
-            align-items: center;
-        }
-        
-        .section-text {
-            font-size: 1.5rem;
-            font-weight: 600;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-        }
-        
-        .section-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-            background: rgba(26, 26, 46, 0.9);
-            position: relative;
-            z-index: 2;
-        }
-        
-        .section-content.active {
-            max-height: 2000px;
-            padding: 20px;
-        }
-        
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .menu-item:last-child {
-            border-bottom: none;
-        }
-        
-        .item-left {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .item-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: #fff;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-        
-        .item-description {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.9rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-        
-        .item-price {
-            font-weight: 700;
-            color: #ff8c42;
-            font-size: 1.2rem;
-            background: rgba(255, 140, 66, 0.1);
-            padding: 4px 12px;
-            border-radius: 4px;
-            border: 1px solid rgba(255, 140, 66, 0.3);
-            text-align: right;
-            white-space: nowrap;
-            margin-left: 15px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding: 15px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            background-color: rgba(30, 30, 30, 0.7);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .section-note {
-            margin: 15px 0;
-            padding: 10px;
-            background: rgba(60, 60, 60, 0.2);
-            border-radius: 8px;
-            font-style: italic;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.9rem;
-        }
-        
-        .subsection {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.2);
-        }
-        
-        .subsection-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            padding-left: 15px;
-            position: relative;
-        }
-        
-        .subsection-title::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 20px;
-            background-color: #ff8c42;
-            border-radius: 3px;
-        }
-        
-        @media (max-width: 768px) {
-            .section-content.active {
-                max-height: 3000px;
-                padding: 15px;
-            }
-            
-            .menu-item {
-                padding: 12px 0;
-            }
-            
-            .item-name {
-                font-size: 1rem;
-            }
-            
-            .item-description {
-                font-size: 0.85rem;
-            }
-            
-            .item-price {
-                font-size: 1rem;
-                padding: 3px 10px;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .logo-main {
-                max-height: 150px;
-            }
-            
-            .header-title p {
-                font-size: 1.1rem;
-                padding: 12px 0;
-            }
-            
-            .nav-button {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .menu-item {
-                flex-direction: column;
-            }
-            
-            .item-price {
-                margin-left: 0;
-                margin-top: 5px;
-                text-align: left;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .logo-main {
-                max-height: 120px;
-            }
-            
-            .header-title p {
-                font-size: 1rem;
-            }
-        }
-    </style>
+
+}
+
+.menu-section.active .background-layer { opacity: 0.08;  /* Aún más transparente cuando está activa / filter: brightness(1.2) contrast(1.2);  / Más brillante cuando está activa */ }
+
 </head>
 <body>
-    <!-- HEADER -->
+    <!-- HEADER REDISEÑADO CON MÁXIMO IMPACTO -->
     <div class="header-container">
         <img src="https://i.postimg.cc/vZgtfg8J/header-lanuit.png" alt="Bar La Nuit" class="logo-main">
         <div class="header-title">
             <p>Donde la noche cobra vida</p>
         </div>
     </div>
-    
     <div class="container">
         <div class="nav-buttons" id="nav-buttons">
             <!-- Botones generados dinámicamente -->
         </div>
-        
         <div id="menu-container">
-            <!-- Secciones de ejemplo con imágenes de fondo -->
-            <div class="menu-section" id="pizzas">
-                <div class="background-layer" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
-                <div class="section-header" onclick="toggleSection('pizzas')">
-                    <div class="section-title-wrapper">
-                        <span class="section-text">Pizzas</span>
-                    </div>
-                </div>
-                <div class="section-content active">
-                    <div class="menu-item">
-                        <div class="item-left">
-                            <div class="item-name">Pizza Margherita</div>
-                            <div class="item-description">Salsa de tomate, mozzarella y albahaca fresca</div>
-                        </div>
-                        <div class="item-price">$12.99</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-left">
-                            <div class="item-name">Pizza Pepperoni</div>
-                            <div class="item-description">Salsa de tomate, mozzarella y pepperoni</div>
-                        </div>
-                        <div class="item-price">$14.99</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-left">
-                            <div class="item-name">Pizza Hawaiana</div>
-                            <div class="item-description">Salsa de tomate, mozzarella, jamón y piña</div>
-                        </div>
-                        <div class="item-price">$15.99</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="menu-section" id="hamburguesas">
-                <div class="background-layer" style="background-image: url('https://images.unsplash.com/photo-1551782450-a2132b4ba21d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
-                <div class="section-header" onclick="toggleSection('hamburguesas')">
-                    <div class="section-title-wrapper">
-                        <span class="section-text">Hamburguesas</span>
-                    </div>
-                </div>
-                <div class="section-content">
-                    <div class="menu-item">
-                        <div class="item-left">
-                            <div class="item-name">Hamburguesa Clásica</div>
-                            <div class="item-description">Carne, lechuga, tomate y salsa especial</div>
-                        </div>
-                        <div class="item-price">$10.99</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-left">
-                            <div class="item-name">Hamburguesa BBQ</div>
-                            <div class="item-description">Carne, cebolla caramelizada y salsa barbacoa</div>
-                        </div>
-                        <div class="item-price">$12.99</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-left">
-                            <div class="item-name">Hamburguesa Doble</div>
-                            <div class="item-description">Doble carne, doble queso y bacon crujiente</div>
-                        </div>
-                        <div class="item-price">$15.99</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="menu-section" id="bebidas">
-                <div class="background-layer" style="background-image: url('https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80')"></div>
-                <div class="section-header" onclick="toggleSection('bebidas')">
-                    <div class="section-title-wrapper">
-                        <span class="section-text">Bebidas</span>
-                    </div>
-                </div>
-                <div class="section-content">
-                    <div class="menu-item">
-                        <div class="item-left">
-                            <div class="item-name">Coca Cola</div>
-                            <div class="item-description">Refresco de cola</div>
-                        </div>
-                        <div class="item-price">$2.99</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-left">
-                            <div class="item-name">Cerveza Artesanal</div>
-                            <div class="item-description">Selección de cervezas locales</div>
-                        </div>
-                        <div class="item-price">$5.99</div>
-                    </div>
-                    <div class="menu-item">
-                        <div class="item-left">
-                            <div class="item-name">Vino Tinto</div>
-                            <div class="item-description">Copa de vino tinto de la casa</div>
-                        </div>
-                        <div class="item-price">$6.99</div>
-                    </div>
-                </div>
-            </div>
+            <!-- Contenido del menú generado dinámicamente -->
         </div>
-        
         <div class="footer">
             <p>Bar La Nuit - Todos los derechos reservados</p>
         </div>
     </div>
-
     <script>
-        // Función para alternar secciones
-        function toggleSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            const content = section.querySelector('.section-content');
-            content.classList.toggle('active');
-            
-            // Cerrar otras secciones (opcional)
-            document.querySelectorAll('.menu-section').forEach(sec => {
-                if (sec.id !== sectionId) {
-                    sec.querySelector('.section-content').classList.remove('active');
-                }
-            });
-        }
-        
-        // Función para desplazarse a una sección
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            const content = section.querySelector('.section-content');
-            if (!content.classList.contains('active')) {
-                content.classList.add('active');
-            }
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // Inicializar botones de navegación
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.menu-section');
-            const navButtons = document.getElementById('nav-buttons');
-            
-            sections.forEach(section => {
-                const button = document.createElement('button');
-                button.className = 'nav-button';
-                button.textContent = section.querySelector('.section-text').textContent;
-                button.onclick = () => {
-                    scrollToSection(section.id);
-                };
-                navButtons.appendChild(button);
-            });
-        });
-    </script>
+        // === FUNCIÓN PARA CARGAR EL MENÚ DINÁMICAMENTE ===
+        async function cargarMenu() {
+            try {
+                const response = await fetch('/content/menu/index.json');
+                if (!response.ok) throw new Error('No se pudo cargar el índice del menú');
+                const index = await response.json();
+
 </body>
 </html>
