@@ -485,8 +485,17 @@
                     seccion.imagenes.forEach((imagen, index) => {
                         const bgLayer = document.createElement('div');
                         bgLayer.className = 'background-layer';
-                        bgLayer.style.backgroundImage = `url('${imagen}')`;
-                        console.log(`Estableciendo imagen de fondo: ${imagen}`);
+                        
+                        // CORRECCIÓN: Convertir rutas relativas a absolutas
+                        let imageUrl = imagen;
+                        if (imagen.startsWith('../')) {
+                            // Reemplazar '../' con '/' para convertir a ruta absoluta
+                            imageUrl = '/' + imagen.substring(3);
+                        }
+                        
+                        console.log(`Estableciendo imagen de fondo: ${imageUrl}`);
+                        bgLayer.style.backgroundImage = `url('${imageUrl}')`;
+                        
                         if (seccion.imagenes.length > 1) {
                             bgLayer.classList.add('animated');
                             bgLayer.style.animationDelay = `${index * 15}s`;
