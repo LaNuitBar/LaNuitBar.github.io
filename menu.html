@@ -486,11 +486,21 @@
                         const bgLayer = document.createElement('div');
                         bgLayer.className = 'background-layer';
                         
-                        // CORRECCIÓN: Convertir rutas relativas a absolutas
+                        // SOLUCIÓN ALTERNATIVA: Construir la ruta absoluta directamente
                         let imageUrl = imagen;
+                        
+                        // Si la ruta comienza con '../', la reemplazamos con la ruta absoluta correcta
                         if (imagen.startsWith('../')) {
-                            // Reemplazar '../' con '/' para convertir a ruta absoluta
-                            imageUrl = '/' + imagen.substring(3);
+                            const imageName = imagen.split('/').pop(); // Obtener solo el nombre del archivo
+                            imageUrl = `/assets/img/backgrounds/${imageName}`;
+                        }
+                        // Si la ruta ya es absoluta, la usamos tal cual
+                        else if (imagen.startsWith('/')) {
+                            imageUrl = imagen;
+                        }
+                        // Si es solo el nombre del archivo, le agregamos la ruta completa
+                        else if (!imagen.includes('/')) {
+                            imageUrl = `/assets/img/backgrounds/${imagen}`;
                         }
                         
                         console.log(`Estableciendo imagen de fondo: ${imageUrl}`);
@@ -645,14 +655,31 @@
                     // Crear una imagen de prueba para verificar si se carga correctamente
                     if (backgroundImage && backgroundImage !== 'none') {
                         const imageUrl = backgroundImage.slice(5, -2); // Eliminar 'url("' y '")'
+                        console.log(`  - Intentando cargar imagen: ${imageUrl}`);
+                        
                         const img = new Image();
                         
                         img.onload = function() {
-                            console.log(`  - Imagen cargada correctamente: ${imageUrl}`);
+                            console.log(`  - ✓ Imagen cargada correctamente: ${imageUrl}`);
                         };
                         
                         img.onerror = function() {
-                            console.error(`  - Error al cargar la imagen: ${imageUrl}`);
+                            console.error(`  - ✗ Error al cargar la imagen: ${imageUrl}`);
+                            
+                            // Intentar con una ruta alternativa
+                            const altUrl = '/assets/img/backgrounds/' + imageUrl.split('/').pop();
+                            console.log(`  - Intentando con ruta alternativa: ${altUrl}`);
+                            
+                            const altImg = new Image();
+                            altImg.onload = function() {
+                                console.log(`  - ✓ Imagen alternativa cargada correctamente: ${altUrl}`);
+                                // Actualizar el fondo con la ruta alternativa
+                                layer.style.backgroundImage = `url('${altUrl}')`;
+                            };
+                            altImg.onerror = function() {
+                                console.error(`  - ✗ Error al cargar la imagen alternativa: ${altUrl}`);
+                            };
+                            altImg.src = altUrl;
                         };
                         
                         img.src = imageUrl;
