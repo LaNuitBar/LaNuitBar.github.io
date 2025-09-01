@@ -145,6 +145,7 @@
             border-top-color: #ff8c42;
             border-radius: 50%;
             margin-top: 30px;
+            /* CORRECCIÓN: Asegurar que la animación se aplique correctamente */
             animation: spin 1s linear infinite;
             /* Optimización para evitar parpadeo */
             backface-visibility: hidden;
@@ -163,6 +164,9 @@
         }
         
         @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
             to {
                 transform: rotate(360deg);
             }
@@ -871,6 +875,16 @@
                         
                         console.log(`Estableciendo imagen de fondo: ${imageUrl}`);
                         bgLayer.style.backgroundImage = `url('${imageUrl}')`;
+                        
+                        // CORRECCIÓN: Forzar la carga de la imagen
+                        const img = new Image();
+                        img.onload = function() {
+                            console.log(`Imagen de fondo cargada: ${imageUrl}`);
+                        };
+                        img.onerror = function() {
+                            console.error(`Error al cargar la imagen de fondo: ${imageUrl}`);
+                        };
+                        img.src = imageUrl;
                         
                         if (seccion.imagenes.length > 1) {
                             bgLayer.classList.add('animated');
