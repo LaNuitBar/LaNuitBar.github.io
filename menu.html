@@ -23,9 +23,6 @@
             position: relative;
             overflow-x: hidden;
             will-change: scroll-position;
-            /* Mejora para el scroll */
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
         }
         body::before, body::after {
             content: "";
@@ -83,9 +80,6 @@
             align-items: center;
             z-index: 9999;
             transition: opacity 0.8s ease, visibility 0.8s ease;
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         .welcome-message.hidden {
@@ -122,9 +116,6 @@
             margin-bottom: 20px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             animation: fadeInUp 1.5s ease;
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         .welcome-subtext {
@@ -133,9 +124,6 @@
             text-align: center;
             max-width: 80%;
             animation: fadeInUp 1.5s ease 0.5s both;
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         .welcome-loader {
@@ -145,11 +133,7 @@
             border-top-color: #ff8c42;
             border-radius: 50%;
             margin-top: 30px;
-            /* CORRECCIÓN: Asegurar que la animación se aplique correctamente */
             animation: spin 1s linear infinite;
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         @keyframes fadeInUp {
@@ -164,9 +148,6 @@
         }
         
         @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
             to {
                 transform: rotate(360deg);
             }
@@ -179,9 +160,6 @@
             padding: 0;
             margin: 0 0 20px 0;
             position: relative;
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         .logo-main {
@@ -191,9 +169,6 @@
             display: block;
             border-bottom: 3px solid #ff8c42;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         .header-title {
@@ -202,9 +177,6 @@
             margin-top: -5px;
             border-radius: 0 0 15px 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         .header-title p {
@@ -214,17 +186,11 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
             letter-spacing: 1px;
             margin: 0;
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 0 20px 20px 20px;
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         .nav-buttons {
@@ -233,9 +199,6 @@
             justify-content: center;
             gap: 10px;
             margin-bottom: 30px;
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         .nav-button {
@@ -250,9 +213,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
             will-change: transform;
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         .nav-button:hover {
@@ -277,12 +237,6 @@
             transform: translateZ(0);
             /* Mejora para evitar el parpadeo del texto */
             contain: layout style paint;
-            /* Optimización para el scroll */
-            overflow-anchor: none;
-            /* Forzar aceleración por hardware */
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            perspective: 1000px;
         }
         
         /* AJUSTES ESTÉTICOS PARA LAS IMÁGENES DE FONDO */
@@ -302,8 +256,6 @@
             /* Optimización para evitar el parpadeo al hacer scroll */
             backface-visibility: hidden;
             transform: translateZ(0);
-            /* Forzar aceleración por hardware */
-            transform: translate3d(0, 0, 0);
         }
         
         .menu-section.active .background-layer {
@@ -342,12 +294,6 @@
             transform: translateZ(0);
             /* Mejora para evitar el parpadeo del texto */
             contain: layout style paint;
-            /* Optimización para el scroll */
-            overflow-anchor: none;
-            /* Forzar aceleración por hardware */
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            perspective: 1000px;
         }
         
         .section-header:hover {
@@ -361,8 +307,6 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
-            /* Forzar aceleración por hardware */
-            transform: translate3d(0, 0, 0);
         }
         
         .section-text {
@@ -372,8 +316,6 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
-            /* Forzar aceleración por hardware */
-            transform: translate3d(0, 0, 0);
         }
         
         .section-content {
@@ -389,17 +331,6 @@
             transform: translateZ(0);
             /* Mejora para evitar el parpadeo del texto */
             contain: layout style paint;
-            /* Optimización para el scroll - EVITAR PARPADEO EN SECCIONES DESPLEGABLES */
-            overflow-anchor: none;
-            will-change: scroll-position;
-            /* Forzar aceleración por hardware - SOLUCIÓN DEFINITIVA PARA PARPADEO */
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            perspective: 1000px;
-            /* Aislar el contenido para mejorar el rendimiento */
-            contain: content;
-            /* Optimización para el renderizado */
-            will-change: contents;
         }
         
         .section-content.active {
@@ -407,8 +338,6 @@
             padding: 20px;
             height: auto;
             overflow: visible;
-            /* Optimización para el scroll */
-            overflow-anchor: auto;
         }
         
         .menu-item {
@@ -423,12 +352,6 @@
             transform: translateZ(0);
             /* Mejora para evitar el parpadeo del texto */
             contain: layout style paint;
-            /* Optimización para el scroll */
-            overflow-anchor: none;
-            /* Forzar aceleración por hardware */
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            perspective: 1000px;
         }
         
         .menu-item:last-child {
@@ -443,8 +366,6 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
-            /* Forzar aceleración por hardware */
-            transform: translate3d(0, 0, 0);
         }
         
         .item-name {
@@ -456,8 +377,6 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
-            /* Forzar aceleración por hardware */
-            transform: translate3d(0, 0, 0);
         }
         
         .item-description {
@@ -467,8 +386,6 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
-            /* Forzar aceleración por hardware */
-            transform: translate3d(0, 0, 0);
         }
         
         .item-price {
@@ -489,8 +406,6 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
-            /* Forzar aceleración por hardware */
-            transform: translate3d(0, 0, 0);
         }
         
         .footer {
@@ -502,9 +417,6 @@
             background-color: rgba(30, 30, 30, 0.7);
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         .section-note {
@@ -515,18 +427,12 @@
             font-style: italic;
             color: rgba(255, 255, 255, 0.9);
             font-size: 0.9rem;
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         .subsection {
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px dashed rgba(255, 255, 255, 0.2);
-            /* Optimización para evitar parpadeo */
-            backface-visibility: hidden;
-            transform: translateZ(0);
         }
         
         .subsection-title {
@@ -542,8 +448,6 @@
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
-            /* Forzar aceleración por hardware */
-            transform: translate3d(0, 0, 0);
         }
         
         .subsection-title::before {
@@ -578,11 +482,6 @@
                 max-height: 100vh;
                 overflow-y: auto;
                 padding: 15px;
-                /* Optimización para el scroll en móviles */
-                -webkit-overflow-scrolling: touch;
-                /* Forzar aceleración por hardware en móviles */
-                transform: translate3d(0, 0, 0);
-                backface-visibility: hidden;
             }
             
             .menu-section {
@@ -876,16 +775,6 @@
                         console.log(`Estableciendo imagen de fondo: ${imageUrl}`);
                         bgLayer.style.backgroundImage = `url('${imageUrl}')`;
                         
-                        // CORRECCIÓN: Forzar la carga de la imagen
-                        const img = new Image();
-                        img.onload = function() {
-                            console.log(`Imagen de fondo cargada: ${imageUrl}`);
-                        };
-                        img.onerror = function() {
-                            console.error(`Error al cargar la imagen de fondo: ${imageUrl}`);
-                        };
-                        img.src = imageUrl;
-                        
                         if (seccion.imagenes.length > 1) {
                             bgLayer.classList.add('animated');
                             bgLayer.style.animationDelay = `${index * 15}s`;
@@ -1011,46 +900,77 @@
             // }
         }
         
-        // === FUNCIÓN MEJORADA PARA TOGGLE SECTION - SOLUCIÓN DEFINITIVA PARA PARPADEO ===
+        // === FUNCIÓN PARA DEPURAR LAS IMÁGENES ===
+        function depurarImagenes() {
+            console.log("Iniciando depuración de imágenes...");
+            
+            // Obtener todas las secciones del menú
+            const secciones = document.querySelectorAll('.menu-section');
+            
+            secciones.forEach((seccion, index) => {
+                console.log(`Analizando sección ${index + 1}:`, seccion.id);
+                
+                // Obtener todas las capas de fondo de esta sección
+                const backgroundLayers = seccion.querySelectorAll('.background-layer');
+                
+                if (backgroundLayers.length === 0) {
+                    console.warn(`  - No se encontraron capas de fondo en la sección ${seccion.id}`);
+                    return;
+                }
+                
+                backgroundLayers.forEach((layer, layerIndex) => {
+                    const backgroundImage = window.getComputedStyle(layer).backgroundImage;
+                    console.log(`  - Capa ${layerIndex + 1}: ${backgroundImage}`);
+                    
+                    // Crear una imagen de prueba para verificar si se carga correctamente
+                    if (backgroundImage && backgroundImage !== 'none') {
+                        const imageUrl = backgroundImage.slice(5, -2); // Eliminar 'url("' y '")'
+                        console.log(`  - Intentando cargar imagen: ${imageUrl}`);
+                        
+                        const img = new Image();
+                        
+                        img.onload = function() {
+                            console.log(`  - ✓ Imagen cargada correctamente: ${imageUrl}`);
+                        };
+                        
+                        img.onerror = function() {
+                            console.error(`  - ✗ Error al cargar la imagen: ${imageUrl}`);
+                            
+                            // Intentar con una ruta alternativa
+                            const altUrl = '/assets/img/backgrounds/' + imageUrl.split('/').pop();
+                            console.log(`  - Intentando con ruta alternativa: ${altUrl}`);
+                            
+                            const altImg = new Image();
+                            altImg.onload = function() {
+                                console.log(`  - ✓ Imagen alternativa cargada correctamente: ${altUrl}`);
+                                // Actualizar el fondo con la ruta alternativa
+                                layer.style.backgroundImage = `url('${altUrl}')`;
+                            };
+                            altImg.onerror = function() {
+                                console.error(`  - ✗ Error al cargar la imagen alternativa: ${altUrl}`);
+                            };
+                            altImg.src = altUrl;
+                        };
+                        
+                        img.src = imageUrl;
+                    }
+                });
+            });
+        }
+        
         function toggleSection(sectionId) {
             const section = document.getElementById(sectionId);
             const content = section.querySelector('.section-content');
-            
-            // Usar requestAnimationFrame para asegurar una transición suave
-            requestAnimationFrame(() => {
-                // Forzar una actualización del layout antes de cambiar la clase
-                section.offsetHeight;
-                
-                // Alternar la clase active
-                content.classList.toggle('active');
-                
-                // Forzar una recomposición después de cambiar la clase
-                content.offsetHeight;
-                
-                // Forzar una actualización del layout después de la transición
-                requestAnimationFrame(() => {
-                    // Aplicar transformación 3D para forzar aceleración por hardware
-                    content.style.transform = 'translate3d(0, 0, 0)';
-                    
-                    // Esperar a que termine la transición y limpiar
-                    setTimeout(() => {
-                        content.style.transform = '';
-                    }, 500);
-                });
-            });
+            content.classList.toggle('active');
         }
         
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
             const content = section.querySelector('.section-content');
             if (!content.classList.contains('active')) {
-                toggleSection(sectionId);
+                content.classList.add('active');
             }
-            
-            // Usar requestAnimationFrame para un scroll más suave
-            requestAnimationFrame(() => {
-                section.scrollIntoView({ behavior: 'smooth' });
-            });
+            section.scrollIntoView({ behavior: 'smooth' });
         }
         
         document.addEventListener('DOMContentLoaded', () => {
