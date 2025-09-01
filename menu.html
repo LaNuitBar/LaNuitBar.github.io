@@ -146,6 +146,7 @@
             will-change: transform;
         }
         
+        /* CAMBIOS REALIZADOS PARA MEJORAR LA VISIBILIDAD DE LAS IMÁGENES */
         .menu-section .background-layer {
             position: absolute;
             top: 0;
@@ -155,17 +156,17 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.35;  /* Más visible */
-            filter: brightness(1.05) contrast(1.05);  /* Sutil ajuste */
-            mix-blend-mode: soft-light;  /* Mezcla suave con el fondo */
+            opacity: 0.7;  /* AUMENTADO DE 0.35 a 0.7 para mayor visibilidad */
+            filter: brightness(1.1) contrast(1.1);  /* Ajustado para mejor visibilidad */
+            /* mix-blend-mode: soft-light;  ELIMINADO para evitar problemas de visibilidad */
             z-index: -1;
             will-change: opacity;
         }
         
         .menu-section.active .background-layer {
-            opacity: 0.25;  /* Un poco menos visible cuando está activa */
-            filter: brightness(1.1) contrast(1.1);  /* Ligero aumento */
-            mix-blend-mode: soft-light;  /* Mezcla suave con el fondo */
+            opacity: 0.6;  /* AUMENTADO DE 0.25 a 0.6 para mantener visibilidad */
+            filter: brightness(1.2) contrast(1.2);  /* Ajustado para mejor visibilidad */
+            /* mix-blend-mode: soft-light;  ELIMINADO para evitar problemas de visibilidad */
         }
         
         .menu-section .background-layer.animated {
