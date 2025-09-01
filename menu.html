@@ -87,6 +87,27 @@
             visibility: hidden;
         }
         
+        /* ANIMACIÓN CELESTIAL/MAGNÁNIMA */
+        .welcome-message.elegant-fade {
+            animation: elegantFadeOut 1s ease-in-out forwards;
+        }
+        
+        @keyframes elegantFadeOut {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.02);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.05);
+                visibility: hidden;
+            }
+        }
+        
         .welcome-text {
             font-size: 2.5rem;
             font-weight: 300;
@@ -555,6 +576,88 @@
             }
         }
         
+        // === FUNCIÓN PARA INICIAR LA ANIMACIÓN CELESTIAL/MAGNÁNIMA ===
+        function startElegantFade() {
+            const welcomeMessage = document.getElementById('welcome-message');
+            if (welcomeMessage && !welcomeMessage.classList.contains('hidden') && !welcomeMessage.classList.contains('elegant-fade')) {
+                welcomeMessage.classList.add('elegant-fade');
+                console.log('Iniciando animación elegante de salida');
+                
+                // Ocultar completamente después de la animación
+                setTimeout(() => {
+                    hideWelcomeMessage();
+                }, 1000);
+            }
+        }
+        
+        // === FUNCIÓN PARA VERIFICAR SI LA PRIMERA IMAGEN HA CARGADO AL MENOS UN 80% ===
+        function checkFirstImageLoad() {
+            return new Promise((resolve) => {
+                // Esperar a que el menú se renderice
+                setTimeout(() => {
+                    // Obtener la primera sección (generalmente pizzas)
+                    const firstSection = document.querySelector('.menu-section');
+                    if (!firstSection) {
+                        resolve(false);
+                        return;
+                    }
+                    
+                    // Obtener la capa de fondo de la primera sección
+                    const backgroundLayer = firstSection.querySelector('.background-layer');
+                    if (!backgroundLayer) {
+                        resolve(false);
+                        return;
+                    }
+                    
+                    // Obtener la URL de la imagen de fondo
+                    const backgroundImage = window.getComputedStyle(backgroundLayer).backgroundImage;
+                    if (!backgroundImage || backgroundImage === 'none') {
+                        resolve(false);
+                        return;
+                    }
+                    
+                    // Extraer la URL de la imagen
+                    const imageUrl = backgroundImage.slice(5, -2); // Eliminar 'url("' y '")'
+                    
+                    // Crear una imagen para verificar la carga
+                    const img = new Image();
+                    let loadedPercentage = 0;
+                    
+                    img.onload = function() {
+                        loadedPercentage = 100;
+                        console.log(`Imagen cargada completamente: ${imageUrl}`);
+                        resolve(loadedPercentage >= 80);
+                    };
+                    
+                    img.onerror = function() {
+                        console.error(`Error al cargar la imagen: ${imageUrl}`);
+                        resolve(false);
+                    };
+                    
+                    // Simular progreso de carga
+                    const progressInterval = setInterval(() => {
+                        if (loadedPercentage < 100) {
+                            loadedPercentage += 10;
+                            if (loadedPercentage >= 80) {
+                                clearInterval(progressInterval);
+                                console.log(`Imagen cargada al ${loadedPercentage}%: ${imageUrl}`);
+                                resolve(true);
+                            }
+                        }
+                    }, 200);
+                    
+                    // Establecer un tiempo máximo de espera para esta imagen
+                    setTimeout(() => {
+                        clearInterval(progressInterval);
+                        console.log(`Tiempo de espera agotado para la imagen: ${imageUrl}`);
+                        resolve(false);
+                    }, 3000);
+                    
+                    img.src = imageUrl;
+                }, 500);
+            });
+        }
+        
         // === FUNCIÓN PARA CARGAR EL MENÚ DINÁMICAMENTE ===
         async function cargarMenu() {
             try {
@@ -572,8 +675,15 @@
                 
                 renderizarMenu(secciones);
                 
-                // Ocultar el mensaje de bienvenida después de cargar el menú
-                hideWelcomeMessage();
+                // Verificar si la primera imagen ha cargado al menos un 80%
+                const firstImageLoaded = await checkFirstImageLoad();
+                
+                if (firstImageLoaded) {
+                    console.log('La primera imagen ha cargado al menos un 80%, ocultando mensaje de bienvenida');
+                    hideWelcomeMessage();
+                }
+                
+                return true;
             } catch (error) {
                 console.error('Error al cargar el menú:', error);
                 // Mensaje de error amigable para el usuario
@@ -587,6 +697,7 @@
                 
                 // Ocultar el mensaje de bienvenida incluso si hay un error
                 hideWelcomeMessage();
+                return false;
             }
         }
         
@@ -739,7 +850,7 @@
                         const descDiv = document.createElement('div');
                         descDiv.className = 'item-description';
                         descDiv.textContent = plato.descripcion || '';
-                        
+                                
                         leftDiv.appendChild(nameDiv);
                         leftDiv.appendChild(descDiv);
                         
@@ -839,19 +950,29 @@
         }
         
         document.addEventListener('DOMContentLoaded', () => {
-            // Establecer un tiempo máximo para ocultar el mensaje de bienvenida
-            // por si hay algún problema con la carga del menú
+            // Establecer tiempos para la gestión del mensaje de bienvenida
             const maxWaitTime = 5000; // 5 segundos máximo
+            const elegantFadeTime = 4000; // 4 segundos para iniciar la animación elegante
+            
+            // Programar el inicio de la animación elegante a los 4 segundos
+            const elegantFadeTimeout = setTimeout(() => {
+                startElegantFade();
+            }, elegantFadeTime);
             
             // Ocultar el mensaje de bienvenida después del tiempo máximo
-            const timeoutId = setTimeout(() => {
+            const maxWaitTimeout = setTimeout(() => {
                 hideWelcomeMessage();
             }, maxWaitTime);
             
             // Cargar el menú
-            cargarMenu().then(() => {
-                // Si el menú se carga correctamente, cancelar el timeout
-                clearTimeout(timeoutId);
+            cargarMenu().then((success) => {
+                if (success) {
+                    // Si el menú se carga correctamente, cancelar los timeouts
+                    clearTimeout(elegantFadeTimeout);
+                    clearTimeout(maxWaitTimeout);
+                    
+                    // La verificación de la imagen se hace dentro de cargarMenu()
+                }
             });
             
             // Esperar un poco a que se cargue el menú antes de depurar
