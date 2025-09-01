@@ -155,15 +155,17 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.15;  /* Más transparente */
+            opacity: 0.35;  /* Más visible */
+            filter: brightness(1.05) contrast(1.05);  /* Sutil ajuste */
+            mix-blend-mode: soft-light;  /* Mezcla suave con el fondo */
             z-index: -1;
             will-change: opacity;
-            filter: brightness(1.1) contrast(1.1);  /* Un poco más brillante */
         }
         
         .menu-section.active .background-layer {
-            opacity: 0.08;  /* Aún más transparente cuando está activa */
-            filter: brightness(1.2) contrast(1.2);  /* Más brillante cuando está activa */
+            opacity: 0.25;  /* Un poco menos visible cuando está activa */
+            filter: brightness(1.1) contrast(1.1);  /* Ligero aumento */
+            mix-blend-mode: soft-light;  /* Mezcla suave con el fondo */
         }
         
         .menu-section .background-layer.animated {
