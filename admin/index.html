@@ -5,80 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin – La Nuit</title>
   <style>
-    /* Estilos para modo vertical (retrato) - EL PROBLEMA */
+    /* Solo para modo vertical - ajuste mínimo */
     @media (max-width: 768px) and (orientation: portrait) {
-      /* Forzar el modal a ser más estrecho en vertical */
-      body .nc-modal .nc-modal-content {
-        width: 90% !important;
-        max-width: 90% !important;
-        margin: 10px auto !important;
-        padding: 15px !important;
-        box-sizing: border-box !important;
-        overflow: hidden !important;
-      }
-      
-      /* Botones en modo vertical */
-      body .nc-modal .nc-modal-footer,
+      /* Ajustar solo el contenedor de botones */
       body .nc-modal .nc-modal-button-group {
         display: flex !important;
         flex-wrap: wrap !important;
         justify-content: center !important;
-        gap: 5px !important;
         width: 100% !important;
-        padding: 8px 0 !important;
         box-sizing: border-box !important;
+        padding: 5px !important;
       }
       
-      /* Cada botón en vertical */
+      /* Ajustar solo los botones */
       body .nc-modal .nc-modal-button {
-        flex: 0 0 auto !important;
-        min-width: 70px !important;
-        max-width: 90px !important;
-        padding: 6px 8px !important;
+        margin: 2px !important;
         font-size: 11px !important;
-        margin: 0 !important;
-        box-sizing: border-box !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        line-height: 1.2 !important;
-      }
-      
-      /* Cuadrícula en vertical */
-      body .nc-modal .nc-imageUpload-imageGrid {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 8px !important;
-        width: 100% !important;
-        margin-bottom: 10px !important;
-        box-sizing: border-box !important;
-      }
-      
-      /* Imágenes en vertical */
-      body .nc-modal .nc-imageUpload-imageGrid-image {
-        width: 100% !important;
-        height: 80px !important;
-        object-fit: cover !important;
-        border-radius: 4px !important;
-      }
-    }
-    
-    /* Estilos para pantallas muy pequeñas en vertical */
-    @media (max-width: 480px) and (orientation: portrait) {
-      body .nc-modal .nc-modal-content {
-        width: 95% !important;
-        max-width: 95% !important;
-      }
-      
-      body .nc-modal .nc-modal-button {
-        min-width: 60px !important;
-        max-width: 80px !important;
-        padding: 5px 6px !important;
-        font-size: 10px !important;
-      }
-      
-      body .nc-modal .nc-imageUpload-imageGrid {
-        grid-template-columns: 1fr !important;
+        padding: 6px 8px !important;
       }
     }
   </style>
