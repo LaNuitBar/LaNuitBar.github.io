@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -66,11 +65,346 @@
             90% { background-position: 60% 40%; }
             100% { background-position: 0% 50%; }
         }
-
-}
-
-.menu-section.active .background-layer { opacity: 0.08;  /* Aún más transparente cuando está activa / filter: brightness(1.2) contrast(1.2);  / Más brillante cuando está activa */ }
-
+        
+        /* HEADER REDISEÑADO - MÁXIMO IMPACTO VISUAL */
+        .header-container {
+            width: 100%;
+            text-align: center;
+            padding: 0;
+            margin: 0 0 20px 0;
+            position: relative;
+        }
+        
+        .logo-main {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 3px solid #ff8c42;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+        
+        .header-title {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+            padding: 15px 0;
+            margin-top: -5px;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        
+        .header-title p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 20px 20px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .nav-button {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            will-change: transform;
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #2a2a3e, #26314e);
+        }
+        
+        .menu-section {
+            background-color: rgba(26, 26, 46, 0.85);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            overflow: visible;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            will-change: transform;
+        }
+        
+        .menu-section .background-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15;  /* Más transparente */
+            z-index: -1;
+            will-change: opacity;
+            filter: brightness(1.1) contrast(1.1);  /* Un poco más brillante */
+        }
+        
+        .menu-section.active .background-layer {
+            opacity: 0.08;  /* Aún más transparente cuando está activa */
+            filter: brightness(1.2) contrast(1.2);  /* Más brillante cuando está activa */
+        }
+        
+        .menu-section .background-layer.animated {
+            animation: backgroundSlide 30s linear infinite;
+        }
+        
+        @keyframes backgroundSlide {
+            0% { background-position: 0% center; }
+            100% { background-position: 100% center; }
+        }
+        
+        .menu-section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, rgba(15, 52, 96, 0.85), rgba(22, 33, 62, 0.85));
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            will-change: background;
+        }
+        
+        .section-header:hover {
+            background: linear-gradient(135deg, rgba(31, 68, 112, 0.85), rgba(38, 49, 78, 0.85));
+        }
+        
+        .section-title-wrapper {
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .section-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.3s ease;
+            background: rgba(26, 26, 46, 0.9);
+            position: relative;
+            z-index: 1;
+            will-change: max-height;
+        }
+        
+        .section-content.active {
+            max-height: none;
+            padding: 20px;
+            height: auto;
+            overflow: visible;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            will-change: transform;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        
+        .item-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        .item-price {
+            font-weight: 700;
+            color: #ff8c42;
+            font-size: 1.2rem;
+            background: rgba(255, 140, 66, 0.1);
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 140, 66, 0.3);
+            display: inline-block;
+            text-align: right;
+            white-space: nowrap;
+            max-width: fit-content;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            background-color: rgba(30, 30, 30, 0.7);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-note {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(60, 60, 60, 0.2);
+            border-radius: 8px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+        
+        .subsection {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+        
+        .subsection-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .subsection-title::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 20px;
+            background-color: #ff8c42;
+            border-radius: 3px;
+        }
+        
+        .alcohol-indicator {
+            display: inline-block;
+            background: rgba(255, 140, 66, 0.2);
+            color: #ff8c42;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 8px;
+            border: 1px solid rgba(255, 140, 66, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .section-content {
+                transition: max-height 0.5s ease, padding 0.3s ease;
+            }
+            
+            .section-content.active {
+                max-height: 100vh;
+                overflow-y: auto;
+                padding: 15px;
+            }
+            
+            .menu-section {
+                overflow: visible;
+            }
+            
+            .menu-section.active {
+                overflow: visible;
+            }
+            
+            .menu-item {
+                padding: 12px 0;
+            }
+            
+            .item-name {
+                font-size: 1rem;
+            }
+            
+            .item-description {
+                font-size: 0.85rem;
+            }
+            
+            .item-price {
+                font-size: 1rem;
+                padding: 3px 10px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .logo-main {
+                max-height: 150px;
+            }
+            
+            .header-title p {
+                font-size: 1.1rem;
+                padding: 12px 0;
+            }
+            
+            .nav-button {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .menu-item {
+                flex-direction: column;
+            }
+            
+            .item-price {
+                text-align: right;
+                margin-left: auto;
+                margin-top: 5px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .logo-main {
+                max-height: 120px;
+            }
+            
+            .header-title p {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- HEADER REDISEÑADO CON MÁXIMO IMPACTO -->
@@ -98,6 +432,198 @@
                 const response = await fetch('/content/menu/index.json');
                 if (!response.ok) throw new Error('No se pudo cargar el índice del menú');
                 const index = await response.json();
-
+                
+                const secciones = [];
+                for (const item of index) {
+                    const fileResponse = await fetch('/content/menu/' + item.file);
+                    if (!fileResponse.ok) continue;
+                    const seccion = await fileResponse.json();
+                    secciones.push(seccion);
+                }
+                
+                renderizarMenu(secciones);
+            } catch (error) {
+                console.error('Error al cargar el menú:', error);
+                // Mensaje de error amigable para el usuario
+                document.getElementById('menu-container').innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #ff6b6b;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                        <h3>Error al cargar el menú</h3>
+                        <p>Por favor, verifica tu conexión a internet</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // === FUNCIÓN PARA RENDERIZAR EL MENÚ ===
+        function renderizarMenu(secciones) {
+            console.log('Secciones recibidas en renderizarMenu:', secciones);
+            const navButtons = document.getElementById('nav-buttons');
+            const menuContainer = document.getElementById('menu-container');
+            
+            navButtons.innerHTML = '';
+            menuContainer.innerHTML = '';
+            secciones.forEach(seccion => {
+                console.log('Renderizando sección:', seccion.titulo);
+                
+                // Botón de navegación
+                const button = document.createElement('button');
+                button.className = 'nav-button';
+                button.textContent = seccion.titulo;
+                button.onclick = () => scrollToSection(seccion.id);
+                navButtons.appendChild(button);
+                
+                // Sección del menú
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'menu-section';
+                sectionDiv.id = seccion.id;
+                
+                // Capas de fondo para múltiples imágenes
+                if (seccion.imagenes && seccion.imagenes.length > 0) {
+                    seccion.imagenes.forEach((imagen, index) => {
+                        const bgLayer = document.createElement('div');
+                        bgLayer.className = 'background-layer';
+                        bgLayer.style.backgroundImage = `url('${imagen}')`;
+                        if (seccion.imagenes.length > 1) {
+                            bgLayer.classList.add('animated');
+                            bgLayer.style.animationDelay = `${index * 15}s`;
+                        }
+                        sectionDiv.appendChild(bgLayer);
+                    });
+                }
+                
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'section-header';
+                headerDiv.onclick = () => toggleSection(seccion.id);
+                
+                const titleWrapper = document.createElement('div');
+                titleWrapper.className = 'section-title-wrapper';
+                
+                const titleSpan = document.createElement('span');
+                titleSpan.className = 'section-text';
+                titleSpan.textContent = seccion.titulo;
+                titleWrapper.appendChild(titleSpan);
+                
+                headerDiv.appendChild(titleWrapper);
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'section-content';
+                
+                if (seccion.nota) {
+                    const noteDiv = document.createElement('div');
+                    noteDiv.className = 'section-note';
+                    noteDiv.textContent = seccion.nota;
+                    contentDiv.appendChild(noteDiv);
+                }
+                
+                if (seccion.subsecciones && seccion.subsecciones.length > 0) {
+                    seccion.subsecciones.forEach(sub => {
+                        const subDiv = document.createElement('div');
+                        subDiv.className = 'subsection';
+                        
+                        const subTitle = document.createElement('div');
+                        subTitle.className = 'subsection-title';
+                        subTitle.textContent = sub.titulo;
+                        subDiv.appendChild(subTitle);
+                        
+                        if (sub.nota) {
+                            const subNote = document.createElement('div');
+                            subNote.className = 'section-note';
+                            subNote.textContent = sub.nota;
+                            subDiv.appendChild(subNote);
+                        }
+                        
+                        if (sub.platos && sub.platos.length > 0) {
+                            sub.platos.forEach(plato => {
+                                const itemDiv = document.createElement('div');
+                                itemDiv.className = 'menu-item';
+                                
+                                const leftDiv = document.createElement('div');
+                                leftDiv.className = 'item-left';
+                                
+                                const nameDiv = document.createElement('div');
+                                nameDiv.className = 'item-name';
+                                nameDiv.textContent = plato.nombre;
+                                
+                                const descDiv = document.createElement('div');
+                                descDiv.className = 'item-description';
+                                descDiv.textContent = plato.descripcion || '';
+                                
+                                leftDiv.appendChild(nameDiv);
+                                leftDiv.appendChild(descDiv);
+                                
+                                const priceDiv = document.createElement('div');
+                                priceDiv.className = 'item-price';
+                                priceDiv.textContent = plato.precio;
+                                
+                                itemDiv.appendChild(leftDiv);
+                                itemDiv.appendChild(priceDiv);
+                                
+                                subDiv.appendChild(itemDiv);
+                            });
+                        }
+                        
+                        contentDiv.appendChild(subDiv);
+                    });
+                } else if (seccion.platos && seccion.platos.length > 0) {
+                    seccion.platos.forEach(plato => {
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'menu-item';
+                        
+                        const leftDiv = document.createElement('div');
+                        leftDiv.className = 'item-left';
+                        
+                        const nameDiv = document.createElement('div');
+                        nameDiv.className = 'item-name';
+                        nameDiv.textContent = plato.nombre;
+                        
+                        const descDiv = document.createElement('div');
+                        descDiv.className = 'item-description';
+                        descDiv.textContent = plato.descripcion || '';
+                        
+                        leftDiv.appendChild(nameDiv);
+                        leftDiv.appendChild(descDiv);
+                        
+                        const priceDiv = document.createElement('div');
+                        priceDiv.className = 'item-price';
+                        priceDiv.textContent = plato.precio;
+                        
+                        itemDiv.appendChild(leftDiv);
+                        itemDiv.appendChild(priceDiv);
+                        
+                        contentDiv.appendChild(itemDiv);
+                    });
+                }
+                
+                sectionDiv.appendChild(headerDiv);
+                sectionDiv.appendChild(contentDiv);
+                menuContainer.appendChild(sectionDiv);
+            });
+            
+            // Abrir la primera sección por defecto
+            if (secciones.length > 0) {
+                toggleSection(secciones[0].id);
+            }
+        }
+        
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const content = section.querySelector('.section-content');
+            content.classList.toggle('active');
+        }
+        
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const content = section.querySelector('.section-content');
+            if (!content.classList.contains('active')) {
+                content.classList.add('active');
+            }
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarMenu();
+        });
+    </script>
 </body>
 </html>
