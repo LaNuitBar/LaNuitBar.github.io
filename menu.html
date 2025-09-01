@@ -146,7 +146,7 @@
             will-change: transform;
         }
         
-        /* CAMBIOS REALIZADOS PARA MEJORAR LA VISIBILIDAD DE LAS IMÁGENES */
+        /* CAMBIOS TEMPORALES PARA DEPURACIÓN */
         .menu-section .background-layer {
             position: absolute;
             top: 0;
@@ -156,17 +156,15 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.7;  /* AUMENTADO DE 0.35 a 0.7 para mayor visibilidad */
-            filter: brightness(1.1) contrast(1.1);  /* Ajustado para mejor visibilidad */
-            /* mix-blend-mode: soft-light;  ELIMINADO para evitar problemas de visibilidad */
+            opacity: 1 !important;  /* Máxima opacidad para depuración */
+            filter: none !important;  /* Sin filtros para depuración */
             z-index: -1;
             will-change: opacity;
         }
         
         .menu-section.active .background-layer {
-            opacity: 0.6;  /* AUMENTADO DE 0.25 a 0.6 para mantener visibilidad */
-            filter: brightness(1.2) contrast(1.2);  /* Ajustado para mejor visibilidad */
-            /* mix-blend-mode: soft-light;  ELIMINADO para evitar problemas de visibilidad */
+            opacity: 1 !important;  /* Máxima opacidad para depuración */
+            filter: none !important;  /* Sin filtros para depuración */
         }
         
         .menu-section .background-layer.animated {
@@ -483,16 +481,20 @@
                 
                 // Capas de fondo para múltiples imágenes
                 if (seccion.imagenes && seccion.imagenes.length > 0) {
+                    console.log(`Imágenes para la sección ${seccion.titulo}:`, seccion.imagenes);
                     seccion.imagenes.forEach((imagen, index) => {
                         const bgLayer = document.createElement('div');
                         bgLayer.className = 'background-layer';
                         bgLayer.style.backgroundImage = `url('${imagen}')`;
+                        console.log(`Estableciendo imagen de fondo: ${imagen}`);
                         if (seccion.imagenes.length > 1) {
                             bgLayer.classList.add('animated');
                             bgLayer.style.animationDelay = `${index * 15}s`;
                         }
                         sectionDiv.appendChild(bgLayer);
                     });
+                } else {
+                    console.warn(`No se encontraron imágenes para la sección ${seccion.titulo}`);
                 }
                 
                 const headerDiv = document.createElement('div');
@@ -609,6 +611,47 @@
             }
         }
         
+        // === FUNCIÓN PARA DEPURAR LAS IMÁGENES ===
+        function depurarImagenes() {
+            console.log("Iniciando depuración de imágenes...");
+            
+            // Obtener todas las secciones del menú
+            const secciones = document.querySelectorAll('.menu-section');
+            
+            secciones.forEach((seccion, index) => {
+                console.log(`Analizando sección ${index + 1}:`, seccion.id);
+                
+                // Obtener todas las capas de fondo de esta sección
+                const backgroundLayers = seccion.querySelectorAll('.background-layer');
+                
+                if (backgroundLayers.length === 0) {
+                    console.warn(`  - No se encontraron capas de fondo en la sección ${seccion.id}`);
+                    return;
+                }
+                
+                backgroundLayers.forEach((layer, layerIndex) => {
+                    const backgroundImage = window.getComputedStyle(layer).backgroundImage;
+                    console.log(`  - Capa ${layerIndex + 1}: ${backgroundImage}`);
+                    
+                    // Crear una imagen de prueba para verificar si se carga correctamente
+                    if (backgroundImage && backgroundImage !== 'none') {
+                        const imageUrl = backgroundImage.slice(5, -2); // Eliminar 'url("' y '")'
+                        const img = new Image();
+                        
+                        img.onload = function() {
+                            console.log(`  - Imagen cargada correctamente: ${imageUrl}`);
+                        };
+                        
+                        img.onerror = function() {
+                            console.error(`  - Error al cargar la imagen: ${imageUrl}`);
+                        };
+                        
+                        img.src = imageUrl;
+                    }
+                });
+            });
+        }
+        
         function toggleSection(sectionId) {
             const section = document.getElementById(sectionId);
             const content = section.querySelector('.section-content');
@@ -626,6 +669,9 @@
         
         document.addEventListener('DOMContentLoaded', () => {
             cargarMenu();
+            
+            // Esperar un poco a que se cargue el menú antes de depurar
+            setTimeout(depurarImagenes, 2000);
         });
     </script>
 </body>
