@@ -235,6 +235,8 @@
             /* Optimización para evitar el parpadeo al hacer scroll */
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* Mejora para evitar el parpadeo del texto */
+            contain: layout style paint;
         }
         
         /* AJUSTES ESTÉTICOS PARA LAS IMÁGENES DE FONDO */
@@ -290,6 +292,8 @@
             /* Optimización para evitar el parpadeo al hacer scroll */
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* Mejora para evitar el parpadeo del texto */
+            contain: layout style paint;
         }
         
         .section-header:hover {
@@ -299,11 +303,19 @@
         .section-title-wrapper {
             display: flex;
             align-items: center;
+            /* Mejora para evitar el parpadeo del texto */
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
         
         .section-text {
             font-size: 1.5rem;
             font-weight: 600;
+            /* Mejora para evitar el parpadeo del texto */
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
         
         .section-content {
@@ -317,6 +329,8 @@
             /* Optimización para evitar el parpadeo al hacer scroll */
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* Mejora para evitar el parpadeo del texto */
+            contain: layout style paint;
         }
         
         .section-content.active {
@@ -336,6 +350,8 @@
             /* Optimización para evitar el parpadeo al hacer scroll */
             backface-visibility: hidden;
             transform: translateZ(0);
+            /* Mejora para evitar el parpadeo del texto */
+            contain: layout style paint;
         }
         
         .menu-item:last-child {
@@ -346,6 +362,10 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+            /* Mejora para evitar el parpadeo del texto */
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
         
         .item-name {
@@ -353,11 +373,19 @@
             font-size: 1.1rem;
             margin-bottom: 5px;
             color: #fff;
+            /* Mejora para evitar el parpadeo del texto */
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
         
         .item-description {
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
+            /* Mejora para evitar el parpadeo del texto */
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
         
         .item-price {
@@ -374,6 +402,10 @@
             max-width: fit-content;
             flex-shrink: 0;
             margin-left: auto;
+            /* Mejora para evitar el parpadeo del texto */
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
         
         .footer {
@@ -412,6 +444,10 @@
             align-items: center;
             padding-left: 15px;
             position: relative;
+            /* Mejora para evitar el parpadeo del texto */
+            will-change: transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
         }
         
         .subsection-title::before {
@@ -940,7 +976,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Establecer tiempos para la gestión del mensaje de bienvenida
             const maxWaitTime = 5000; // 5 segundos máximo
-            const elegantFadeTime = 4000; // 4 segundos para iniciar la animación elegante
+            const elegantFadeTime = 3000; // CAMBIO: Reducido a 3 segundos para iniciar la animación elegante
             
             // Variables para controlar los timeouts
             let elegantFadeTimeout;
@@ -964,7 +1000,7 @@
                 startElegantFade();
             }
             
-            // Programar el inicio de la animación elegante a los 4 segundos
+            // Programar el inicio de la animación elegante a los 3 segundos
             elegantFadeTimeout = setTimeout(() => {
                 startElegantAndClear();
             }, elegantFadeTime);
