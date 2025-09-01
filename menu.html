@@ -527,7 +527,7 @@
         <div class="welcome-loader"></div>
     </div>
 
-    <!-- HEADER REDISEÑADO CON MÁXIMO IMPACTO -->
+    <!-- HEADER REDISEÑADO CON MÁXIMO IMPACTO VISUAL -->
     <div class="header-container">
         <img src="https://i.postimg.cc/vZgtfg8J/header-lanuit.png" alt="Bar La Nuit" class="logo-main">
         <div class="header-title">
@@ -546,6 +546,15 @@
         </div>
     </div>
     <script>
+        // === FUNCIÓN PARA OCULTAR EL MENSAJE DE BIENVENIDA ===
+        function hideWelcomeMessage() {
+            const welcomeMessage = document.getElementById('welcome-message');
+            if (welcomeMessage && !welcomeMessage.classList.contains('hidden')) {
+                welcomeMessage.classList.add('hidden');
+                console.log('Mensaje de bienvenida oculto');
+            }
+        }
+        
         // === FUNCIÓN PARA CARGAR EL MENÚ DINÁMICAMENTE ===
         async function cargarMenu() {
             try {
@@ -564,12 +573,7 @@
                 renderizarMenu(secciones);
                 
                 // Ocultar el mensaje de bienvenida después de cargar el menú
-                setTimeout(() => {
-                    const welcomeMessage = document.getElementById('welcome-message');
-                    if (welcomeMessage) {
-                        welcomeMessage.classList.add('hidden');
-                    }
-                }, 1000);
+                hideWelcomeMessage();
             } catch (error) {
                 console.error('Error al cargar el menú:', error);
                 // Mensaje de error amigable para el usuario
@@ -582,12 +586,7 @@
                 `;
                 
                 // Ocultar el mensaje de bienvenida incluso si hay un error
-                setTimeout(() => {
-                    const welcomeMessage = document.getElementById('welcome-message');
-                    if (welcomeMessage) {
-                        welcomeMessage.classList.add('hidden');
-                    }
-                }, 1000);
+                hideWelcomeMessage();
             }
         }
         
@@ -607,4 +606,256 @@
                 button.className = 'nav-button';
                 button.textContent = seccion.titulo;
                 button.onclick = () => scrollToSection(seccion.id);
-                navButt
+                navButtons.appendChild(button);
+                
+                // Sección del menú
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'menu-section';
+                sectionDiv.id = seccion.id;
+                
+                // Capas de fondo para múltiples imágenes
+                if (seccion.imagenes && seccion.imagenes.length > 0) {
+                    console.log(`Imágenes para la sección ${seccion.titulo}:`, seccion.imagenes);
+                    seccion.imagenes.forEach((imagen, index) => {
+                        const bgLayer = document.createElement('div');
+                        bgLayer.className = 'background-layer';
+                        
+                        // SOLUCIÓN ALTERNATIVA: Construir la ruta absoluta directamente
+                        let imageUrl = imagen;
+                        
+                        // Si la ruta comienza con '../', la reemplazamos con la ruta absoluta correcta
+                        if (imagen.startsWith('../')) {
+                            const imageName = imagen.split('/').pop(); // Obtener solo el nombre del archivo
+                            imageUrl = `/assets/img/backgrounds/${imageName}`;
+                        }
+                        // Si la ruta ya es absoluta, la usamos tal cual
+                        else if (imagen.startsWith('/')) {
+                            imageUrl = imagen;
+                        }
+                        // Si es solo el nombre del archivo, le agregamos la ruta completa
+                        else if (!imagen.includes('/')) {
+                            imageUrl = `/assets/img/backgrounds/${imagen}`;
+                        }
+                        
+                        console.log(`Estableciendo imagen de fondo: ${imageUrl}`);
+                        bgLayer.style.backgroundImage = `url('${imageUrl}')`;
+                        
+                        if (seccion.imagenes.length > 1) {
+                            bgLayer.classList.add('animated');
+                            bgLayer.style.animationDelay = `${index * 15}s`;
+                        }
+                        sectionDiv.appendChild(bgLayer);
+                    });
+                } else {
+                    console.warn(`No se encontraron imágenes para la sección ${seccion.titulo}`);
+                }
+                
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'section-header';
+                headerDiv.onclick = () => toggleSection(seccion.id);
+                
+                const titleWrapper = document.createElement('div');
+                titleWrapper.className = 'section-title-wrapper';
+                
+                const titleSpan = document.createElement('span');
+                titleSpan.className = 'section-text';
+                titleSpan.textContent = seccion.titulo;
+                titleWrapper.appendChild(titleSpan);
+                
+                headerDiv.appendChild(titleWrapper);
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'section-content';
+                
+                if (seccion.nota) {
+                    const noteDiv = document.createElement('div');
+                    noteDiv.className = 'section-note';
+                    noteDiv.textContent = seccion.nota;
+                    contentDiv.appendChild(noteDiv);
+                }
+                
+                if (seccion.subsecciones && seccion.subsecciones.length > 0) {
+                    seccion.subsecciones.forEach(sub => {
+                        const subDiv = document.createElement('div');
+                        subDiv.className = 'subsection';
+                        
+                        const subTitle = document.createElement('div');
+                        subTitle.className = 'subsection-title';
+                        subTitle.textContent = sub.titulo;
+                        subDiv.appendChild(subTitle);
+                        
+                        if (sub.nota) {
+                            const subNote = document.createElement('div');
+                            subNote.className = 'section-note';
+                            subNote.textContent = sub.nota;
+                            subDiv.appendChild(subNote);
+                        }
+                        
+                        if (sub.platos && sub.platos.length > 0) {
+                            sub.platos.forEach(plato => {
+                                const itemDiv = document.createElement('div');
+                                itemDiv.className = 'menu-item';
+                                
+                                const leftDiv = document.createElement('div');
+                                leftDiv.className = 'item-left';
+                                
+                                const nameDiv = document.createElement('div');
+                                nameDiv.className = 'item-name';
+                                nameDiv.textContent = plato.nombre;
+                                
+                                const descDiv = document.createElement('div');
+                                descDiv.className = 'item-description';
+                                descDiv.textContent = plato.descripcion || '';
+                                
+                                leftDiv.appendChild(nameDiv);
+                                leftDiv.appendChild(descDiv);
+                                
+                                const priceDiv = document.createElement('div');
+                                priceDiv.className = 'item-price';
+                                priceDiv.textContent = plato.precio;
+                                
+                                itemDiv.appendChild(leftDiv);
+                                itemDiv.appendChild(priceDiv);
+                                
+                                subDiv.appendChild(itemDiv);
+                            });
+                        }
+                        
+                        contentDiv.appendChild(subDiv);
+                    });
+                } else if (seccion.platos && seccion.platos.length > 0) {
+                    secciones.platos.forEach(plato => {
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'menu-item';
+                        
+                        const leftDiv = document.createElement('div');
+                        leftDiv.className = 'item-left';
+                        
+                        const nameDiv = document.createElement('div');
+                        nameDiv.className = 'item-name';
+                        nameDiv.textContent = plato.nombre;
+                        
+                        const descDiv = document.createElement('div');
+                        descDiv.className = 'item-description';
+                        descDiv.textContent = plato.descripcion || '';
+                        
+                        leftDiv.appendChild(nameDiv);
+                        leftDiv.appendChild(descDiv);
+                        
+                        const priceDiv = document.createElement('div');
+                        priceDiv.className = 'item-price';
+                        priceDiv.textContent = plato.precio;
+                        
+                        itemDiv.appendChild(leftDiv);
+                        itemDiv.appendChild(priceDiv);
+                        
+                        contentDiv.appendChild(itemDiv);
+                    });
+                }
+                
+                sectionDiv.appendChild(headerDiv);
+                sectionDiv.appendChild(contentDiv);
+                menuContainer.appendChild(sectionDiv);
+            });
+            
+            // CAMBIO: Ya no se abre ninguna sección por defecto
+            // if (secciones.length > 0) {
+            //     toggleSection(secciones[0].id);
+            // }
+        }
+        
+        // === FUNCIÓN PARA DEPURAR LAS IMÁGENES ===
+        function depurarImagenes() {
+            console.log("Iniciando depuración de imágenes...");
+            
+            // Obtener todas las secciones del menú
+            const secciones = document.querySelectorAll('.menu-section');
+            
+            secciones.forEach((seccion, index) => {
+                console.log(`Analizando sección ${index + 1}:`, seccion.id);
+                
+                // Obtener todas las capas de fondo de esta sección
+                const backgroundLayers = seccion.querySelectorAll('.background-layer');
+                
+                if (backgroundLayers.length === 0) {
+                    console.warn(`  - No se encontraron capas de fondo en la sección ${seccion.id}`);
+                    return;
+                }
+                
+                backgroundLayers.forEach((layer, layerIndex) => {
+                    const backgroundImage = window.getComputedStyle(layer).backgroundImage;
+                    console.log(`  - Capa ${layerIndex + 1}: ${backgroundImage}`);
+                    
+                    // Crear una imagen de prueba para verificar si se carga correctamente
+                    if (backgroundImage && backgroundImage !== 'none') {
+                        const imageUrl = backgroundImage.slice(5, -2); // Eliminar 'url("' y '")'
+                        console.log(`  - Intentando cargar imagen: ${imageUrl}`);
+                        
+                        const img = new Image();
+                        
+                        img.onload = function() {
+                            console.log(`  - ✓ Imagen cargada correctamente: ${imageUrl}`);
+                        };
+                        
+                        img.onerror = function() {
+                            console.error(`  - ✗ Error al cargar la imagen: ${imageUrl}`);
+                            
+                            // Intentar con una ruta alternativa
+                            const altUrl = '/assets/img/backgrounds/' + imageUrl.split('/').pop();
+                            console.log(`  - Intentando con ruta alternativa: ${altUrl}`);
+                            
+                            const altImg = new Image();
+                            altImg.onload = function() {
+                                console.log(`  - ✓ Imagen alternativa cargada correctamente: ${altUrl}`);
+                                // Actualizar el fondo con la ruta alternativa
+                                layer.style.backgroundImage = `url('${altUrl}')`;
+                            };
+                            altImg.onerror = function() {
+                                console.error(`  - ✗ Error al cargar la imagen alternativa: ${altUrl}`);
+                            };
+                            altImg.src = altUrl;
+                        };
+                        
+                        img.src = imageUrl;
+                    }
+                });
+            });
+        }
+        
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const content = section.querySelector('.section-content');
+            content.classList.toggle('active');
+        }
+        
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const content = section.querySelector('.section-content');
+            if (!content.classList.contains('active')) {
+                content.classList.add('active');
+            }
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Establecer un tiempo máximo para ocultar el mensaje de bienvenida
+            // por si hay algún problema con la carga del menú
+            const maxWaitTime = 5000; // 5 segundos máximo
+            
+            // Ocultar el mensaje de bienvenida después del tiempo máximo
+            const timeoutId = setTimeout(() => {
+                hideWelcomeMessage();
+            }, maxWaitTime);
+            
+            // Cargar el menú
+            cargarMenu().then(() => {
+                // Si el menú se carga correctamente, cancelar el timeout
+                clearTimeout(timeoutId);
+            });
+            
+            // Esperar un poco a que se cargue el menú antes de depurar
+            setTimeout(depurarImagenes, 2000);
+        });
+    </script>
+</body>
+</html>
