@@ -147,24 +147,25 @@
         }
         
         .menu-section .background-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.15;  /* Más transparente */
-    z-index: -1;
-    will-change: opacity;
-    filter: brightness(1.1) contrast(1.1);  /* Un poco más brillante */
-}
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.25;  /* Aumenté la opacidad para mejor visibilidad */
+            z-index: 0;  /* Aseguré que esté detrás del contenido */
+            will-change: opacity;
+            filter: brightness(1.2) contrast(1.2);  /* Aumenté el brillo y contraste */
+            border-radius: 10px;
+        }
 
-.menu-section.active .background-layer {
-    opacity: 0.08;  /* Aún más transparente cuando está activa */
-    filter: brightness(1.2) contrast(1.2);  /* Más brillante cuando está activa */
-}
+        .menu-section.active .background-layer {
+            opacity: 0.2;  /* Ajusté la opacidad cuando está activa */
+            filter: brightness(1.3) contrast(1.3);  /* Más brillante cuando está activa */
+        }
         
         .menu-section .background-layer.animated {
             animation: backgroundSlide 30s linear infinite;
@@ -189,8 +190,9 @@
             align-items: center;
             transition: all 0.3s ease;
             position: relative;
-            z-index: 1;
+            z-index: 2;  /* Aumenté el z-index para asegurar que esté por encima del fondo */
             will-change: background;
+            border-radius: 10px 10px 0 0;
         }
         
         .section-header:hover {
@@ -205,6 +207,7 @@
         .section-text {
             font-size: 1.5rem;
             font-weight: 600;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);  /* Añadí sombra al texto para mejor legibilidad */
         }
         
         .section-content {
@@ -213,8 +216,9 @@
             transition: max-height 0.5s ease, padding 0.3s ease;
             background: rgba(26, 26, 46, 0.9);
             position: relative;
-            z-index: 1;
+            z-index: 2;  /* Aseguré que el contenido esté por encima del fondo */
             will-change: max-height;
+            border-radius: 0 0 10px 10px;
         }
         
         .section-content.active {
@@ -248,11 +252,13 @@
             font-size: 1.1rem;
             margin-bottom: 5px;
             color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);  /* Mejoré la legibilidad */
         }
         
         .item-description {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.85);  /* Aumenté el contraste */
             font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);  /* Mejoré la legibilidad */
         }
         
         .item-price {
@@ -269,6 +275,7 @@
             max-width: fit-content;
             flex-shrink: 0;
             margin-left: auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);  /* Mejoré la legibilidad */
         }
         
         .footer {
@@ -298,332 +305,4 @@
             border-top: 1px dashed rgba(255, 255, 255, 0.2);
         }
         
-        .subsection-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            padding-left: 15px;
-            position: relative;
-        }
-        
-        .subsection-title::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 20px;
-            background-color: #ff8c42;
-            border-radius: 3px;
-        }
-        
-        .alcohol-indicator {
-            display: inline-block;
-            background: rgba(255, 140, 66, 0.2);
-            color: #ff8c42;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-left: 8px;
-            border: 1px solid rgba(255, 140, 66, 0.3);
-        }
-        
-        @media (max-width: 768px) {
-            .section-content {
-                transition: max-height 0.5s ease, padding 0.3s ease;
-            }
-            
-            .section-content.active {
-                max-height: 100vh;
-                overflow-y: auto;
-                padding: 15px;
-            }
-            
-            .menu-section {
-                overflow: visible;
-            }
-            
-            .menu-section.active {
-                overflow: visible;
-            }
-            
-            .menu-item {
-                padding: 12px 0;
-            }
-            
-            .item-name {
-                font-size: 1rem;
-            }
-            
-            .item-description {
-                font-size: 0.85rem;
-            }
-            
-            .item-price {
-                font-size: 1rem;
-                padding: 3px 10px;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .logo-main {
-                max-height: 150px;
-            }
-            
-            .header-title p {
-                font-size: 1.1rem;
-                padding: 12px 0;
-            }
-            
-            .nav-button {
-                padding: 10px 15px;
-                font-size: 0.9rem;
-            }
-            
-            .menu-item {
-                flex-direction: column;
-            }
-            
-            .item-price {
-                text-align: right;
-                margin-left: auto;
-                margin-top: 5px;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .logo-main {
-                max-height: 120px;
-            }
-            
-            .header-title p {
-                font-size: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- HEADER REDISEÑADO CON MÁXIMO IMPACTO -->
-    <div class="header-container">
-        <img src="https://i.postimg.cc/vZgtfg8J/header-lanuit.png" alt="Bar La Nuit" class="logo-main">
-        <div class="header-title">
-            <p>Donde la noche cobra vida</p>
-        </div>
-    </div>
-    <div class="container">
-        <div class="nav-buttons" id="nav-buttons">
-            <!-- Botones generados dinámicamente -->
-        </div>
-        <div id="menu-container">
-            <!-- Contenido del menú generado dinámicamente -->
-        </div>
-        <div class="footer">
-            <p>Bar La Nuit - Todos los derechos reservados</p>
-        </div>
-    </div>
-    <script>
-        // === FUNCIÓN PARA CARGAR EL MENÚ DINÁMICAMENTE ===
-        async function cargarMenu() {
-            try {
-                const response = await fetch('/content/menu/index.json');
-                if (!response.ok) throw new Error('No se pudo cargar el índice del menú');
-                const index = await response.json();
-                
-                const secciones = [];
-                for (const item of index) {
-                    const fileResponse = await fetch('/content/menu/' + item.file);
-                    if (!fileResponse.ok) continue;
-                    const seccion = await fileResponse.json();
-                    secciones.push(seccion);
-                }
-                
-                renderizarMenu(secciones);
-            } catch (error) {
-                console.error('Error al cargar el menú:', error);
-                // Mensaje de error amigable para el usuario
-                document.getElementById('menu-container').innerHTML = `
-                    <div style="text-align: center; padding: 40px; color: #ff6b6b;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px;"></i>
-                        <h3>Error al cargar el menú</h3>
-                        <p>Por favor, verifica tu conexión a internet</p>
-                    </div>
-                `;
-            }
-        }
-        
-        // === FUNCIÓN PARA RENDERIZAR EL MENÚ ===
-        function renderizarMenu(secciones) {
-            console.log('Secciones recibidas en renderizarMenu:', secciones);
-            const navButtons = document.getElementById('nav-buttons');
-            const menuContainer = document.getElementById('menu-container');
-            
-            navButtons.innerHTML = '';
-            menuContainer.innerHTML = '';
-            secciones.forEach(seccion => {
-                console.log('Renderizando sección:', seccion.titulo);
-                
-                // Botón de navegación
-                const button = document.createElement('button');
-                button.className = 'nav-button';
-                button.textContent = seccion.titulo;
-                button.onclick = () => scrollToSection(seccion.id);
-                navButtons.appendChild(button);
-                
-                // Sección del menú
-                const sectionDiv = document.createElement('div');
-                sectionDiv.className = 'menu-section';
-                sectionDiv.id = seccion.id;
-                
-                // Capas de fondo para múltiples imágenes
-                if (seccion.imagenes && seccion.imagenes.length > 0) {
-                    seccion.imagenes.forEach((imagen, index) => {
-                        const bgLayer = document.createElement('div');
-                        bgLayer.className = 'background-layer';
-                        bgLayer.style.backgroundImage = `url('${imagen}')`;
-                        if (seccion.imagenes.length > 1) {
-                            bgLayer.classList.add('animated');
-                            bgLayer.style.animationDelay = `${index * 15}s`;
-                        }
-                        sectionDiv.appendChild(bgLayer);
-                    });
-                }
-                
-                const headerDiv = document.createElement('div');
-                headerDiv.className = 'section-header';
-                headerDiv.onclick = () => toggleSection(seccion.id);
-                
-                const titleWrapper = document.createElement('div');
-                titleWrapper.className = 'section-title-wrapper';
-                
-                const titleSpan = document.createElement('span');
-                titleSpan.className = 'section-text';
-                titleSpan.textContent = seccion.titulo;
-                titleWrapper.appendChild(titleSpan);
-                
-                headerDiv.appendChild(titleWrapper);
-                
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'section-content';
-                
-                if (seccion.nota) {
-                    const noteDiv = document.createElement('div');
-                    noteDiv.className = 'section-note';
-                    noteDiv.textContent = seccion.nota;
-                    contentDiv.appendChild(noteDiv);
-                }
-                
-                if (seccion.subsecciones && seccion.subsecciones.length > 0) {
-                    seccion.subsecciones.forEach(sub => {
-                        const subDiv = document.createElement('div');
-                        subDiv.className = 'subsection';
-                        
-                        const subTitle = document.createElement('div');
-                        subTitle.className = 'subsection-title';
-                        subTitle.textContent = sub.titulo;
-                        subDiv.appendChild(subTitle);
-                        
-                        if (sub.nota) {
-                            const subNote = document.createElement('div');
-                            subNote.className = 'section-note';
-                            subNote.textContent = sub.nota;
-                            subDiv.appendChild(subNote);
-                        }
-                        
-                        if (sub.platos && sub.platos.length > 0) {
-                            sub.platos.forEach(plato => {
-                                const itemDiv = document.createElement('div');
-                                itemDiv.className = 'menu-item';
-                                
-                                const leftDiv = document.createElement('div');
-                                leftDiv.className = 'item-left';
-                                
-                                const nameDiv = document.createElement('div');
-                                nameDiv.className = 'item-name';
-                                nameDiv.textContent = plato.nombre;
-                                
-                                const descDiv = document.createElement('div');
-                                descDiv.className = 'item-description';
-                                descDiv.textContent = plato.descripcion || '';
-                                
-                                leftDiv.appendChild(nameDiv);
-                                leftDiv.appendChild(descDiv);
-                                
-                                const priceDiv = document.createElement('div');
-                                priceDiv.className = 'item-price';
-                                priceDiv.textContent = plato.precio;
-                                
-                                itemDiv.appendChild(leftDiv);
-                                itemDiv.appendChild(priceDiv);
-                                
-                                subDiv.appendChild(itemDiv);
-                            });
-                        }
-                        
-                        contentDiv.appendChild(subDiv);
-                    });
-                } else if (seccion.platos && seccion.platos.length > 0) {
-                    seccion.platos.forEach(plato => {
-                        const itemDiv = document.createElement('div');
-                        itemDiv.className = 'menu-item';
-                        
-                        const leftDiv = document.createElement('div');
-                        leftDiv.className = 'item-left';
-                        
-                        const nameDiv = document.createElement('div');
-                        nameDiv.className = 'item-name';
-                        nameDiv.textContent = plato.nombre;
-                        
-                        const descDiv = document.createElement('div');
-                        descDiv.className = 'item-description';
-                        descDiv.textContent = plato.descripcion || '';
-                        
-                        leftDiv.appendChild(nameDiv);
-                        leftDiv.appendChild(descDiv);
-                        
-                        const priceDiv = document.createElement('div');
-                        priceDiv.className = 'item-price';
-                        priceDiv.textContent = plato.precio;
-                        
-                        itemDiv.appendChild(leftDiv);
-                        itemDiv.appendChild(priceDiv);
-                        
-                        contentDiv.appendChild(itemDiv);
-                    });
-                }
-                
-                sectionDiv.appendChild(headerDiv);
-                sectionDiv.appendChild(contentDiv);
-                menuContainer.appendChild(sectionDiv);
-            });
-            
-            // Abrir la primera sección por defecto
-            if (secciones.length > 0) {
-                toggleSection(secciones[0].id);
-            }
-        }
-        
-        function toggleSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            const content = section.querySelector('.section-content');
-            content.classList.toggle('active');
-        }
-        
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            const content = section.querySelector('.section-content');
-            if (!content.classList.contains('active')) {
-                content.classList.add('active');
-            }
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            cargarMenu();
-        });
-    </script>
-</body>
-</html>
+        .
