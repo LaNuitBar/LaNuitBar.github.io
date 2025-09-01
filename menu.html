@@ -147,22 +147,24 @@
         }
         
         .menu-section .background-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.5;
-            z-index: -1;
-            will-change: opacity;
-        }
-        
-        .menu-section.active .background-layer {
-            opacity: 0.3;
-        }
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15;  /* Más transparente */
+    z-index: -1;
+    will-change: opacity;
+    filter: brightness(1.1) contrast(1.1);  /* Un poco más brillante */
+}
+
+.menu-section.active .background-layer {
+    opacity: 0.08;  /* Aún más transparente cuando está activa */
+    filter: brightness(1.2) contrast(1.2);  /* Más brillante cuando está activa */
+}
         
         .menu-section .background-layer.animated {
             animation: backgroundSlide 30s linear infinite;
