@@ -231,13 +231,10 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             will-change: transform;
-            min-height: 250px; /* Aumentado el alto mínimo para mejor visualización de la imagen */
-            /* Optimización para evitar el parpadeo al hacer scroll */
+            min-height: 250px;
             backface-visibility: hidden;
             transform: translateZ(0);
-            /* Mejora para evitar el parpadeo del texto */
             contain: layout style paint;
-            /* NUEVO: Hacer que toda la sección sea clickeable */
             cursor: pointer;
         }
         
@@ -251,20 +248,17 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.4;  /* Opacidad ajustada para mejor integración visual */
-            filter: brightness(1.1) contrast(1.1);  /* Filtros ajustados para mejor visibilidad */
+            opacity: 0.4;
+            filter: brightness(1.1) contrast(1.1);
             z-index: -1;
-            will-change: opacity;
-            /* Optimización para evitar el parpadeo al hacer scroll */
             backface-visibility: hidden;
             transform: translateZ(0);
-            /* NUEVO: Asegurar que la capa de fondo no intercepte eventos de clic */
             pointer-events: none;
         }
         
         .menu-section.active .background-layer {
-            opacity: 0.3;  /* Opacidad ajustada para cuando la sección está activa */
-            filter: brightness(1.2) contrast(1.2);  /* Filtros ajustados para mejor visibilidad */
+            opacity: 0.3;
+            filter: brightness(1.2) contrast(1.2);
         }
         
         .menu-section .background-layer.animated {
@@ -293,10 +287,8 @@
             position: relative;
             z-index: 1;
             will-change: background;
-            /* Optimización para evitar el parpadeo al hacer scroll */
             backface-visibility: hidden;
             transform: translateZ(0);
-            /* Mejora para evitar el parpadeo del texto */
             contain: layout style paint;
         }
         
@@ -307,7 +299,6 @@
         .section-title-wrapper {
             display: flex;
             align-items: center;
-            /* Mejora para evitar el parpadeo del texto */
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
@@ -316,7 +307,6 @@
         .section-text {
             font-size: 1.5rem;
             font-weight: 600;
-            /* Mejora para evitar el parpadeo del texto */
             will-change: transform;
             backface-visibility: hidden;
             transform: translateZ(0);
@@ -330,16 +320,12 @@
             position: relative;
             z-index: 1;
             will-change: max-height;
-            /* Optimización para evitar el parpadeo al hacer scroll */
             backface-visibility: hidden;
             transform: translateZ(0);
-            /* Mejora para evitar el parpadeo del texto */
             contain: layout style paint;
-            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
-            /* NUEVO: Evitar que el contenido intercepte eventos de clic */
             pointer-events: none;
         }
         
@@ -348,10 +334,8 @@
             padding: 20px;
             height: auto;
             overflow: visible;
-            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             transform: translateZ(0);
             will-change: auto;
-            /* NUEVO: Permitir interacciones con el contenido cuando está activo */
             pointer-events: auto;
         }
         
@@ -361,14 +345,11 @@
             align-items: flex-start;
             padding: 15px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             position: relative;
             z-index: 2;
             will-change: auto;
             backface-visibility: hidden;
-            /* Mejora para evitar el parpadeo del texto */
             contain: layout style paint;
-            /* NUEVO: Permitir interacciones con los elementos del menú */
             pointer-events: auto;
         }
         
@@ -380,7 +361,6 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             position: relative;
             z-index: 2;
         }
@@ -390,7 +370,6 @@
             font-size: 1.1rem;
             margin-bottom: 5px;
             color: #fff;
-            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             position: relative;
             z-index: 2;
             will-change: auto;
@@ -399,7 +378,6 @@
         .item-description {
             color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
-            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             position: relative;
             z-index: 2;
             will-change: auto;
@@ -419,7 +397,6 @@
             max-width: fit-content;
             flex-shrink: 0;
             margin-left: auto;
-            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             position: relative;
             z-index: 2;
             will-change: auto;
@@ -444,10 +421,8 @@
             font-style: italic;
             color: rgba(255, 255, 255, 0.9);
             font-size: 0.9rem;
-            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             position: relative;
             z-index: 2;
-            /* NUEVO: Permitir interacciones con las notas */
             pointer-events: auto;
         }
         
@@ -455,7 +430,6 @@
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px dashed rgba(255, 255, 255, 0.2);
-            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             position: relative;
             z-index: 2;
         }
@@ -469,7 +443,6 @@
             align-items: center;
             padding-left: 15px;
             position: relative;
-            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             z-index: 2;
         }
         
@@ -483,7 +456,6 @@
             height: 20px;
             background-color: #ff8c42;
             border-radius: 3px;
-            /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
             z-index: 2;
         }
         
@@ -507,13 +479,12 @@
                 max-height: 100vh;
                 overflow-y: auto;
                 padding: 15px;
-                /* SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL */
                 -webkit-overflow-scrolling: touch;
             }
             
             .menu-section {
                 overflow: visible;
-                min-height: 200px; /* Ajuste para pantallas más pequeñas */
+                min-height: 200px;
             }
             
             .menu-section.active {
@@ -590,7 +561,7 @@
             }
             
             .menu-section {
-                min-height: 180px; /* Ajuste para pantallas muy pequeñas */
+                min-height: 180px;
             }
             
             .welcome-text {
@@ -629,25 +600,59 @@
         </div>
     </div>
     <script>
+        // === FUNCIÓN PARA BUSCAR IMÁGENES EN MÚLTIPLES UBICACIONES ===
+        async function buscarImagen(nombreImagen) {
+            // Lista de posibles ubicaciones donde buscar la imagen
+            const posiblesRutas = [
+                `/assets/img/background/${nombreImagen}`,
+                `/assets/img/backgrounds/${nombreImagen}`,
+                `/images/uploads/${nombreImagen}`,
+                `/images/${nombreImagen}`,
+                `../assets/img/background/${nombreImagen}`,
+                `../assets/img/backgrounds/${nombreImagen}`,
+                `../images/uploads/${nombreImagen}`,
+                `../images/${nombreImagen}`,
+                nombreImagen // Intentar la ruta tal cual
+            ];
+
+            for (const ruta of posiblesRutas) {
+                try {
+                    const response = await fetch(ruta, { method: 'HEAD' });
+                    if (response.ok) {
+                        console.log(`Imagen encontrada en: ${ruta}`);
+                        return ruta;
+                    }
+                } catch (error) {
+                    // Continuar con la siguiente ruta
+                }
+            }
+            
+            console.warn(`No se encontró la imagen: ${nombreImagen}`);
+            return null;
+        }
+
         // === FUNCIÓN PARA PRECARGAR IMÁGENES ===
-        function precargarImagenes() {
+        async function precargarImagenes() {
             // Lista de imágenes que se usan comúnmente en el menú
             const imagenesPrecargar = [
-                '/assets/img/background/empanada-bg.jpg',
-                '/assets/img/background/pizza-bg.jpg',
-                '/assets/img/background/hamburguesa-bg.jpg',
-                '/assets/img/background/sandwich-bg.jpg',
-                '/assets/img/background/papas-bg.jpg',
-                '/assets/img/background/bebidas-bg.jpg',
-                '/assets/img/background/tragos-bg.jpg',
-                '/assets/img/background/picadas-bg.jpg'
+                'empanada-bg.jpg',
+                'pizza-bg.jpg',
+                'hamburguesa-bg.jpg',
+                'sandwich-bg.jpg',
+                'papas-bg.jpg',
+                'bebidas-bg.jpg',
+                'tragos-bg.jpg',
+                'picadas-bg.jpg'
             ];
             
-            // Precargar cada imagen
-            imagenesPrecargar.forEach(src => {
-                const img = new Image();
-                img.src = src;
-            });
+            // Precargar cada imagen buscando en múltiples ubicaciones
+            for (const nombreImagen of imagenesPrecargar) {
+                const ruta = await buscarImagen(nombreImagen);
+                if (ruta) {
+                    const img = new Image();
+                    img.src = ruta;
+                }
+            }
         }
         
         // === FUNCIÓN PARA OCULTAR EL MENSAJE DE BIENVENIDA ===
@@ -671,74 +676,6 @@
                     hideWelcomeMessage();
                 }, 1000);
             }
-        }
-        
-        // === FUNCIÓN PARA VERIFICAR SI LA PRIMERA IMAGEN HA CARGADO AL MENOS UN 80% ===
-        function checkFirstImageLoad() {
-            return new Promise((resolve) => {
-                // Esperar a que el menú se renderice
-                setTimeout(() => {
-                    // Obtener la primera sección (generalmente pizzas)
-                    const firstSection = document.querySelector('.menu-section');
-                    if (!firstSection) {
-                        resolve(false);
-                        return;
-                    }
-                    
-                    // Obtener la capa de fondo de la primera sección
-                    const backgroundLayer = firstSection.querySelector('.background-layer');
-                    if (!backgroundLayer) {
-                        resolve(false);
-                        return;
-                    }
-                    
-                    // Obtener la URL de la imagen de fondo
-                    const backgroundImage = window.getComputedStyle(backgroundLayer).backgroundImage;
-                    if (!backgroundImage || backgroundImage === 'none') {
-                        resolve(false);
-                        return;
-                    }
-                    
-                    // Extraer la URL de la imagen
-                    const imageUrl = backgroundImage.slice(5, -2); // Eliminar 'url("' y '")'
-                    
-                    // Crear una imagen para verificar la carga
-                    const img = new Image();
-                    let loadedPercentage = 0;
-                    
-                    img.onload = function() {
-                        loadedPercentage = 100;
-                        console.log(`Imagen cargada completamente: ${imageUrl}`);
-                        resolve(loadedPercentage >= 80);
-                    };
-                    
-                    img.onerror = function() {
-                        console.error(`Error al cargar la imagen: ${imageUrl}`);
-                        resolve(false);
-                    };
-                    
-                    // Simular progreso de carga
-                    const progressInterval = setInterval(() => {
-                        if (loadedPercentage < 100) {
-                            loadedPercentage += 10;
-                            if (loadedPercentage >= 80) {
-                                clearInterval(progressInterval);
-                                console.log(`Imagen cargada al ${loadedPercentage}%: ${imageUrl}`);
-                                resolve(true);
-                            }
-                        }
-                    }, 200);
-                    
-                    // Establecer un tiempo máximo de espera para esta imagen
-                    setTimeout(() => {
-                        clearInterval(progressInterval);
-                        console.log(`Tiempo de espera agotado para la imagen: ${imageUrl}`);
-                        resolve(false);
-                    }, 3000);
-                    
-                    img.src = imageUrl;
-                }, 500);
-            });
         }
         
         // === FUNCIÓN PARA CARGAR EL MENÚ DINÁMICAMENTE ===
@@ -773,7 +710,7 @@
         }
         
         // === FUNCIÓN PARA RENDERIZAR EL MENÚ ===
-        function renderizarMenu(secciones) {
+        async function renderizarMenu(secciones) {
             console.log('Secciones recibidas en renderizarMenu:', secciones);
             const navButtons = document.getElementById('nav-buttons');
             const menuContainer = document.getElementById('menu-container');
@@ -798,46 +735,52 @@
                 // Capas de fondo para múltiples imágenes - MEJORADO
                 if (seccion.imagenes && seccion.imagenes.length > 0) {
                     console.log(`Imágenes para la sección ${seccion.titulo}:`, seccion.imagenes);
-                    seccion.imagenes.forEach((imagen, index) => {
+                    
+                    // Procesar cada imagen de forma asíncrona
+                    const promesasImagenes = seccion.imagenes.map(async (imagen, index) => {
                         const bgLayer = document.createElement('div');
                         bgLayer.className = 'background-layer';
                         
-                        // Precargar la imagen antes de establecerla como fondo
-                        const img = new Image();
-                        img.onload = function() {
-                            bgLayer.style.backgroundImage = `url('${imagen}')`;
-                            if (seccion.imagenes.length > 1) {
-                                bgLayer.classList.add('animated');
-                                bgLayer.style.animationDelay = `${index * 15}s`;
-                            }
-                        };
-                        img.onerror = function() {
-                            console.error('Error al cargar la imagen:', imagen);
-                            // Intentar con una ruta alternativa
-                            let altImageUrl = imagen;
-                            if (imagen.startsWith('../')) {
-                                altImageUrl = '/assets/img/background/' + imagen.split('/').pop();
-                            } else if (!imagen.startsWith('/')) {
-                                altImageUrl = '/assets/img/background/' + imagen;
-                            }
-                            
-                            const altImg = new Image();
-                            altImg.onload = function() {
-                                bgLayer.style.backgroundImage = `url('${altImageUrl}')`;
+                        // Extraer el nombre del archivo de la imagen
+                        let nombreImagen = imagen;
+                        if (imagen.includes('/')) {
+                            nombreImagen = imagen.split('/').pop();
+                        }
+                        
+                        // Buscar la imagen en múltiples ubicaciones
+                        const rutaEncontrada = await buscarImagen(nombreImagen);
+                        
+                        if (rutaEncontrada) {
+                            // Precargar la imagen
+                            const img = new Image();
+                            img.onload = function() {
+                                bgLayer.style.backgroundImage = `url('${rutaEncontrada}')`;
                                 if (seccion.imagenes.length > 1) {
                                     bgLayer.classList.add('animated');
                                     bgLayer.style.animationDelay = `${index * 15}s`;
                                 }
                             };
-                            altImg.onerror = function() {
-                                console.error('Error al cargar la imagen alternativa:', altImageUrl);
+                            img.onerror = function() {
+                                console.error('Error al cargar la imagen:', rutaEncontrada);
                                 bgLayer.style.backgroundImage = 'none';
                             };
-                            altImg.src = altImageUrl;
-                        };
-                        img.src = imagen;
+                            img.src = rutaEncontrada;
+                        } else {
+                            console.warn(`No se encontró la imagen: ${nombreImagen}`);
+                            bgLayer.style.backgroundImage = 'none';
+                        }
                         
-                        sectionDiv.appendChild(bgLayer);
+                        return bgLayer;
+                    });
+                    
+                    // Esperar a que todas las imágenes se procesen
+                    Promise.all(promesasImagenes).then(bgLayers => {
+                        // Agregar todas las capas de fondo a la sección
+                        bgLayers.forEach(bgLayer => {
+                            if (bgLayer.parentNode !== sectionDiv) {
+                                sectionDiv.appendChild(bgLayer);
+                            }
+                        });
                     });
                 } else {
                     console.warn(`No se encontraron imágenes para la sección ${seccion.titulo}`);
@@ -948,9 +891,8 @@
                 sectionDiv.appendChild(headerDiv);
                 sectionDiv.appendChild(contentDiv);
                 
-                // NUEVO: Hacer que toda la sección sea clickeable
+                // Hacer que toda la sección sea clickeable
                 sectionDiv.addEventListener('click', function(event) {
-                    // Evitar que el clic se propague si se hizo en un elemento interactivo dentro del contenido
                     if (contentDiv.classList.contains('active') && 
                         (event.target.closest('.menu-item') || 
                          event.target.closest('.subsection-title') ||
@@ -958,42 +900,28 @@
                         return;
                     }
                     
-                    // Si el contenido no está activo o el clic fue en el encabezado/imagen, toggle la sección
                     toggleSection(seccion.id);
                 });
                 
                 menuContainer.appendChild(sectionDiv);
             });
             
-            // CAMBIO: Ya no se abre ninguna sección por defecto
-            // if (secciones.length > 0) {
-            //     toggleSection(secciones[0].id);
-            // }
+            // No abrir ninguna sección por defecto para evitar problemas de carga
         }
         
         function toggleSection(sectionId) {
             const section = document.getElementById(sectionId);
             const content = section.querySelector('.section-content');
             
-            // Cambiar la clase activa
             content.classList.toggle('active');
             
-            // SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL
-            // Forzar una actualización de renderizado después de cambiar la clase
             if (content.classList.contains('active')) {
-                // Forzar un reflujo para asegurar que el navegador procese los cambios
                 void content.offsetHeight;
-                
-                // Añadir una clase temporal para optimizar el renderizado
                 section.classList.add('active');
                 
-                // Aplicar optimizaciones para evitar el parpadeo durante el scroll
                 const menuItems = content.querySelectorAll('.menu-item');
                 menuItems.forEach(item => {
-                    // Forzar la aceleración de hardware para cada elemento
                     item.style.transform = 'translateZ(0)';
-                    
-                    // Después de un breve tiempo, restablecer la transformación
                     setTimeout(() => {
                         item.style.transform = '';
                     }, 100);
@@ -1010,17 +938,11 @@
                 content.classList.add('active');
                 section.classList.add('active');
                 
-                // SOLUCIÓN PARA EL PARPADEO AL HACER SCROLL
-                // Forzar una actualización de renderizado después de cambiar la clase
                 void content.offsetHeight;
                 
-                // Aplicar optimizaciones para evitar el parpadeo durante el scroll
                 const menuItems = content.querySelectorAll('.menu-item');
                 menuItems.forEach(item => {
-                    // Forzar la aceleración de hardware para cada elemento
                     item.style.transform = 'translateZ(0)';
-                    
-                    // Después de un breve tiempo, restablecer la transformación
                     setTimeout(() => {
                         item.style.transform = '';
                     }, 100);
@@ -1034,55 +956,39 @@
             precargarImagenes();
             
             // Establecer tiempos para la gestión del mensaje de bienvenida
-            const maxWaitTime = 5000; // 5 segundos máximo
-            const elegantFadeTime = 3000; // 3 segundos para iniciar la animación elegante
+            const maxWaitTime = 5000;
+            const elegantFadeTime = 3000;
             
-            // Variables para controlar los timeouts
             let elegantFadeTimeout;
             let maxWaitTimeout;
             
-            // Función para limpiar todos los timeouts
             function clearTimeouts() {
                 if (elegantFadeTimeout) clearTimeout(elegantFadeTimeout);
                 if (maxWaitTimeout) clearTimeout(maxWaitTimeout);
             }
             
-            // Función para ocultar el mensaje y limpiar timeouts
             function hideAndClear() {
                 clearTimeouts();
                 hideWelcomeMessage();
             }
             
-            // Función para iniciar la animación elegante y limpiar timeouts
             function startElegantAndClear() {
                 clearTimeouts();
                 startElegantFade();
             }
             
-            // Programar el inicio de la animación elegante a los 3 segundos
             elegantFadeTimeout = setTimeout(() => {
                 startElegantAndClear();
             }, elegantFadeTime);
             
-            // Ocultar el mensaje de bienvenida después del tiempo máximo
             maxWaitTimeout = setTimeout(() => {
                 hideAndClear();
             }, maxWaitTime);
             
-            // Cargar el menú y verificar la primera imagen
+            // Cargar el menú
             cargarMenu().then((success) => {
                 if (success) {
                     console.log('Menú cargado exitosamente');
-                    
-                    // Verificar si la primera imagen ha cargado al menos un 80%
-                    checkFirstImageLoad().then((firstImageLoaded) => {
-                        if (firstImageLoaded) {
-                            console.log('La primera imagen ha cargado al menos un 80%, ocultando mensaje de bienvenida');
-                            hideAndClear();
-                        } else {
-                            console.log('La primera imagen no ha cargado al menos un 80%, esperando timeouts');
-                        }
-                    });
                 } else {
                     console.log('Error al cargar el menú');
                     hideAndClear();
