@@ -56,3 +56,31 @@ header h1{font-size:4rem;background:linear-gradient(45deg,#ff00ff,#00ffff);-webk
     height: 200px !important;
   }
 }
+/* Botón de Administrador */
+.admin-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 1000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.admin-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajustar el contenedor de botones flotantes para que no se superponga */
+.float-container {
+  bottom: 60px !important; /* Dar espacio al botón de administrador */
+}
