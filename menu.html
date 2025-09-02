@@ -629,6 +629,27 @@
         </div>
     </div>
     <script>
+        // === FUNCIÓN PARA PRECARGAR IMÁGENES ===
+        function precargarImagenes() {
+            // Lista de imágenes que se usan comúnmente en el menú
+            const imagenesPrecargar = [
+                '/assets/img/background/empanada-bg.jpg',
+                '/assets/img/background/pizza-bg.jpg',
+                '/assets/img/background/hamburguesa-bg.jpg',
+                '/assets/img/background/sandwich-bg.jpg',
+                '/assets/img/background/papas-bg.jpg',
+                '/assets/img/background/bebidas-bg.jpg',
+                '/assets/img/background/tragos-bg.jpg',
+                '/assets/img/background/picadas-bg.jpg'
+            ];
+            
+            // Precargar cada imagen
+            imagenesPrecargar.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        }
+        
         // === FUNCIÓN PARA OCULTAR EL MENSAJE DE BIENVENIDA ===
         function hideWelcomeMessage() {
             const welcomeMessage = document.getElementById('welcome-message');
@@ -774,37 +795,48 @@
                 sectionDiv.className = 'menu-section';
                 sectionDiv.id = seccion.id;
                 
-                // Capas de fondo para múltiples imágenes
+                // Capas de fondo para múltiples imágenes - MEJORADO
                 if (seccion.imagenes && seccion.imagenes.length > 0) {
                     console.log(`Imágenes para la sección ${seccion.titulo}:`, seccion.imagenes);
                     seccion.imagenes.forEach((imagen, index) => {
                         const bgLayer = document.createElement('div');
                         bgLayer.className = 'background-layer';
                         
-                        // SOLUCIÓN ALTERNATIVA: Construir la ruta absoluta directamente
-                        let imageUrl = imagen;
+                        // Precargar la imagen antes de establecerla como fondo
+                        const img = new Image();
+                        img.onload = function() {
+                            bgLayer.style.backgroundImage = `url('${imagen}')`;
+                            if (seccion.imagenes.length > 1) {
+                                bgLayer.classList.add('animated');
+                                bgLayer.style.animationDelay = `${index * 15}s`;
+                            }
+                        };
+                        img.onerror = function() {
+                            console.error('Error al cargar la imagen:', imagen);
+                            // Intentar con una ruta alternativa
+                            let altImageUrl = imagen;
+                            if (imagen.startsWith('../')) {
+                                altImageUrl = '/assets/img/background/' + imagen.split('/').pop();
+                            } else if (!imagen.startsWith('/')) {
+                                altImageUrl = '/assets/img/background/' + imagen;
+                            }
+                            
+                            const altImg = new Image();
+                            altImg.onload = function() {
+                                bgLayer.style.backgroundImage = `url('${altImageUrl}')`;
+                                if (seccion.imagenes.length > 1) {
+                                    bgLayer.classList.add('animated');
+                                    bgLayer.style.animationDelay = `${index * 15}s`;
+                                }
+                            };
+                            altImg.onerror = function() {
+                                console.error('Error al cargar la imagen alternativa:', altImageUrl);
+                                bgLayer.style.backgroundImage = 'none';
+                            };
+                            altImg.src = altImageUrl;
+                        };
+                        img.src = imagen;
                         
-                        // Si la ruta comienza con '../', la reemplazamos con la ruta absoluta correcta
-                        if (imagen.startsWith('../')) {
-                            const imageName = imagen.split('/').pop(); // Obtener solo el nombre del archivo
-                            imageUrl = `/assets/img/backgrounds/${imageName}`;
-                        }
-                        // Si la ruta ya es absoluta, la usamos tal cual
-                        else if (imagen.startsWith('/')) {
-                            imageUrl = imagen;
-                        }
-                        // Si es solo el nombre del archivo, le agregamos la ruta completa
-                        else if (!imagen.includes('/')) {
-                            imageUrl = `/assets/img/backgrounds/${imagen}`;
-                        }
-                        
-                        console.log(`Estableciendo imagen de fondo: ${imageUrl}`);
-                        bgLayer.style.backgroundImage = `url('${imageUrl}')`;
-                        
-                        if (seccion.imagenes.length > 1) {
-                            bgLayer.classList.add('animated');
-                            bgLayer.style.animationDelay = `${index * 15}s`;
-                        }
                         sectionDiv.appendChild(bgLayer);
                     });
                 } else {
@@ -884,7 +916,6 @@
                         contentDiv.appendChild(subDiv);
                     });
                 } else if (seccion.platos && seccion.platos.length > 0) {
-                    // CORRECCIÓN: Cambiado de 'secciones.platos' a 'seccion.platos'
                     seccion.platos.forEach(plato => {
                         const itemDiv = document.createElement('div');
                         itemDiv.className = 'menu-item';
@@ -938,64 +969,6 @@
             // if (secciones.length > 0) {
             //     toggleSection(secciones[0].id);
             // }
-        }
-        
-        // === FUNCIÓN PARA DEPURAR LAS IMÁGENES ===
-        function depurarImagenes() {
-            console.log("Iniciando depuración de imágenes...");
-            
-            // Obtener todas las secciones del menú
-            const secciones = document.querySelectorAll('.menu-section');
-            
-            secciones.forEach((seccion, index) => {
-                console.log(`Analizando sección ${index + 1}:`, seccion.id);
-                
-                // Obtener todas las capas de fondo de esta sección
-                const backgroundLayers = seccion.querySelectorAll('.background-layer');
-                
-                if (backgroundLayers.length === 0) {
-                    console.warn(`  - No se encontraron capas de fondo en la sección ${seccion.id}`);
-                    return;
-                }
-                
-                backgroundLayers.forEach((layer, layerIndex) => {
-                    const backgroundImage = window.getComputedStyle(layer).backgroundImage;
-                    console.log(`  - Capa ${layerIndex + 1}: ${backgroundImage}`);
-                    
-                    // Crear una imagen de prueba para verificar si se carga correctamente
-                    if (backgroundImage && backgroundImage !== 'none') {
-                        const imageUrl = backgroundImage.slice(5, -2); // Eliminar 'url("' y '")'
-                        console.log(`  - Intentando cargar imagen: ${imageUrl}`);
-                        
-                        const img = new Image();
-                        
-                        img.onload = function() {
-                            console.log(`  - ✓ Imagen cargada correctamente: ${imageUrl}`);
-                        };
-                        
-                        img.onerror = function() {
-                            console.error(`  - ✗ Error al cargar la imagen: ${imageUrl}`);
-                            
-                            // Intentar con una ruta alternativa
-                            const altUrl = '/assets/img/backgrounds/' + imageUrl.split('/').pop();
-                            console.log(`  - Intentando con ruta alternativa: ${altUrl}`);
-                            
-                            const altImg = new Image();
-                            altImg.onload = function() {
-                                console.log(`  - ✓ Imagen alternativa cargada correctamente: ${altUrl}`);
-                                // Actualizar el fondo con la ruta alternativa
-                                layer.style.backgroundImage = `url('${altUrl}')`;
-                            };
-                            altImg.onerror = function() {
-                                console.error(`  - ✗ Error al cargar la imagen alternativa: ${altUrl}`);
-                            };
-                            altImg.src = altUrl;
-                        };
-                        
-                        img.src = imageUrl;
-                    }
-                });
-            });
         }
         
         function toggleSection(sectionId) {
@@ -1057,9 +1030,12 @@
         }
         
         document.addEventListener('DOMContentLoaded', () => {
+            // Precargar imágenes antes de cargar el menú
+            precargarImagenes();
+            
             // Establecer tiempos para la gestión del mensaje de bienvenida
             const maxWaitTime = 5000; // 5 segundos máximo
-            const elegantFadeTime = 3000; // CAMBIO: Reducido a 3 segundos para iniciar la animación elegante
+            const elegantFadeTime = 3000; // 3 segundos para iniciar la animación elegante
             
             // Variables para controlar los timeouts
             let elegantFadeTimeout;
@@ -1112,9 +1088,6 @@
                     hideAndClear();
                 }
             });
-            
-            // Esperar un poco a que se cargue el menú antes de depurar
-            setTimeout(depurarImagenes, 2000);
         });
     </script>
 </body>
