@@ -12,27 +12,32 @@
         {
           "nombre": "Coca Cola - Fanta - Sprite (x 1 L)",
           "descripcion": "",
-          "precio": "$5.000"
+          "precio": "$5.000",
+          "disponible": true
         },
         {
           "nombre": "Coca Cola - Fanta - Sprite (x 500 cc)",
           "descripcion": "",
-          "precio": "$3.500"
+          "precio": "$3.500",
+          "disponible": true
         },
         {
           "nombre": "Agua Saborizada (500 cc)",
           "descripcion": "",
-          "precio": "$2.500"
+          "precio": "$2.500",
+          "disponible": true
         },
         {
           "nombre": "Agua Mineral",
           "descripcion": "",
-          "precio": "$2.500"
+          "precio": "$2.500",
+          "disponible": true
         },
         {
           "nombre": "Speed / Red Bull",
           "descripcion": "",
-          "precio": "$3.500"
+          "precio": "$3.500",
+          "disponible": true
         }
       ]
     },
@@ -43,32 +48,38 @@
         {
           "nombre": "Brahma (x 1 L)",
           "descripcion": "",
-          "precio": "$7.500"
+          "precio": "$7.500",
+          "disponible": true
         },
         {
           "nombre": "Heineken (x 1 L)",
           "descripcion": "",
-          "precio": "$8.500"
+          "precio": "$8.500",
+          "disponible": true
         },
         {
           "nombre": "Corona (710 cc)",
           "descripcion": "",
-          "precio": "$8.000"
+          "precio": "$8.000",
+          "disponible": true
         },
         {
           "nombre": "Corona Monjita",
           "descripcion": "",
-          "precio": "$4.500"
+          "precio": "$4.500",
+          "disponible": true
         },
         {
           "nombre": "Lata de Brahma o Bud (473 cc)",
           "descripcion": "",
-          "precio": "$4.000"
+          "precio": "$4.000",
+          "disponible": true
         },
         {
           "nombre": "Cervezas Artesanales (botella 500 cc)",
           "descripcion": "Golden (rubia), Irish Red (roja), Toffe (negra), American IPA",
-          "precio": "$5.000"
+          "precio": "$5.000",
+          "disponible": true
         }
       ]
     },
@@ -79,12 +90,14 @@
         {
           "nombre": "Cordero Piel de Lobo",
           "descripcion": "",
-          "precio": "$11.000"
+          "precio": "$11.000",
+          "disponible": true
         },
         {
           "nombre": "La Iride",
           "descripcion": "",
-          "precio": "$14.000"
+          "precio": "$14.000",
+          "disponible": true
         }
       ]
     },
@@ -95,12 +108,14 @@
         {
           "nombre": "Champagne Navarro Correas",
           "descripcion": "",
-          "precio": "$25.000"
+          "precio": "$25.000",
+          "disponible": true
         },
         {
           "nombre": "Champagne Du",
           "descripcion": "",
-          "precio": "$17.000"
+          "precio": "$17.000",
+          "disponible": true
         }
       ]
     }
