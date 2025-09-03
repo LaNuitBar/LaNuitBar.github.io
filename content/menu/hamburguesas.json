@@ -9,12 +9,14 @@
     {
       "nombre": "Especial",
       "descripcion": "Medallón de carne paty, jamón, queso, huevo, lechuga, tomate, papas",
-      "precio": "$10.000"
+      "precio": "$10.000",
+      "disponible": true
     },
     {
       "nombre": "Americano",
       "descripcion": "Medallón de carne paty, queso cheddar, panceta ahumada caramelizada, cebolla caramelizada, papas",
-      "precio": "$12.000"
+      "precio": "$12.000",
+      "disponible": true
     }
   ]
 }
