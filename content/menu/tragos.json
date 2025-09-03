@@ -14,57 +14,68 @@
         {
           "nombre": "Gin Tonic",
           "descripcion": "Frutos rojos, limón, naranja",
-          "precio": "$6.000"
+          "precio": "$6.000",
+          "disponible": true
         },
         {
           "nombre": "Campari",
           "descripcion": "",
-          "precio": "$6.000"
+          "precio": "$6.000",
+          "disponible": true
         },
         {
           "nombre": "Mojito",
           "descripcion": "",
-          "precio": "$6.000"
+          "precio": "$6.000",
+          "disponible": true
         },
         {
           "nombre": "Gancia",
           "descripcion": "",
-          "precio": "$5.000"
+          "precio": "$5.000",
+          "disponible": true
         },
         {
           "nombre": "Tequila Sun Rise (largo)",
           "descripcion": "",
-          "precio": "$6.000"
+          "precio": "$6.000",
+          "disponible": true
         },
         {
           "nombre": "Fernet trago largo",
           "descripcion": "",
-          "precio": "$4.000"
+          "precio": "$4.000",
+          "disponible": true
         },
         {
           "nombre": "Smirnoff",
           "descripcion": "",
-          "precio": "$6.000"
+          "precio": "$6.000",
+          "disponible": true
         },
         {
           "nombre": "Sky",
           "descripcion": "",
-          "precio": "$5.500"
+          "precio": "$5.500",
+          "disponible": true
         },
         {
           "nombre": "Sernova (clásico)",
           "descripcion": "",
-          "precio": "$5.500"
+          "precio": "$5.500",
+          "disponible": true
         },
         {
           "nombre": "Fernet (500 cc)",
           "descripcion": "",
-          "precio": "$6.000"
+          "precio": "$6.000",
+          "disponible": true
         },
         {
           "nombre": "Fernet (800 cc)",
           "descripcion": "",
-          "precio": "$9.000"
+          "precio": "$9.000",
+          "disponible": true
         }
       ]
     },
@@ -75,22 +86,26 @@
         {
           "nombre": "Smirnoff",
           "descripcion": "Clásico o sabores",
-          "precio": "$30.000"
+          "precio": "$30.000",
+          "disponible": true
         },
         {
           "nombre": "SKYY",
           "descripcion": "Clásico o sabores",
-          "precio": "$28.000"
+          "precio": "$28.000",
+          "disponible": true
         },
         {
           "nombre": "Sernova",
           "descripcion": "Clásico o sabores",
-          "precio": "$28.000"
+          "precio": "$28.000",
+          "disponible": true
         },
         {
           "nombre": "Gin Spiritu Blu +",
           "descripcion": "Agua tónica 1.5 L + limón o naranja",
-          "precio": "$35.000"
+          "precio": "$35.000",
+          "disponible": true
         }
       ]
     }
