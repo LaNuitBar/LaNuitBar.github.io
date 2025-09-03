@@ -14,12 +14,14 @@
         {
           "nombre": "Especial",
           "descripcion": "Bife de lomo, jamón, queso, huevo, lechuga, tomate, papas, mayo casera",
-          "precio": "$14.000"
+          "precio": "$14.000",
+          "disponible": true
         },
         {
           "nombre": "Nuit",
           "descripcion": "Bife de lomo, panceta ahumada, queso tybo, queso azul, tomate, rúcula, papas, mayo casera",
-          "precio": "$16.000"
+          "precio": "$16.000",
+          "disponible": true
         }
       ]
     },
@@ -30,12 +32,14 @@
         {
           "nombre": "Con tybo",
           "descripcion": "",
-          "precio": "$10.000"
+          "precio": "$10.000",
+          "disponible": true
         },
         {
           "nombre": "Con cheddar o roquefort",
           "descripcion": "",
-          "precio": "$12.000"
+          "precio": "$12.000",
+          "disponible": true
         }
       ]
     },
@@ -46,12 +50,14 @@
         {
           "nombre": "Jamón Crudo",
           "descripcion": "",
-          "precio": "$12.000"
+          "precio": "$12.000",
+          "disponible": true
         },
         {
           "nombre": "Mortadella",
           "descripcion": "",
-          "precio": "$10.000"
+          "precio": "$10.000",
+          "disponible": true
         }
       ]
     }
