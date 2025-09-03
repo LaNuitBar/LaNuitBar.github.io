@@ -37,6 +37,7 @@ collections:
               - { label: "Nombre del Plato", name: "nombre", widget: "string" }
               - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
               - { label: "Precio", name: "precio", widget: "string" }
+              - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
           - label: "Subsecciones (opcional)"
             name: "subsecciones"
             widget: "list"
@@ -51,6 +52,7 @@ collections:
                   - { label: "Nombre del Plato", name: "nombre", widget: "string" }
                   - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
                   - { label: "Precio", name: "precio", widget: "string" }
+                  - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
       - name: "picadas"
         label: "Picadas"
         file: "content/menu/picadas.json"
@@ -65,6 +67,7 @@ collections:
               - { label: "Nombre del Plato", name: "nombre", widget: "string" }
               - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
               - { label: "Precio", name: "precio", widget: "string" }
+              - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
           - label: "Subsecciones (opcional)"
             name: "subsecciones"
             widget: "list"
@@ -79,6 +82,7 @@ collections:
                   - { label: "Nombre del Plato", name: "nombre", widget: "string" }
                   - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
                   - { label: "Precio", name: "precio", widget: "string" }
+                  - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
       - name: "sandwiches"
         label: "Sandwiches"
         file: "content/menu/sandwiches.json"
@@ -93,6 +97,7 @@ collections:
               - { label: "Nombre del Plato", name: "nombre", widget: "string" }
               - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
               - { label: "Precio", name: "precio", widget: "string" }
+              - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
           - label: "Subsecciones (opcional)"
             name: "subsecciones"
             widget: "list"
@@ -107,6 +112,7 @@ collections:
                   - { label: "Nombre del Plato", name: "nombre", widget: "string" }
                   - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
                   - { label: "Precio", name: "precio", widget: "string" }
+                  - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
       - name: "hamburguesas"
         label: "Hamburguesas"
         file: "content/menu/hamburguesas.json"
@@ -121,6 +127,7 @@ collections:
               - { label: "Nombre del Plato", name: "nombre", widget: "string" }
               - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
               - { label: "Precio", name: "precio", widget: "string" }
+              - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
           - label: "Subsecciones (opcional)"
             name: "subsecciones"
             widget: "list"
@@ -135,6 +142,7 @@ collections:
                   - { label: "Nombre del Plato", name: "nombre", widget: "string" }
                   - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
                   - { label: "Precio", name: "precio", widget: "string" }
+                  - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
       - name: "papas"
         label: "Papas"
         file: "content/menu/papas.json"
@@ -149,6 +157,7 @@ collections:
               - { label: "Nombre del Plato", name: "nombre", widget: "string" }
               - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
               - { label: "Precio", name: "precio", widget: "string" }
+              - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
           - label: "Subsecciones (opcional)"
             name: "subsecciones"
             widget: "list"
@@ -163,6 +172,7 @@ collections:
                   - { label: "Nombre del Plato", name: "nombre", widget: "string" }
                   - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
                   - { label: "Precio", name: "precio", widget: "string" }
+                  - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
       - name: "empanadas"
         label: "Empanadas"
         file: "content/menu/empanadas.json"
@@ -177,6 +187,7 @@ collections:
               - { label: "Nombre del Plato", name: "nombre", widget: "string" }
               - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
               - { label: "Precio", name: "precio", widget: "string" }
+              - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
           - label: "Subsecciones (opcional)"
             name: "subsecciones"
             widget: "list"
@@ -191,6 +202,7 @@ collections:
                   - { label: "Nombre del Plato", name: "nombre", widget: "string" }
                   - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
                   - { label: "Precio", name: "precio", widget: "string" }
+                  - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
       - name: "bebidas"
         label: "Bebidas"
         file: "content/menu/bebidas.json"
@@ -205,6 +217,7 @@ collections:
               - { label: "Nombre del Plato", name: "nombre", widget: "string" }
               - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
               - { label: "Precio", name: "precio", widget: "string" }
+              - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
           - label: "Subsecciones (opcional)"
             name: "subsecciones"
             widget: "list"
@@ -219,6 +232,7 @@ collections:
                   - { label: "Nombre del Plato", name: "nombre", widget: "string" }
                   - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
                   - { label: "Precio", name: "precio", widget: "string" }
+                  - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
       - name: "tragos"
         label: "Tragos"
         file: "content/menu/tragos.json"
@@ -233,6 +247,7 @@ collections:
               - { label: "Nombre del Plato", name: "nombre", widget: "string" }
               - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
               - { label: "Precio", name: "precio", widget: "string" }
+              - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
           - label: "Subsecciones (opcional)"
             name: "subsecciones"
             widget: "list"
@@ -247,3 +262,4 @@ collections:
                   - { label: "Nombre del Plato", name: "nombre", widget: "string" }
                   - { label: "Descripción (opcional)", name: "descripcion", widget: "text", required: false }
                   - { label: "Precio", name: "precio", widget: "string" }
+                  - { label: "Disponible", name: "disponible", widget: "boolean", default: true }
