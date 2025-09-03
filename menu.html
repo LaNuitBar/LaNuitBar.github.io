@@ -838,6 +838,18 @@
                                 nameDiv.className = 'item-name';
                                 nameDiv.textContent = plato.nombre;
                                 
+                                // === AGREGADO: SELLO "NO DISPONIBLE" EN ROJO ===
+                                if (plato.disponible === false) {
+                                    const sello = document.createElement('span');
+                                    sello.textContent = ' NO DISPONIBLE';
+                                    sello.style.color = '#ff0000';
+                                    sello.style.fontWeight = 'bold';
+                                    sello.style.fontSize = '0.8em';
+                                    sello.style.marginLeft = '8px';
+                                    nameDiv.appendChild(sello);
+                                }
+                                // ================================================
+                                
                                 const descDiv = document.createElement('div');
                                 descDiv.className = 'item-description';
                                 descDiv.textContent = plato.descripcion || '';
@@ -869,6 +881,18 @@
                         const nameDiv = document.createElement('div');
                         nameDiv.className = 'item-name';
                         nameDiv.textContent = plato.nombre;
+                        
+                        // === AGREGADO: SELLO "NO DISPONIBLE" EN ROJO ===
+                        if (plato.disponible === false) {
+                            const sello = document.createElement('span');
+                            sello.textContent = ' NO DISPONIBLE';
+                            sello.style.color = '#ff0000';
+                            sello.style.fontWeight = 'bold';
+                            sello.style.fontSize = '0.8em';
+                            sello.style.marginLeft = '8px';
+                            nameDiv.appendChild(sello);
+                        }
+                        // ================================================
                         
                         const descDiv = document.createElement('div');
                         descDiv.className = 'item-description';
