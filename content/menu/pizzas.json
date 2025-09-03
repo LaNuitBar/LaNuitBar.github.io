@@ -11,13 +11,13 @@
       "nombre": "Mozzarella",
       "descripcion": "Queso mozzarella, salsa de tomate, orégano, aceitunas",
       "precio": "Entera: $11.000 | Media: $6.500",
-      "disponible": false
+      "disponible": true
     },
     {
       "nombre": "Especial",
       "descripcion": "Mozzarella, salsa, jamón cocido, huevo, morrones, aceitunas",
       "precio": "Entera: $13.500 | Media: $7.000",
-      "disponible": false
+      "disponible": true
     },
     {
       "nombre": "Fugazzeta",
