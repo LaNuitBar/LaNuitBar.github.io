@@ -9,22 +9,26 @@
     {
       "nombre": "Carne",
       "descripcion": "",
-      "precio": "Docena: $12.000 | Media: $7.000"
+      "precio": "Docena: $12.000 | Media: $7.000",
+      "disponible": true
     },
     {
       "nombre": "Pollo",
       "descripcion": "",
-      "precio": "Docena: $12.000 | Media: $7.000"
+      "precio": "Docena: $12.000 | Media: $7.000",
+      "disponible": true
     },
     {
       "nombre": "Jamón y Mozzarella",
       "descripcion": "",
-      "precio": "Docena: $12.000 | Media: $7.000"
+      "precio": "Docena: $12.000 | Media: $7.000",
+      "disponible": true
     },
     {
       "nombre": "Árabes",
       "descripcion": "",
-      "precio": "Docena: $12.000 | Media: $7.000"
+      "precio": "Docena: $12.000 | Media: $7.000",
+      "disponible": true
     }
   ]
 }
