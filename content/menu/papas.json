@@ -10,17 +10,20 @@
     {
       "nombre": "Clásicas",
       "descripcion": "",
-      "precio": "$5.000"
+      "precio": "$5.000",
+      "disponible": true
     },
     {
       "nombre": "Revuelto Gramajo",
       "descripcion": "",
-      "precio": "$7.000"
+      "precio": "$7.000",
+      "disponible": true
     },
     {
       "nombre": "Cheddar y Panceta",
       "descripcion": "",
-      "precio": "$7.500"
+      "precio": "$7.500",
+      "disponible": true
     }
   ]
 }
