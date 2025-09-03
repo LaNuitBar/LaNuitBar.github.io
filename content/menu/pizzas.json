@@ -35,7 +35,7 @@
       "nombre": "Choclo",
       "descripcion": "Mozzarella, salsa, granos de choclo, morrones, aceitunas",
       "precio": "Entera: $13.500 | Media: $7.000",
-      "disponible": false
+      "disponible": true
     },
     {
       "nombre": "Rúcula y Jamón Crudo",
