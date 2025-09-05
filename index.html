@@ -3,55 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bar La Nuit</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Bar La Nuit - Pausa temporal</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      color: #fff;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+  </style>
 </head>
 <body>
-  <div id="photoCarousel" class="photo-carousel"></div>
-  <div class="overlay"></div>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <header>
-    <img src="https://i.postimg.cc/vZgtfg8J/header-lanuit.png" alt="La Nuit" class="logo-main">
-    <p>Reservá tu mesa</p>
-    <a href="menu.html" class="menu-button">VER MENÚ</a>
-  </header>
-  <div class="promo-wrapper" id="promoContainer"></div>
-  <section class="reservation">
-    <form id="reservationForm" class="reservation-form">
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input id="nombre" name="nombre" required />
-      </div>
-      <div class="form-group">
-        <label for="telefono">Teléfono</label>
-        <input id="telefono" name="telefono" type="tel" required />
-      </div>
-      <div class="form-group">
-        <label for="fecha">Fecha</label>
-        <input id="fecha" name="fecha" type="date" required />
-      </div>
-      <div class="form-group">
-        <label for="hora">Hora</label>
-        <select id="hora" name="hora" required>
-          <option>20:00</option><option>21:00</option><option>22:00</option><option>23:00</option><option>00:00</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="personas">Personas</label>
-        <select id="personas" name="personas" required>
-          <option>1-2</option><option>3-4</option><option>5-6</option><option>7+</option>
-        </select>
-      </div>
-      <button type="submit" class="submit-btn">RESERVAR</button>
-    </form>
-  </section>
-  
-  <!-- Botón de Administrador al final de la página -->
-  <div class="admin-section">
-    <a href="/admin" class="admin-btn">Acceso Administrador</a>
+  <div>
+    <h1>🚧 Estamos en pausa</h1>
+    <p>Volveremos pronto. Gracias por tu paciencia.</p>
   </div>
-  
-  <div class="float-container" id="floatContainer"></div>
-  <script src="script.js"></script>
 </body>
 </html>
